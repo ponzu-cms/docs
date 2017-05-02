@@ -1,0 +1,11 @@
+theme: 'material'
+site_name: 'Ponzu'
+docs_dir: 'src'
+site_dir: 'build'
+repo_name: 'ponzu-cms/ponzu'
+repo_url: 'https://github.com/ponzu-cms/ponzu'
+
+extra:
+  palette:
+    primary: 'grey'
+    accent: 'teal'
