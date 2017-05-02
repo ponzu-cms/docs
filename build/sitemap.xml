@@ -9,4 +9,70 @@
     </url>
     
 
+    
+        
+    <url>
+     <loc>/Content/Extending-Content/</loc>
+     <lastmod>2017-05-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Content/Overview/</loc>
+     <lastmod>2017-05-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/HTTP-APIs/Content/</loc>
+     <lastmod>2017-05-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/HTTP-APIs/File-Metadata/</loc>
+     <lastmod>2017-05-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/HTTP-APIs/Search/</loc>
+     <lastmod>2017-05-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Interfaces/API/</loc>
+     <lastmod>2017-05-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Interfaces/Editor/</loc>
+     <lastmod>2017-05-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Interfaces/Item/</loc>
+     <lastmod>2017-05-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/Interfaces/Search/</loc>
+     <lastmod>2017-05-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
 </urlset>
