@@ -1,7 +1,5 @@
 title: Content Overview
 
-[![](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/ponzu-cms/ponzu/system/item)
-
 Nearly everything you work on in Ponzu is inside content files on the content types you create. These types must all reside in the `content` package and are the fundamental core of your CMS. In order for Content types to be rendered and managed by the CMS, they must implement the [`editor.Editable`](/Interfaces/Editor) interface, and add add their own `interface{}` container to the global `item.Types` map. 
 
 Sound like alot? Don't worry, all of this can be done for you by using the code-generating command line tools that come with Ponzu.
