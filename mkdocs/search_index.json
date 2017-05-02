@@ -9,6 +9,326 @@
             "location": "/#ponzu", 
             "text": "", 
             "title": "Ponzu"
+        }, 
+        {
+            "location": "/Content/Extending-Content/", 
+            "text": "Extending your content types with more features and functionality within the system\nis done by implementing the various built-in interfaces provided by Ponzu. To learn \nmore about interfaces, see \nA Tour of Go - Interfaces\n.\n\n\nInterfaces\n\n\nAll Content types which embed an \nitem.Item\n will implicitly implement its many\ninterfaces. In Ponzu, the following interfaces are exported from the \nsystem/item\n\npackage and have a default implementation which can be overridden to change your\ncontent types' functionality within the system.\n\n\n\n\nitem.Hideable\n\n\nitem.Pushable\n\n\nitem.Omittable\n\n\nitem.Hookable\n\n\nitem.Identifiable\n\n\nitem.Sortable\n\n\nitem.Sluggable\n\n\n\n\nAPI Interfaces\n\n\nTo enable 3rd-party clients to interact with your Content types, you can extend your types with the API interfaces:\n\n\n\n\napi.Createable\n\n\napi.Updateable\n\n\napi.Deleteable\n\n\napi.Trustable", 
+            "title": "Extending Content"
+        }, 
+        {
+            "location": "/Content/Extending-Content/#interfaces", 
+            "text": "All Content types which embed an  item.Item  will implicitly implement its many\ninterfaces. In Ponzu, the following interfaces are exported from the  system/item \npackage and have a default implementation which can be overridden to change your\ncontent types' functionality within the system.   item.Hideable  item.Pushable  item.Omittable  item.Hookable  item.Identifiable  item.Sortable  item.Sluggable", 
+            "title": "Interfaces"
+        }, 
+        {
+            "location": "/Content/Extending-Content/#api-interfaces", 
+            "text": "To enable 3rd-party clients to interact with your Content types, you can extend your types with the API interfaces:   api.Createable  api.Updateable  api.Deleteable  api.Trustable", 
+            "title": "API Interfaces"
+        }, 
+        {
+            "location": "/Content/Overview/", 
+            "text": "Nearly everything you work on in Ponzu is inside content files on the content types you create. These types must all reside in the \ncontent\n package and are the fundamental core of your CMS. In order for Content types to be rendered and managed by the CMS, they must implement the \neditor.Editable\n interface, and add add their own \ninterface{}\n container to the global \nitem.Types\n map. \n\n\nSound like alot? Don't worry, all of this can be done for you by using the code-generating command line tools that come with Ponzu.\n\n\nIt is rare to hand-write a new Content type, and should be generated instead!\n\n\nGenerating Content types\n\n\nTo generate content types and boilerplate code, use the Ponzu CLI \ngenerate\n command as such:\n\n\n$ ponzu generate content post title:string body:string:richtext author:string\n\n\n\n\n\nThe command above will create a file at \ncontent/post.go\n and will generate the following code:\n\n\npackage\n \ncontent\n\n\n\nimport\n \n(\n\n    \nfmt\n\n\n    \ngithub.com/ponzu-cms/ponzu/management/editor\n\n    \ngithub.com/ponzu-cms/ponzu/system/item\n\n\n)\n\n\n\ntype\n \nPost\n \nstruct\n \n{\n\n    \nitem\n.\nItem\n\n\n    \nTitle\n  \nstring\n \n`json:\ntitle\n`\n\n    \nBody\n   \nstring\n \n`json:\nbody\n`\n\n    \nAuthor\n \nstring\n \n`json:\nauthor\n`\n\n\n}\n\n\n\n// MarshalEditor writes a buffer of html to edit a Post within the CMS\n\n\n// and implements editor.Editable\n\n\nfunc\n \n(\np\n \n*\nPost\n)\n \nMarshalEditor\n()\n \n([]\nbyte\n,\n \nerror\n)\n \n{\n\n    \nview\n,\n \nerr\n \n:=\n \neditor\n.\nForm\n(\np\n,\n\n        \n// Take note that the first argument to these Input-like functions\n\n        \n// is the string version of each Post field, and must follow\n\n        \n// this pattern for auto-decoding and auto-encoding reasons:\n\n        \neditor\n.\nField\n{\n\n            \nView\n:\n \neditor\n.\nInput\n(\nTitle\n,\n \np\n,\n \nmap\n[\nstring\n]\nstring\n{\n\n                \nlabel\n:\n       \nTitle\n,\n\n                \ntype\n:\n        \ntext\n,\n\n                \nplaceholder\n:\n \nEnter the Title here\n,\n\n            \n}),\n\n        \n},\n\n        \neditor\n.\nField\n{\n\n            \nView\n:\n \neditor\n.\nRichtext\n(\nBody\n,\n \np\n,\n \nmap\n[\nstring\n]\nstring\n{\n\n                \nlabel\n:\n       \nBody\n,\n\n                \nplaceholder\n:\n \nEnter the Body here\n,\n\n            \n}),\n\n        \n},\n\n        \neditor\n.\nField\n{\n\n            \nView\n:\n \neditor\n.\nInput\n(\nAuthor\n,\n \np\n,\n \nmap\n[\nstring\n]\nstring\n{\n\n                \nlabel\n:\n       \nAuthor\n,\n\n                \ntype\n:\n        \ntext\n,\n\n                \nplaceholder\n:\n \nEnter the Author here\n,\n\n            \n}),\n\n        \n},\n\n    \n)\n\n\n    \nif\n \nerr\n \n!=\n \nnil\n \n{\n\n        \nreturn\n \nnil\n,\n \nfmt\n.\nErrorf\n(\nFailed to render Post editor view: %s\n,\n \nerr\n.\nError\n())\n\n    \n}\n\n\n    \nreturn\n \nview\n,\n \nnil\n\n\n}\n\n\n\nfunc\n \ninit\n()\n \n{\n\n    \nitem\n.\nTypes\n[\nPost\n]\n \n=\n \nfunc\n()\n \ninterface\n{}\n \n{\n \nreturn\n \nnew\n(\nPost\n)\n \n}\n\n\n}\n\n\n\n\n\n\nThe code above is the baseline amount required to manage content for the \nPost\n type from within the CMS. See \nExtending Content\n for information about how to add more functionality to your Content types. \n\n\nAll content managed by the CMS and exposed via the API is considered an \"item\", and thus should embed the \nitem.Item\n type. There are many benefits to this, such as becoming automatically sortable by time, and being given default methods that are useful inside and out of the CMS. All content types that are created by the \ngenerate\n command via Ponzu CLI will embed Item. \n\n\nRelated packages\n\n\nThe \nitem\n package has a number of useful interfaces, which make it simple to add functionality to all content types and other types that embed Item. \n\n\nThe \neditor\n package has the Editable interface, which allows types to create an editor for their fields within the CMS. Additionally, there is a helper function \neditor.Form\n which simplifies defining the editor's input layout and input types using \neditor.Input\n and various other functions to make HTML input elements like Select, Checkbox, Richtext, Textarea and more.\n\n\nThe \napi\n package has interfaces including \napi.Createable\n and \napi.Mergeable\n which make it trivial to accept and approve or reject content submitted from 3rd parties (POST from HTML forms, mobile clients, etc).", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/Content/Overview/#generating-content-types", 
+            "text": "To generate content types and boilerplate code, use the Ponzu CLI  generate  command as such:  $ ponzu generate content post title:string body:string:richtext author:string  The command above will create a file at  content/post.go  and will generate the following code:  package   content  import   ( \n     fmt \n\n     github.com/ponzu-cms/ponzu/management/editor \n     github.com/ponzu-cms/ponzu/system/item  )  type   Post   struct   { \n     item . Item \n\n     Title    string   `json: title ` \n     Body     string   `json: body ` \n     Author   string   `json: author `  }  // MarshalEditor writes a buffer of html to edit a Post within the CMS  // and implements editor.Editable  func   ( p   * Post )   MarshalEditor ()   ([] byte ,   error )   { \n     view ,   err   :=   editor . Form ( p , \n         // Take note that the first argument to these Input-like functions \n         // is the string version of each Post field, and must follow \n         // this pattern for auto-decoding and auto-encoding reasons: \n         editor . Field { \n             View :   editor . Input ( Title ,   p ,   map [ string ] string { \n                 label :         Title , \n                 type :          text , \n                 placeholder :   Enter the Title here , \n             }), \n         }, \n         editor . Field { \n             View :   editor . Richtext ( Body ,   p ,   map [ string ] string { \n                 label :         Body , \n                 placeholder :   Enter the Body here , \n             }), \n         }, \n         editor . Field { \n             View :   editor . Input ( Author ,   p ,   map [ string ] string { \n                 label :         Author , \n                 type :          text , \n                 placeholder :   Enter the Author here , \n             }), \n         }, \n     ) \n\n     if   err   !=   nil   { \n         return   nil ,   fmt . Errorf ( Failed to render Post editor view: %s ,   err . Error ()) \n     } \n\n     return   view ,   nil  }  func   init ()   { \n     item . Types [ Post ]   =   func ()   interface {}   {   return   new ( Post )   }  }   The code above is the baseline amount required to manage content for the  Post  type from within the CMS. See  Extending Content  for information about how to add more functionality to your Content types.   All content managed by the CMS and exposed via the API is considered an \"item\", and thus should embed the  item.Item  type. There are many benefits to this, such as becoming automatically sortable by time, and being given default methods that are useful inside and out of the CMS. All content types that are created by the  generate  command via Ponzu CLI will embed Item.", 
+            "title": "Generating Content types"
+        }, 
+        {
+            "location": "/Content/Overview/#related-packages", 
+            "text": "The  item  package has a number of useful interfaces, which make it simple to add functionality to all content types and other types that embed Item.   The  editor  package has the Editable interface, which allows types to create an editor for their fields within the CMS. Additionally, there is a helper function  editor.Form  which simplifies defining the editor's input layout and input types using  editor.Input  and various other functions to make HTML input elements like Select, Checkbox, Richtext, Textarea and more.  The  api  package has interfaces including  api.Createable  and  api.Mergeable  which make it trivial to accept and approve or reject content submitted from 3rd parties (POST from HTML forms, mobile clients, etc).", 
+            "title": "Related packages"
+        }, 
+        {
+            "location": "/HTTP-APIs/Content/", 
+            "text": "Endpoints\n\n\nGet Contents by Type (multiple items)\n\n\n\n\n/api/contents?type=\nType\n\n\noptional params:\n\n\norder (string: ASC / DESC, default: DESC)\n\n\ncount (int: -1 - N, default: 10, -1 returns all)\n\n\noffset (int: 0 - N, default: 0)\n\n\nMust be a \nGET\n request\n\n\n\n\nGet Content by Type (single item)\n\n\n\n\n/api/content?type=\nType\nid=\nID\n\n\nMust be a \nGET\n request\n\n\n\n\nGet Content by Slug (single item)\n\n\n\n\n/api/content?slug=\nSlug\n\n\nMust be a \nGET\n request\n\n\n\n\nNew Content (single item)\n\n\n\n\n/api/content/create?type=\nType\n\n\nType must implement \napi.Createable\n interface\n\n\nMust be a multipart/form-data encoded \nPOST\n request\n\n\nReturns \nJSON\n response containing the ID of the item in the database (if approved), the status (\"public\" or \"pending\"), and the type (\nType\n):\n\n\n\n\n{\n\n  \ndata\n:\n \n[\n\n    \n{\n\n        \nid\n:\n \n6\n,\n \n// will be omitted if status is pending\n\n        \ntype\n:\n \nReview\n,\n\n        \nstatus\n:\n \npublic\n\n    \n}\n\n  \n]\n\n\n}\n\n\n\n\n\n\nUpdate Content (single item)\n\n\n\n\n/api/content/update?type=\nType\nid=\nid\n\n\nType must implement \napi.Updateable\n interface\n\n\nMust be a multipart/form-data encoded \nPOST\n request\n\n\nReturns \nJSON\n response containing the ID of the item in the database (if approved), the status (\"public\"), and the type (\nType\n):\n\n\n\n\n{\n\n  \ndata\n:\n \n[\n\n    \n{\n\n        \nid\n:\n \n6\n,\n\n        \ntype\n:\n \nReview\n,\n\n        \nstatus\n:\n \npublic\n\n    \n}\n\n  \n]\n\n\n}\n\n\n\n\n\n\nDelete Content (single item)\n\n\n\n\n/api/content/delete?type=\nType\nid=\nid\n\n\nType must implement \napi.Deleteable\n interface\n\n\nMust be a multipart/form-data encoded \nPOST\n request\n\n\nReturns \nJSON\n response containing the ID of the item in the database (if approved), the status (\"deleted\"), and the type (\nType\n):\n\n\n\n\n{\n\n  \ndata\n:\n \n[\n\n    \n{\n\n        \nid\n:\n \n6\n,\n\n        \ntype\n:\n \nReview\n,\n\n        \nstatus\n:\n \ndeleted\n\n    \n}\n\n  \n]\n\n\n}\n\n\n\n\n\n\nAll API endpoints are CORS-enabled (can be disabled in configuration at run-time) and API requests are recorded by your system to generate graphs of total requests and unique client requests within the Admin dashboard.\n\n\nHelpful links\n\n\nTypewriter\n\nGenerate \n sync front-end data structures from Ponzu content types. (\nPonzu example\n)", 
+            "title": "Content"
+        }, 
+        {
+            "location": "/HTTP-APIs/Content/#endpoints", 
+            "text": "", 
+            "title": "Endpoints"
+        }, 
+        {
+            "location": "/HTTP-APIs/Content/#get-contents-by-type-multiple-items", 
+            "text": "/api/contents?type= Type  optional params:  order (string: ASC / DESC, default: DESC)  count (int: -1 - N, default: 10, -1 returns all)  offset (int: 0 - N, default: 0)  Must be a  GET  request", 
+            "title": "Get Contents by Type (multiple items)"
+        }, 
+        {
+            "location": "/HTTP-APIs/Content/#get-content-by-type-single-item", 
+            "text": "/api/content?type= Type id= ID  Must be a  GET  request", 
+            "title": "Get Content by Type (single item)"
+        }, 
+        {
+            "location": "/HTTP-APIs/Content/#get-content-by-slug-single-item", 
+            "text": "/api/content?slug= Slug  Must be a  GET  request", 
+            "title": "Get Content by Slug (single item)"
+        }, 
+        {
+            "location": "/HTTP-APIs/Content/#new-content-single-item", 
+            "text": "/api/content/create?type= Type  Type must implement  api.Createable  interface  Must be a multipart/form-data encoded  POST  request  Returns  JSON  response containing the ID of the item in the database (if approved), the status (\"public\" or \"pending\"), and the type ( Type ):   { \n   data :   [ \n     { \n         id :   6 ,   // will be omitted if status is pending \n         type :   Review , \n         status :   public \n     } \n   ]  }", 
+            "title": "New Content (single item)"
+        }, 
+        {
+            "location": "/HTTP-APIs/Content/#update-content-single-item", 
+            "text": "/api/content/update?type= Type id= id  Type must implement  api.Updateable  interface  Must be a multipart/form-data encoded  POST  request  Returns  JSON  response containing the ID of the item in the database (if approved), the status (\"public\"), and the type ( Type ):   { \n   data :   [ \n     { \n         id :   6 , \n         type :   Review , \n         status :   public \n     } \n   ]  }", 
+            "title": "Update Content (single item)"
+        }, 
+        {
+            "location": "/HTTP-APIs/Content/#delete-content-single-item", 
+            "text": "/api/content/delete?type= Type id= id  Type must implement  api.Deleteable  interface  Must be a multipart/form-data encoded  POST  request  Returns  JSON  response containing the ID of the item in the database (if approved), the status (\"deleted\"), and the type ( Type ):   { \n   data :   [ \n     { \n         id :   6 , \n         type :   Review , \n         status :   deleted \n     } \n   ]  }   All API endpoints are CORS-enabled (can be disabled in configuration at run-time) and API requests are recorded by your system to generate graphs of total requests and unique client requests within the Admin dashboard.", 
+            "title": "Delete Content (single item)"
+        }, 
+        {
+            "location": "/HTTP-APIs/Content/#helpful-links", 
+            "text": "Typewriter \nGenerate   sync front-end data structures from Ponzu content types. ( Ponzu example )", 
+            "title": "Helpful links"
+        }, 
+        {
+            "location": "/HTTP-APIs/File-Metadata/", 
+            "text": "Ponzu provides a read-only HTTP API to get metadata about the files that have been uploaded to your system. As a security and bandwidth abuse precaution, the API is only queryable by \"slug\" which is the normalized filename of the uploaded file. \n\n\nEndpoints\n\n\nGet File by Slug (single item)\n\n\n\n\n/api/uploads?slug=\nSlug\n\n\nMust be a \nGET\n request", 
+            "title": "File Metadata"
+        }, 
+        {
+            "location": "/HTTP-APIs/File-Metadata/#endpoints", 
+            "text": "", 
+            "title": "Endpoints"
+        }, 
+        {
+            "location": "/HTTP-APIs/File-Metadata/#get-file-by-slug-single-item", 
+            "text": "/api/uploads?slug= Slug  Must be a  GET  request", 
+            "title": "Get File by Slug (single item)"
+        }, 
+        {
+            "location": "/HTTP-APIs/Search/", 
+            "text": "Ponzu provides a read-only HTTP API to search the contents of your system's database. \nFull-text search is made possible by the use of \nBleve\n, \nwhich handles the indexing and querying. \n\n\nEndpoints\n\n\nSearch Content\n\n\n/api/search?type=\nType\nq=\nQuery String\n\n\n\n\n\n\nMust be a \nGET\n request\n\n\n\n\n\n\nType\n must implement \ndb.Searchable\n\n\n\n\n\n\n\n\nSearch must be enabled individually for each Content type\n\n\n\n\nSearch is not on by default to protect your data in case it shouldn't be indexed and published via the API.\n\n\nSearchMapping()\n is implemented with default mapping (ideal for 99% of use cases). \n\n\nTo enable search, add a \nIndexContent() bool\n method to your content type and return \ntrue\n (default implementation returns false).\n\n\n\n\n\n\n\n\n\n\nSearch is currently limited to single \n per request\n\n\n\n\n\n\nQuery String doucmentation here: \nBleve Docs - Query String\n\n\n\n\n\n\nSearch results are formatted exactly the same as standard Content API calls, so you don't need to change your client data model  \n\n\n\n\n\n\nSearch handler will respect other interface implementations on your content, including: \n\n\n\n\nitem.Hideable\n\n\nitem.Omittable\n \n\n\nitem.Pushable\n\n\nnote: only the first search result will be pushed", 
+            "title": "Search"
+        }, 
+        {
+            "location": "/HTTP-APIs/Search/#endpoints", 
+            "text": "", 
+            "title": "Endpoints"
+        }, 
+        {
+            "location": "/HTTP-APIs/Search/#search-content", 
+            "text": "/api/search?type= Type q= Query String    Must be a  GET  request    Type  must implement  db.Searchable     Search must be enabled individually for each Content type   Search is not on by default to protect your data in case it shouldn't be indexed and published via the API.  SearchMapping()  is implemented with default mapping (ideal for 99% of use cases).   To enable search, add a  IndexContent() bool  method to your content type and return  true  (default implementation returns false).      Search is currently limited to single   per request    Query String doucmentation here:  Bleve Docs - Query String    Search results are formatted exactly the same as standard Content API calls, so you don't need to change your client data model      Search handler will respect other interface implementations on your content, including:    item.Hideable  item.Omittable    item.Pushable  note: only the first search result will be pushed", 
+            "title": "Search Content"
+        }, 
+        {
+            "location": "/Interfaces/API/", 
+            "text": "Ponzu provides a set of interfaces from the \nsystem/api\n package which enable richer interaction with your system from external clients. If you need to allow 3rd-party apps to manage content, use the following interfaces.\n\n\nInterfaces\n\n\napi.Createable\n\n\nExternalable enables 3rd-party clients (outside the CMS) to send content via a \nmultipart/form-data\n encoded \nPOST\n request to a specific endpoint: \n/api/content/create?type=\nType\n. When \napi.Createable\n is implemented, content will be saved from the request in a \"Pending\" section which will is visible only within the CMS.\n\n\ntype\n \nCreateable\n \ninterface\n \n{\n\n    \nCreate\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n}\n\n\n\n\n\n\napi.Updateable\n\n\nUpdateable enables 3rd-party clients (outside the CMS) to update existing content via a \nmultipart/form-data\n encoded \nPOST\n request to a specific endpoint: \n/api/content/update?type=\nType\nid=\nid\n.\n\n\ntype\n \nUpdateable\n \ninterface\n \n{\n\n    \nUpdate\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n}\n\n\n\n\n\n\napi.Deleteable\n\n\nUpdateable enables 3rd-party clients (outside the CMS) to delete existing content via a \nmultipart/form-data\n encoded \nPOST\n request to a specific endpoint: \n/api/content/delete?type=\nType\nid=\nid\n. Request validation should be employed otherwise any client could delete data from your database.\n\n\ntype\n \nDeleteable\n \ninterface\n \n{\n\n    \nDelete\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n}\n\n\n\n\n\n\napi.Trustable\n\n\nTrustable provides a way for submitted content (via \napi.Createable\n) to bypass the \neditor.Mergeable\n step in which CMS end-users must manually click the \"Approve\" button in order for content to be put in the \"Public\" section and access via the content API endpoints. \napi.Trustable\n has a single method: \nAutoApprove\n which will automatically approve content, bypassing the \"Pending\" section altogether.\n\n\ntype\n \nTrustable\n \ninterface\n \n{\n\n    \nAutoApprove\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n}", 
+            "title": "API"
+        }, 
+        {
+            "location": "/Interfaces/API/#interfaces", 
+            "text": "", 
+            "title": "Interfaces"
+        }, 
+        {
+            "location": "/Interfaces/API/#apicreateable", 
+            "text": "Externalable enables 3rd-party clients (outside the CMS) to send content via a  multipart/form-data  encoded  POST  request to a specific endpoint:  /api/content/create?type= Type . When  api.Createable  is implemented, content will be saved from the request in a \"Pending\" section which will is visible only within the CMS.  type   Createable   interface   { \n     Create ( http . ResponseWriter ,   * http . Request )   error  }", 
+            "title": "api.Createable"
+        }, 
+        {
+            "location": "/Interfaces/API/#apiupdateable", 
+            "text": "Updateable enables 3rd-party clients (outside the CMS) to update existing content via a  multipart/form-data  encoded  POST  request to a specific endpoint:  /api/content/update?type= Type id= id .  type   Updateable   interface   { \n     Update ( http . ResponseWriter ,   * http . Request )   error  }", 
+            "title": "api.Updateable"
+        }, 
+        {
+            "location": "/Interfaces/API/#apideleteable", 
+            "text": "Updateable enables 3rd-party clients (outside the CMS) to delete existing content via a  multipart/form-data  encoded  POST  request to a specific endpoint:  /api/content/delete?type= Type id= id . Request validation should be employed otherwise any client could delete data from your database.  type   Deleteable   interface   { \n     Delete ( http . ResponseWriter ,   * http . Request )   error  }", 
+            "title": "api.Deleteable"
+        }, 
+        {
+            "location": "/Interfaces/API/#apitrustable", 
+            "text": "Trustable provides a way for submitted content (via  api.Createable ) to bypass the  editor.Mergeable  step in which CMS end-users must manually click the \"Approve\" button in order for content to be put in the \"Public\" section and access via the content API endpoints.  api.Trustable  has a single method:  AutoApprove  which will automatically approve content, bypassing the \"Pending\" section altogether.  type   Trustable   interface   { \n     AutoApprove ( http . ResponseWriter ,   * http . Request )   error  }", 
+            "title": "api.Trustable"
+        }, 
+        {
+            "location": "/Interfaces/Editor/", 
+            "text": "Ponzu provides a set of interfaces from the \nmanagement/editor\n package which extend the system's functionality and determine how content editors are rendered within the CMS.\n\n\nInterfaces\n\n\neditor.Editable\n\n\nEditable determines what \n[]bytes\n are rendered inside the editor page. Use Edtiable on anything inside your CMS that you want to provide configuration, editable fields, or any HTML/markup to display to an end-user.\n\n\neditor.Mergeable\n\n\nMergable enables a CMS end-user to merge the \"Pending\" content from an outside source into the \"Public\" section, and thus making it visible via the public content API. It also allows the end-user to reject content. \"Approve\" and \"Reject\" buttons will be visible on a the edit page for content submitted.", 
+            "title": "Editor"
+        }, 
+        {
+            "location": "/Interfaces/Editor/#interfaces", 
+            "text": "", 
+            "title": "Interfaces"
+        }, 
+        {
+            "location": "/Interfaces/Editor/#editoreditable", 
+            "text": "Editable determines what  []bytes  are rendered inside the editor page. Use Edtiable on anything inside your CMS that you want to provide configuration, editable fields, or any HTML/markup to display to an end-user.", 
+            "title": "editor.Editable"
+        }, 
+        {
+            "location": "/Interfaces/Editor/#editormergeable", 
+            "text": "Mergable enables a CMS end-user to merge the \"Pending\" content from an outside source into the \"Public\" section, and thus making it visible via the public content API. It also allows the end-user to reject content. \"Approve\" and \"Reject\" buttons will be visible on a the edit page for content submitted.", 
+            "title": "editor.Mergeable"
+        }, 
+        {
+            "location": "/Interfaces/Item/", 
+            "text": "Ponzu provides a set of interfaces from the \nsystem/item\n package which extend the functionality of the content in your system and how it interacts with other components inside and outside of Ponzu. \n\n\nInterfaces\n\n\nitem.Pushable\n\n\nPushable, if \nHTTP/2 Server Push\n is supported by the client, can tell a handler which resources it would like to have \"pushed\" preemptively to the client. This saves follow-on roundtrip requests for other items which are referenced by the Pushable item. \nThe \nPush\n method, the only method in Pushable, must return a \n[]string\n containing the \njson\n field tags of the referenced items within the type.\n\n\nitem.Hideable\n\n\nHideable tells an API handler that data of this type shouldn\u2019t be exposed outside the system. Hideable types cannot be used as references (relations in Content types).\nThe \nHide\n method, the only method in Hideable, takes an \nhttp.ResponseWriter, *http.Request\n and returns an \nerror\n. A special error in the \nitems\n package, \nErrAllowHiddenItem\n can be returned as the error from Hide to instruct handlers to show hidden content in specific cases.\n\n\nitem.Omittable\n\n\nOmittable tells a content API handler to keep certain fields from being exposed through the JSON response. It's single method, \nOmit\n takes no arguments and returns a \n[]string\n which must be made up of the JSON struct tags for the type containing fields to be omitted.\n\n\nitem.Hookable\n\n\nHookable rovides lifecycle hooks into the http handlers which manage Save, Delete, Approve, and Reject routines \nAll methods in its set take an \nhttp.ResponseWriter, *http.Request\n and return an \nerror\n.\n\n\ntype\n \nHookable\n \ninterface\n \n{\n\n    \nBeforeAPICreate\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n    \nAfterAPICreate\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n    \nBeforeAPIUpdate\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n    \nAfterAPIUpdate\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n    \nBeforeAPIDelete\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n    \nAfterAPIDelete\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n    \nBeforeAdminCreate\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n    \nAfterAdminCreate\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n    \nBeforeAdminUpdate\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n    \nAfterAdminUpdate\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n    \nBeforeAdminDelete\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n    \nAfterAdminDelete\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n    \nBeforeSave\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n    \nAfterSave\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n    \nBeforeDelete\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n    \nAfterDelete\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n    \nBeforeApprove\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n    \nAfterApprove\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n    \nBeforeReject\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n    \nAfterReject\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n    \n// Enable/Disable used exclusively for addons\n\n    \nBeforeEnable\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n    \nAfterEnable\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n    \nBeforeDisable\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n    \nAfterDisable\n(\nhttp\n.\nResponseWriter\n,\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n}\n\n\n\n\n\n\nBeforeAPICreate\n\n\nBeforeAPICreate\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nAfterAPICreate\n\n\nAfterAPICreate\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nBeforeApprove\n\n\nBeforeApprove\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nAfterApprove\n\n\nAfterApprove\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nBeforeReject\n\n\nBeforeReject\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nAfterReject\n\n\nAfterReject\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nBeforeSave\n\n\nBeforeSave\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nAfterSave\n\n\nAfterSave\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nBeforeDelete\n\n\nBeforeDelete\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nAfterDelete\n\n\nAfterDelete\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nBeforeAPIDelete\n\n\nBeforeAPIDelete\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nAfterAPIDelete\n\n\nAfterAPIDelete\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nBeforeAPIUpdate\n\n\nBeforeAPIUpdate\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nAfterAPIUpdate\n\n\nAfterAPIUpdate\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nBeforeAdminCreate\n\n\nBeforeAdminCreate\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nAfterAdminCreate\n\n\nAfterAdminCreate\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nBeforeAdminUpdate\n\n\nBeforeAdminUpdate\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nAfterAdminUpdate\n\n\nAfterAdminUpdate\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nBeforeAdminDelete\n\n\nBeforeAdminDelete\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nAfterAdminDelete\n\n\nAfterAdminDelete\n(\nres\n \nhttp\n.\nResponseWriter\n,\n \nreq\n \n*\nhttp\n.\nRequest\n)\n \nerror\n\n\n\n\n\n\nHookable is implemented by Item by default as no-ops which are expected to be overridden. \n\n\n\n\nNote\n\n\nreturning an error from any of these \nHookable\n methods will end the request, causing it to halt immediately after the hook. For example, returning an \nerror\n from \nBeforeDelete\n will result in the content being kept in the database. The same logic applies to all of these interface methods that return an error - \nthe error defines the behavior\n.\n\n\n\n\nitem.Identifiable\n\n\nIdentifiable enables a struct to have its ID set/get. Typically this is done to set an ID to -1 indicating it is new for DB inserts, since by default a newly initialized struct would have an ID of 0, the int zero-value, and BoltDB's starting key per bucket is 0, thus overwriting the first record.\nMost notable, Identifiable\u2019s \nString\n method is used to set a meaningful display name for an Item. \nString\n is called by default in the Admin dashboard to show the Items of certain types, and in the default creation of an Item\u2019s slug.\nIdentifiable is implemented by Item by default.\n\n\nitem.Sluggable\n\n\nSluggable makes a struct locatable by URL with it's own path. As an Item implementing Sluggable, slugs may overlap. If this is an issue, make your content struct (or one which embeds Item) implement Sluggable and it will override the slug created by Item's \nSetSlug\n method with your own.\nIt is not recommended to override \nSetSlug\n, but rather the \nString\n method on your content struct, which will have a similar, more predictable effect.\nSluggable is implemented by Item by default.\n\n\nitem.Sortable\n\n\nSortable enables items to be sorted by time, as per the sort.Interface interface. Sortable is implemented by Item by default.", 
+            "title": "Item"
+        }, 
+        {
+            "location": "/Interfaces/Item/#interfaces", 
+            "text": "", 
+            "title": "Interfaces"
+        }, 
+        {
+            "location": "/Interfaces/Item/#itempushable", 
+            "text": "Pushable, if  HTTP/2 Server Push  is supported by the client, can tell a handler which resources it would like to have \"pushed\" preemptively to the client. This saves follow-on roundtrip requests for other items which are referenced by the Pushable item. \nThe  Push  method, the only method in Pushable, must return a  []string  containing the  json  field tags of the referenced items within the type.", 
+            "title": "item.Pushable"
+        }, 
+        {
+            "location": "/Interfaces/Item/#itemhideable", 
+            "text": "Hideable tells an API handler that data of this type shouldn\u2019t be exposed outside the system. Hideable types cannot be used as references (relations in Content types).\nThe  Hide  method, the only method in Hideable, takes an  http.ResponseWriter, *http.Request  and returns an  error . A special error in the  items  package,  ErrAllowHiddenItem  can be returned as the error from Hide to instruct handlers to show hidden content in specific cases.", 
+            "title": "item.Hideable"
+        }, 
+        {
+            "location": "/Interfaces/Item/#itemomittable", 
+            "text": "Omittable tells a content API handler to keep certain fields from being exposed through the JSON response. It's single method,  Omit  takes no arguments and returns a  []string  which must be made up of the JSON struct tags for the type containing fields to be omitted.", 
+            "title": "item.Omittable"
+        }, 
+        {
+            "location": "/Interfaces/Item/#itemhookable", 
+            "text": "Hookable rovides lifecycle hooks into the http handlers which manage Save, Delete, Approve, and Reject routines \nAll methods in its set take an  http.ResponseWriter, *http.Request  and return an  error .  type   Hookable   interface   { \n     BeforeAPICreate ( http . ResponseWriter ,   * http . Request )   error \n     AfterAPICreate ( http . ResponseWriter ,   * http . Request )   error \n\n     BeforeAPIUpdate ( http . ResponseWriter ,   * http . Request )   error \n     AfterAPIUpdate ( http . ResponseWriter ,   * http . Request )   error \n\n     BeforeAPIDelete ( http . ResponseWriter ,   * http . Request )   error \n     AfterAPIDelete ( http . ResponseWriter ,   * http . Request )   error \n\n     BeforeAdminCreate ( http . ResponseWriter ,   * http . Request )   error \n     AfterAdminCreate ( http . ResponseWriter ,   * http . Request )   error \n\n     BeforeAdminUpdate ( http . ResponseWriter ,   * http . Request )   error \n     AfterAdminUpdate ( http . ResponseWriter ,   * http . Request )   error \n\n     BeforeAdminDelete ( http . ResponseWriter ,   * http . Request )   error \n     AfterAdminDelete ( http . ResponseWriter ,   * http . Request )   error \n\n     BeforeSave ( http . ResponseWriter ,   * http . Request )   error \n     AfterSave ( http . ResponseWriter ,   * http . Request )   error \n\n     BeforeDelete ( http . ResponseWriter ,   * http . Request )   error \n     AfterDelete ( http . ResponseWriter ,   * http . Request )   error \n\n     BeforeApprove ( http . ResponseWriter ,   * http . Request )   error \n     AfterApprove ( http . ResponseWriter ,   * http . Request )   error \n\n     BeforeReject ( http . ResponseWriter ,   * http . Request )   error \n     AfterReject ( http . ResponseWriter ,   * http . Request )   error \n\n     // Enable/Disable used exclusively for addons \n     BeforeEnable ( http . ResponseWriter ,   * http . Request )   error \n     AfterEnable ( http . ResponseWriter ,   * http . Request )   error \n\n     BeforeDisable ( http . ResponseWriter ,   * http . Request )   error \n     AfterDisable ( http . ResponseWriter ,   * http . Request )   error  }", 
+            "title": "item.Hookable"
+        }, 
+        {
+            "location": "/Interfaces/Item/#beforeapicreate", 
+            "text": "BeforeAPICreate ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "BeforeAPICreate"
+        }, 
+        {
+            "location": "/Interfaces/Item/#afterapicreate", 
+            "text": "AfterAPICreate ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "AfterAPICreate"
+        }, 
+        {
+            "location": "/Interfaces/Item/#beforeapprove", 
+            "text": "BeforeApprove ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "BeforeApprove"
+        }, 
+        {
+            "location": "/Interfaces/Item/#afterapprove", 
+            "text": "AfterApprove ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "AfterApprove"
+        }, 
+        {
+            "location": "/Interfaces/Item/#beforereject", 
+            "text": "BeforeReject ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "BeforeReject"
+        }, 
+        {
+            "location": "/Interfaces/Item/#afterreject", 
+            "text": "AfterReject ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "AfterReject"
+        }, 
+        {
+            "location": "/Interfaces/Item/#beforesave", 
+            "text": "BeforeSave ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "BeforeSave"
+        }, 
+        {
+            "location": "/Interfaces/Item/#aftersave", 
+            "text": "AfterSave ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "AfterSave"
+        }, 
+        {
+            "location": "/Interfaces/Item/#beforedelete", 
+            "text": "BeforeDelete ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "BeforeDelete"
+        }, 
+        {
+            "location": "/Interfaces/Item/#afterdelete", 
+            "text": "AfterDelete ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "AfterDelete"
+        }, 
+        {
+            "location": "/Interfaces/Item/#beforeapidelete", 
+            "text": "BeforeAPIDelete ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "BeforeAPIDelete"
+        }, 
+        {
+            "location": "/Interfaces/Item/#afterapidelete", 
+            "text": "AfterAPIDelete ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "AfterAPIDelete"
+        }, 
+        {
+            "location": "/Interfaces/Item/#beforeapiupdate", 
+            "text": "BeforeAPIUpdate ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "BeforeAPIUpdate"
+        }, 
+        {
+            "location": "/Interfaces/Item/#afterapiupdate", 
+            "text": "AfterAPIUpdate ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "AfterAPIUpdate"
+        }, 
+        {
+            "location": "/Interfaces/Item/#beforeadmincreate", 
+            "text": "BeforeAdminCreate ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "BeforeAdminCreate"
+        }, 
+        {
+            "location": "/Interfaces/Item/#afteradmincreate", 
+            "text": "AfterAdminCreate ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "AfterAdminCreate"
+        }, 
+        {
+            "location": "/Interfaces/Item/#beforeadminupdate", 
+            "text": "BeforeAdminUpdate ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "BeforeAdminUpdate"
+        }, 
+        {
+            "location": "/Interfaces/Item/#afteradminupdate", 
+            "text": "AfterAdminUpdate ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "AfterAdminUpdate"
+        }, 
+        {
+            "location": "/Interfaces/Item/#beforeadmindelete", 
+            "text": "BeforeAdminDelete ( res   http . ResponseWriter ,   req   * http . Request )   error", 
+            "title": "BeforeAdminDelete"
+        }, 
+        {
+            "location": "/Interfaces/Item/#afteradmindelete", 
+            "text": "AfterAdminDelete ( res   http . ResponseWriter ,   req   * http . Request )   error   Hookable is implemented by Item by default as no-ops which are expected to be overridden.    Note  returning an error from any of these  Hookable  methods will end the request, causing it to halt immediately after the hook. For example, returning an  error  from  BeforeDelete  will result in the content being kept in the database. The same logic applies to all of these interface methods that return an error -  the error defines the behavior .", 
+            "title": "AfterAdminDelete"
+        }, 
+        {
+            "location": "/Interfaces/Item/#itemidentifiable", 
+            "text": "Identifiable enables a struct to have its ID set/get. Typically this is done to set an ID to -1 indicating it is new for DB inserts, since by default a newly initialized struct would have an ID of 0, the int zero-value, and BoltDB's starting key per bucket is 0, thus overwriting the first record.\nMost notable, Identifiable\u2019s  String  method is used to set a meaningful display name for an Item.  String  is called by default in the Admin dashboard to show the Items of certain types, and in the default creation of an Item\u2019s slug.\nIdentifiable is implemented by Item by default.", 
+            "title": "item.Identifiable"
+        }, 
+        {
+            "location": "/Interfaces/Item/#itemsluggable", 
+            "text": "Sluggable makes a struct locatable by URL with it's own path. As an Item implementing Sluggable, slugs may overlap. If this is an issue, make your content struct (or one which embeds Item) implement Sluggable and it will override the slug created by Item's  SetSlug  method with your own.\nIt is not recommended to override  SetSlug , but rather the  String  method on your content struct, which will have a similar, more predictable effect.\nSluggable is implemented by Item by default.", 
+            "title": "item.Sluggable"
+        }, 
+        {
+            "location": "/Interfaces/Item/#itemsortable", 
+            "text": "Sortable enables items to be sorted by time, as per the sort.Interface interface. Sortable is implemented by Item by default.", 
+            "title": "item.Sortable"
+        }, 
+        {
+            "location": "/Interfaces/Search/", 
+            "text": "Ponzu provides a set of interfaces from the \nsystem/search\n package to enable and customize full-text search access to content in your system. Search is not enabled by default, and must be enabled per Content type individually.\n\n\nInterfaces\n\n\nsearch.Searchable\n\n\nSearchable determines how content is indexed and whether the system should index the content when it is created and updated.\n\n\n\n\nSearch is \ndisabled\n for all Content items by default. Each Content item that should be indexed and searchable must implement the \nsearch.Searchable\n interface.\n\n\n\n\ntype\n \nSearchable\n \ninterface\n \n{\n\n    \nSearchMapping\n()\n \n(\n*\nmapping\n.\nIndexMappingImpl\n,\n \nerror\n)\n\n    \nIndexContent\n()\n \nbool\n\n\n}\n\n\n\n\n\n\nBy default, Ponzu sets up the \nBleve's\n \"default mapping\", which is typically what you want for most content-based systems. This can be overridden by implmenting your own \nSearchMapping() (*mapping.IndexMappingImpl, error)\n method on your Content type. \n\n\nThis way, all you need to do to get full-text search is to add the \nIndexContent() bool\n method to each Content type you want search enabled. Return \ntrue\n from this method to enable search. \n\n\nExample\n\n\n// ...\n\n\n\ntype\n \nSong\n \nstruct\n \n{\n\n    \nitem\n.\nItem\n\n\n    \n// ...\n\n\n}\n\n\n\nfunc\n \n(\ns\n \n*\nSong\n)\n \nIndexContent\n()\n \nbool\n \n{\n\n    \nreturn\n \ntrue\n\n\n}\n\n\n\n\n\n\n\n\nIndexing Existing Content\n\n\nIf you previously had search disabled and had already added content to your system, you will need to re-index old content items in your CMS. Otherwise, they will not show up in search queries.. This requires you to manually open each item and click 'Save'. This could be scripted and Ponzu \nmight\n ship with a re-indexing function at some point in the fututre.", 
+            "title": "Search"
+        }, 
+        {
+            "location": "/Interfaces/Search/#interfaces", 
+            "text": "", 
+            "title": "Interfaces"
+        }, 
+        {
+            "location": "/Interfaces/Search/#searchsearchable", 
+            "text": "Searchable determines how content is indexed and whether the system should index the content when it is created and updated.   Search is  disabled  for all Content items by default. Each Content item that should be indexed and searchable must implement the  search.Searchable  interface.   type   Searchable   interface   { \n     SearchMapping ()   ( * mapping . IndexMappingImpl ,   error ) \n     IndexContent ()   bool  }   By default, Ponzu sets up the  Bleve's  \"default mapping\", which is typically what you want for most content-based systems. This can be overridden by implmenting your own  SearchMapping() (*mapping.IndexMappingImpl, error)  method on your Content type.   This way, all you need to do to get full-text search is to add the  IndexContent() bool  method to each Content type you want search enabled. Return  true  from this method to enable search.", 
+            "title": "search.Searchable"
+        }, 
+        {
+            "location": "/Interfaces/Search/#example", 
+            "text": "// ...  type   Song   struct   { \n     item . Item \n\n     // ...  }  func   ( s   * Song )   IndexContent ()   bool   { \n     return   true  }    Indexing Existing Content  If you previously had search disabled and had already added content to your system, you will need to re-index old content items in your CMS. Otherwise, they will not show up in search queries.. This requires you to manually open each item and click 'Save'. This could be scripted and Ponzu  might  ship with a re-indexing function at some point in the fututre.", 
+            "title": "Example"
         }
     ]
 }
