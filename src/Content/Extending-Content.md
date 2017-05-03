@@ -41,4 +41,4 @@ To manage how content is edited and handled in the CMS, use the following Editor
 
 To enable and customize full-text search on your content types, use the following interfaces:
 
-[search.Searchable](/Interfaces/Search/#searchsearchable)
+- [search.Searchable](/Interfaces/Search/#searchsearchable)

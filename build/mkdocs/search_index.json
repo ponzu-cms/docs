@@ -12,18 +12,28 @@
         }, 
         {
             "location": "/Content/Extending-Content/", 
-            "text": "Extending your content types with more features and functionality within the system\nis done by implementing the various built-in interfaces provided by Ponzu. To learn \nmore about interfaces, see \nA Tour of Go - Interfaces\n.\n\n\nInterfaces\n\n\nAll Content types which embed an \nitem.Item\n will implicitly implement its many\ninterfaces. In Ponzu, the following interfaces are exported from the \nsystem/item\n\npackage and have a default implementation which can be overridden to change your\ncontent types' functionality within the system.\n\n\n\n\nitem.Hideable\n\n\nitem.Pushable\n\n\nitem.Omittable\n\n\nitem.Hookable\n\n\nitem.Identifiable\n\n\nitem.Sortable\n\n\nitem.Sluggable\n\n\n\n\nAPI Interfaces\n\n\nTo enable 3rd-party clients to interact with your Content types, you can extend your types with the API interfaces:\n\n\n\n\napi.Createable\n\n\napi.Updateable\n\n\napi.Deleteable\n\n\napi.Trustable", 
+            "text": "Extending your Content types with more features and functionality within the system\nis done by implementing the various built-in interfaces provided by Ponzu. To learn \nmore about interfaces, see \nA Tour of Go - Interfaces\n.\n\n\nIt is also common to add more advanced functionality to Content types using Addons. Refer to the \nAddon documentation\n for more information about how to use and create Ponzu Addons.\n\n\nItem Interfaces\n\n\nAll Content types which embed an \nitem.Item\n will implicitly implement its many\ninterfaces. In Ponzu, the following interfaces are exported from the \nsystem/item\n\npackage and have a default implementation which can be overridden to change your\ncontent types' functionality within the system.\n\n\n\n\nitem.Pushable\n\n\nitem.Hideable\n\n\nitem.Omittable\n\n\nitem.Hookable\n\n\nitem.Identifiable\n\n\nitem.Sortable\n\n\nitem.Sluggable\n\n\n\n\nAPI Interfaces\n\n\nTo enable 3rd-party clients to interact with your Content types, you can extend your types with the API interfaces:\n\n\n\n\napi.Createable\n\n\napi.Updateable\n\n\napi.Deleteable\n\n\napi.Trustable\n\n\n\n\nEditor Interfaces\n\n\nTo manage how content is edited and handled in the CMS, use the following Editor interfaces:\n\n\n\n\neditor.Editable\n\n\neditor.Mergeable\n\n\n\n\nSearch Interfaces\n\n\nTo enable and customize full-text search on your content types, use the following interfaces:\n\n\n\n\nsearch.Searchable", 
             "title": "Extending Content"
         }, 
         {
-            "location": "/Content/Extending-Content/#interfaces", 
-            "text": "All Content types which embed an  item.Item  will implicitly implement its many\ninterfaces. In Ponzu, the following interfaces are exported from the  system/item \npackage and have a default implementation which can be overridden to change your\ncontent types' functionality within the system.   item.Hideable  item.Pushable  item.Omittable  item.Hookable  item.Identifiable  item.Sortable  item.Sluggable", 
-            "title": "Interfaces"
+            "location": "/Content/Extending-Content/#item-interfaces", 
+            "text": "All Content types which embed an  item.Item  will implicitly implement its many\ninterfaces. In Ponzu, the following interfaces are exported from the  system/item \npackage and have a default implementation which can be overridden to change your\ncontent types' functionality within the system.   item.Pushable  item.Hideable  item.Omittable  item.Hookable  item.Identifiable  item.Sortable  item.Sluggable", 
+            "title": "Item Interfaces"
         }, 
         {
             "location": "/Content/Extending-Content/#api-interfaces", 
             "text": "To enable 3rd-party clients to interact with your Content types, you can extend your types with the API interfaces:   api.Createable  api.Updateable  api.Deleteable  api.Trustable", 
             "title": "API Interfaces"
+        }, 
+        {
+            "location": "/Content/Extending-Content/#editor-interfaces", 
+            "text": "To manage how content is edited and handled in the CMS, use the following Editor interfaces:   editor.Editable  editor.Mergeable", 
+            "title": "Editor Interfaces"
+        }, 
+        {
+            "location": "/Content/Extending-Content/#search-interfaces", 
+            "text": "To enable and customize full-text search on your content types, use the following interfaces:   search.Searchable", 
+            "title": "Search Interfaces"
         }, 
         {
             "location": "/Content/Overview/", 
@@ -147,7 +157,7 @@
         }, 
         {
             "location": "/Interfaces/Editor/", 
-            "text": "Ponzu provides a set of interfaces from the \nmanagement/editor\n package which extend the system's functionality and determine how content editors are rendered within the CMS.\n\n\nInterfaces\n\n\neditor.Editable\n\n\nEditable determines what \n[]bytes\n are rendered inside the editor page. Use Edtiable on anything inside your CMS that you want to provide configuration, editable fields, or any HTML/markup to display to an end-user.\n\n\neditor.Mergeable\n\n\nMergable enables a CMS end-user to merge the \"Pending\" content from an outside source into the \"Public\" section, and thus making it visible via the public content API. It also allows the end-user to reject content. \"Approve\" and \"Reject\" buttons will be visible on a the edit page for content submitted.", 
+            "text": "Ponzu provides a set of interfaces from the \nmanagement/editor\n package which extend the system's functionality and determine how content editors are rendered within the CMS.\n\n\nInterfaces\n\n\neditor.Editable\n\n\nEditable determines what \n[]bytes\n are rendered inside the editor page. Use Edtiable on anything inside your CMS that you want to provide configuration, editable fields, or any HTML/markup to display to an end-user.\n\n\nMethod Set\n\n\ntype\n \nEditable\n \ninterface\n \n{\n\n    \nMarshalEditor\n()\n \n([]\nbyte\n,\n \nerror\n)\n\n\n}\n\n\n\n\n\n\nExample\n\n\ntype\n \nSong\n \nstruct\n \n{\n\n    \nitem\n.\nItem\n\n\n    \nName\n \nstring\n \n`json:\nname\n`\n\n\n}\n\n\n\nfunc\n \n(\ns\n \n*\nSong\n)\n \nMarshalEditor\n()\n \n([]\nbyte\n,\n \nerror\n)\n \n{\n\n    \n// The editor.Form func sets up a structured UI with default styles and form\n\n    \n// elements based on the fields provided. Most often, Ponzu developers will\n\n    \n// have the `$ ponzu generate` command generate the MarshalEditor func and \n\n    \n// its internal form fields\n\n    \nview\n,\n \nerr\n \n:=\n \neditor\n.\nForm\n(\np\n,\n\n        \neditor\n.\nField\n{\n\n            \nView\n:\n \neditor\n.\nInput\n(\nName\n,\n \np\n,\n \nmap\n[\nstring\n]\nstring\n{\n\n                \nlabel\n:\n       \nName\n,\n\n                \ntype\n:\n        \ntext\n,\n\n                \nplaceholder\n:\n \nEnter the Name here\n,\n\n            \n}),\n\n        \n},\n\n    \n)\n\n\n}\n\n\n\n\n\n\n\n\nMarshalEditor() \n View Rendering\n\n\nAlthough it is common to use the \neditor.Form\n and \neditor.Fields\n to structure your content editor inside \nMarshalEditor()\n, the method signature defines that its return value needs only to be \n[]byte, error\n. Keep in mind that you can return a \n[]byte\n of any raw HTML or other markup to be rendered in the editor view.\n\n\n\n\neditor.Mergeable\n\n\nMergable enables a CMS end-user to merge the \"Pending\" content from an outside source into the \"Public\" section, and thus making it visible via the public content API. It also allows the end-user to reject content. \"Approve\" and \"Reject\" buttons will be visible on a the edit page for content submitted.\n\n\nMethod Set\n\n\nExample", 
             "title": "Editor"
         }, 
         {
@@ -161,9 +171,29 @@
             "title": "editor.Editable"
         }, 
         {
+            "location": "/Interfaces/Editor/#method-set", 
+            "text": "type   Editable   interface   { \n     MarshalEditor ()   ([] byte ,   error )  }", 
+            "title": "Method Set"
+        }, 
+        {
+            "location": "/Interfaces/Editor/#example", 
+            "text": "type   Song   struct   { \n     item . Item \n\n     Name   string   `json: name `  }  func   ( s   * Song )   MarshalEditor ()   ([] byte ,   error )   { \n     // The editor.Form func sets up a structured UI with default styles and form \n     // elements based on the fields provided. Most often, Ponzu developers will \n     // have the `$ ponzu generate` command generate the MarshalEditor func and  \n     // its internal form fields \n     view ,   err   :=   editor . Form ( p , \n         editor . Field { \n             View :   editor . Input ( Name ,   p ,   map [ string ] string { \n                 label :         Name , \n                 type :          text , \n                 placeholder :   Enter the Name here , \n             }), \n         }, \n     )  }    MarshalEditor()   View Rendering  Although it is common to use the  editor.Form  and  editor.Fields  to structure your content editor inside  MarshalEditor() , the method signature defines that its return value needs only to be  []byte, error . Keep in mind that you can return a  []byte  of any raw HTML or other markup to be rendered in the editor view.", 
+            "title": "Example"
+        }, 
+        {
             "location": "/Interfaces/Editor/#editormergeable", 
             "text": "Mergable enables a CMS end-user to merge the \"Pending\" content from an outside source into the \"Public\" section, and thus making it visible via the public content API. It also allows the end-user to reject content. \"Approve\" and \"Reject\" buttons will be visible on a the edit page for content submitted.", 
             "title": "editor.Mergeable"
+        }, 
+        {
+            "location": "/Interfaces/Editor/#method-set_1", 
+            "text": "", 
+            "title": "Method Set"
+        }, 
+        {
+            "location": "/Interfaces/Editor/#example_1", 
+            "text": "", 
+            "title": "Example"
         }, 
         {
             "location": "/Interfaces/Item/", 
@@ -312,7 +342,7 @@
         }, 
         {
             "location": "/Interfaces/Search/", 
-            "text": "Ponzu provides a set of interfaces from the \nsystem/search\n package to enable and customize full-text search access to content in your system. Search is not enabled by default, and must be enabled per Content type individually.\n\n\nInterfaces\n\n\nsearch.Searchable\n\n\nSearchable determines how content is indexed and whether the system should index the content when it is created and updated.\n\n\n\n\nSearch is \ndisabled\n for all Content items by default. Each Content item that should be indexed and searchable must implement the \nsearch.Searchable\n interface.\n\n\n\n\ntype\n \nSearchable\n \ninterface\n \n{\n\n    \nSearchMapping\n()\n \n(\n*\nmapping\n.\nIndexMappingImpl\n,\n \nerror\n)\n\n    \nIndexContent\n()\n \nbool\n\n\n}\n\n\n\n\n\n\nBy default, Ponzu sets up the \nBleve's\n \"default mapping\", which is typically what you want for most content-based systems. This can be overridden by implmenting your own \nSearchMapping() (*mapping.IndexMappingImpl, error)\n method on your Content type. \n\n\nThis way, all you need to do to get full-text search is to add the \nIndexContent() bool\n method to each Content type you want search enabled. Return \ntrue\n from this method to enable search. \n\n\nExample\n\n\n// ...\n\n\n\ntype\n \nSong\n \nstruct\n \n{\n\n    \nitem\n.\nItem\n\n\n    \n// ...\n\n\n}\n\n\n\nfunc\n \n(\ns\n \n*\nSong\n)\n \nIndexContent\n()\n \nbool\n \n{\n\n    \nreturn\n \ntrue\n\n\n}\n\n\n\n\n\n\n\n\nIndexing Existing Content\n\n\nIf you previously had search disabled and had already added content to your system, you will need to re-index old content items in your CMS. Otherwise, they will not show up in search queries.. This requires you to manually open each item and click 'Save'. This could be scripted and Ponzu \nmight\n ship with a re-indexing function at some point in the fututre.", 
+            "text": "Ponzu provides a set of interfaces from the \nsystem/search\n package to enable and customize full-text search access to content in your system. \nSearch is not enabled by default\n, and must be enabled per Content type individually.\n\n\nInterfaces\n\n\nsearch.Searchable\n\n\nSearchable determines how content is indexed and whether the system should index the content when it is created and updated or be removed from the index when content is deleted.\n\n\n\n\nSearch is \ndisabled\n for all Content items by default. Each Content item that should be indexed and searchable must implement the \nsearch.Searchable\n interface.\n\n\n\n\nMethod Set\n\n\ntype\n \nSearchable\n \ninterface\n \n{\n\n    \nSearchMapping\n()\n \n(\n*\nmapping\n.\nIndexMappingImpl\n,\n \nerror\n)\n\n    \nIndexContent\n()\n \nbool\n\n\n}\n\n\n\n\n\n\nBy default, Ponzu sets up the \nBleve's\n \"default mapping\", which is typically what you want for most content-based systems. This can be overridden by implmenting your own \nSearchMapping() (*mapping.IndexMappingImpl, error)\n method on your Content type. \n\n\nThis way, all you need to do to get full-text search is to add the \nIndexContent() bool\n method to each Content type you want search enabled. Return \ntrue\n from this method to enable search. \n\n\nExample\n\n\n// ...\n\n\n\ntype\n \nSong\n \nstruct\n \n{\n\n    \nitem\n.\nItem\n\n\n    \nName\n \nstring\n \n`json:\nname\n`\n\n    \n// ...\n\n\n}\n\n\n\nfunc\n \n(\ns\n \n*\nSong\n)\n \nIndexContent\n()\n \nbool\n \n{\n\n    \nreturn\n \ntrue\n\n\n}\n\n\n\n\n\n\n\n\nIndexing Existing Content\n\n\nIf you previously had search disabled and had already added content to your system, you will need to re-index old content items in your CMS. Otherwise, they will not show up in search queries.. This requires you to manually open each item and click 'Save'. This could be scripted and Ponzu \nmight\n ship with a re-indexing function at some point in the fututre.", 
             "title": "Search"
         }, 
         {
@@ -322,13 +352,28 @@
         }, 
         {
             "location": "/Interfaces/Search/#searchsearchable", 
-            "text": "Searchable determines how content is indexed and whether the system should index the content when it is created and updated.   Search is  disabled  for all Content items by default. Each Content item that should be indexed and searchable must implement the  search.Searchable  interface.   type   Searchable   interface   { \n     SearchMapping ()   ( * mapping . IndexMappingImpl ,   error ) \n     IndexContent ()   bool  }   By default, Ponzu sets up the  Bleve's  \"default mapping\", which is typically what you want for most content-based systems. This can be overridden by implmenting your own  SearchMapping() (*mapping.IndexMappingImpl, error)  method on your Content type.   This way, all you need to do to get full-text search is to add the  IndexContent() bool  method to each Content type you want search enabled. Return  true  from this method to enable search.", 
+            "text": "Searchable determines how content is indexed and whether the system should index the content when it is created and updated or be removed from the index when content is deleted.   Search is  disabled  for all Content items by default. Each Content item that should be indexed and searchable must implement the  search.Searchable  interface.", 
             "title": "search.Searchable"
         }, 
         {
+            "location": "/Interfaces/Search/#method-set", 
+            "text": "type   Searchable   interface   { \n     SearchMapping ()   ( * mapping . IndexMappingImpl ,   error ) \n     IndexContent ()   bool  }   By default, Ponzu sets up the  Bleve's  \"default mapping\", which is typically what you want for most content-based systems. This can be overridden by implmenting your own  SearchMapping() (*mapping.IndexMappingImpl, error)  method on your Content type.   This way, all you need to do to get full-text search is to add the  IndexContent() bool  method to each Content type you want search enabled. Return  true  from this method to enable search.", 
+            "title": "Method Set"
+        }, 
+        {
             "location": "/Interfaces/Search/#example", 
-            "text": "// ...  type   Song   struct   { \n     item . Item \n\n     // ...  }  func   ( s   * Song )   IndexContent ()   bool   { \n     return   true  }    Indexing Existing Content  If you previously had search disabled and had already added content to your system, you will need to re-index old content items in your CMS. Otherwise, they will not show up in search queries.. This requires you to manually open each item and click 'Save'. This could be scripted and Ponzu  might  ship with a re-indexing function at some point in the fututre.", 
+            "text": "// ...  type   Song   struct   { \n     item . Item \n\n     Name   string   `json: name ` \n     // ...  }  func   ( s   * Song )   IndexContent ()   bool   { \n     return   true  }    Indexing Existing Content  If you previously had search disabled and had already added content to your system, you will need to re-index old content items in your CMS. Otherwise, they will not show up in search queries.. This requires you to manually open each item and click 'Save'. This could be scripted and Ponzu  might  ship with a re-indexing function at some point in the fututre.", 
             "title": "Example"
+        }, 
+        {
+            "location": "/Ponzu-Addons/Creating-Addons/", 
+            "text": "", 
+            "title": "Creating Addons"
+        }, 
+        {
+            "location": "/Ponzu-Addons/Using-Addons/", 
+            "text": "", 
+            "title": "Using Addons"
         }
     ]
 }
