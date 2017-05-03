@@ -16,7 +16,8 @@ extra:
     primary: grey
     accent: light-blue
   social:
-    - type: 'github'
-      link: 'https://github.com/ponzu-cms'
-    - type: 'twitter'
-      link: 'https://twitter.com/ponzu_cms'
+    - type: github
+      link: https://github.com/ponzu-cms
+    - type: twitter
+      link: https://twitter.com/ponzu_cms
+  logo: images/logo.png

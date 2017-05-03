@@ -1,3 +1,5 @@
+title: Item Package Interfaces
+
 Ponzu provides a set of interfaces from the `system/item` package which extend the functionality of the content in your system and how it interacts with other components inside and outside of Ponzu. 
 
 ## Interfaces

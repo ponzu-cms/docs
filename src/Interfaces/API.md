@@ -1,3 +1,5 @@
+title: API Package Interfaces
+
 Ponzu provides a set of interfaces from the `system/api` package which enable richer interaction with your system from external clients. If you need to allow 3rd-party apps to manage content, use the following interfaces.
 
 ## Interfaces

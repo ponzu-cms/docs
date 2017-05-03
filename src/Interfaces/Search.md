@@ -1,12 +1,16 @@
-Ponzu provides a set of interfaces from the `system/search` package to enable and customize full-text search access to content in your system. Search is not enabled by default, and must be enabled per Content type individually.
+title: Search Package Interfaces
+
+Ponzu provides a set of interfaces from the `system/search` package to enable and customize full-text search access to content in your system. **Search is not enabled by default**, and must be enabled per Content type individually.
 
 ## Interfaces
 
 ### [search.Searchable](https://godoc.org/github.com/ponzu-cms/ponzu/system/search#Searchable)
-Searchable determines how content is indexed and whether the system should index the content when it is created and updated.
+Searchable determines how content is indexed and whether the system should index the content when it is created and updated or be removed from the index when content is deleted.
     
 !!! warning ""
     Search is **disabled** for all Content items by default. Each Content item that should be indexed and searchable must implement the `search.Searchable` interface.
+
+##### Method Set
 
 ```go
 type Searchable interface {
@@ -20,13 +24,14 @@ By default, Ponzu sets up the [Bleve's](http://blevesearch.com) "default mapping
 This way, all you need to do to get full-text search is to add the `IndexContent() bool` method to each Content type you want search enabled. Return `true` from this method to enable search. 
 
 
-### Example
+##### Example
 ```go
 // ...
 
 type Song struct {
     item.Item
 
+    Name string `json:"name"`
     // ...
 }
 
