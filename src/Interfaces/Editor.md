@@ -49,6 +49,8 @@ func (p *Post) MarshalEditor() ([]byte, error) {
 !!! note "MarshalEditor() & View Rendering"
     Although it is common to use the `editor.Form` and `editor.Fields` to structure your content editor inside `MarshalEditor()`, the method signature defines that its return value needs only to be `[]byte, error`. Keep in mind that you can return a `[]byte` of any raw HTML or other markup to be rendered in the editor view.
 
+---
+
 ### [editor.Mergeable](https://godoc.org/github.com/ponzu-cms/ponzu/management/editor#Mergeable)
 
 Mergable enables a CMS end-user to merge the "Pending" content from an outside source into the "Public" section, and thus making it visible via the public content API. It also allows the end-user to reject content. "Approve" and "Reject" buttons will be visible on a the edit page for content submitted.

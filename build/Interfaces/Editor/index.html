@@ -844,6 +844,7 @@ the Ponzu CLI <a href="../../CLI/Usage"><code>generate</code> command</a>.</p>
 <p class="admonition-title">MarshalEditor() &amp; View Rendering</p>
 <p>Although it is common to use the <code>editor.Form</code> and <code>editor.Fields</code> to structure your content editor inside <code>MarshalEditor()</code>, the method signature defines that its return value needs only to be <code>[]byte, error</code>. Keep in mind that you can return a <code>[]byte</code> of any raw HTML or other markup to be rendered in the editor view.</p>
 </div>
+<hr />
 <h3 id="editormergeable"><a href="https://godoc.org/github.com/ponzu-cms/ponzu/management/editor#Mergeable">editor.Mergeable</a><a class="headerlink" href="#editormergeable" title="Permanent link">&para;</a></h3>
 <p>Mergable enables a CMS end-user to merge the "Pending" content from an outside source into the "Public" section, and thus making it visible via the public content API. It also allows the end-user to reject content. "Approve" and "Reject" buttons will be visible on a the edit page for content submitted.</p>
 <h5 id="method-set_1">Method Set<a class="headerlink" href="#method-set_1" title="Permanent link">&para;</a></h5>
