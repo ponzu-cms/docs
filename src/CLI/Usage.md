@@ -68,15 +68,15 @@ view specifiers are implmeneted:
 
 | CLI parameter | Generates |
 |---------------|-----------| 
-| checkbox | `editor.Checkbox()` |
+| checkbox | [`editor.Checkbox()`](/Form-Fields/HTML-Inputs/#editorcheckbox) |
 | custom | generates a pre-styled empty div to fill with HTML |
-| file | `editor.File()` |
-| hidden | `editor.Input()` + uses type=hidden |
-| input, text | `editor.Input()` |
-| richtext | `editor.Richtext()` |
-| select | `editor.Select()` |
-| textarea | `editor.Textarea()` |
-| tags | `editor.Tags()` |
+| file | [`editor.File()`](/Form-Fields/HTML-Inputs/#editorfile) |
+| hidden | [`editor.Input()`](/Form-Fields/HTML-Inputs/#editorinput) + uses type=hidden |
+| input, text | [`editor.Input()`](/Form-Fields/HTML-Inputs/#editorinput) |
+| richtext | [`editor.Richtext()`](/Form-Fields/HTML-Inputs/#editorrichtext) |
+| select | [`editor.Select()`](/Form-Fields/HTML-Inputs/#editorselect) |
+| textarea | [`editor.Textarea()`](/Form-Fields/HTML-Inputs/#editortextarea) |
+| tags | [`editor.Tags()`](/Form-Fields/HTML-Inputs/#editortags) |
 
 ---
 
