@@ -2,13 +2,28 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Ponzu", 
+            "text": "Ponzu CMS + Server Framework Docs\n\n\n\n\nWhat is Ponzu?\n\n\nPonzu is a powerful and efficient open-source HTTP server framework and CMS. It \nprovides automatic, free, and secure HTTP/2 over TLS (certificates obtained via \n\nLet's Encrypt\n), a useful CMS and scaffolding to generate \ncontent editors, and a fast HTTP API on which to build modern applications.\n\n\nWant to jump in right away? Try the \nQuickstart\n\n\nTable of Contents\n\n\n\n\nCLI\n\n\nContent\n\n\nHTTP API - Content\n\n\nHTTP API - File Metadata\n\n\nHTTP API - Search\n\n\nInterfaces - API\n\n\nInterfaces - Editor\n\n\nInterfaces - Item\n\n\nInterfaces - Search\n\n\nCreating Ponzu Addons\n\n\nUsing Ponzu Addons\n\n\nQuickstart\n\n\nBackups\n\n\nSystem Configuration\n\n\n\n\nNeed help? Get in touch\n\n\n\n\nChat: \n#ponzu on Slack\n\n\nReach out on Twitter: \n@ponzu_cms\n\n\nFile an \nissue", 
             "title": "Home"
         }, 
         {
-            "location": "/#ponzu", 
+            "location": "/#ponzu-cms-server-framework-docs", 
             "text": "", 
-            "title": "Ponzu"
+            "title": "Ponzu CMS + Server Framework Docs"
+        }, 
+        {
+            "location": "/#what-is-ponzu", 
+            "text": "Ponzu is a powerful and efficient open-source HTTP server framework and CMS. It \nprovides automatic, free, and secure HTTP/2 over TLS (certificates obtained via  Let's Encrypt ), a useful CMS and scaffolding to generate \ncontent editors, and a fast HTTP API on which to build modern applications.  Want to jump in right away? Try the  Quickstart", 
+            "title": "What is Ponzu?"
+        }, 
+        {
+            "location": "/#table-of-contents", 
+            "text": "CLI  Content  HTTP API - Content  HTTP API - File Metadata  HTTP API - Search  Interfaces - API  Interfaces - Editor  Interfaces - Item  Interfaces - Search  Creating Ponzu Addons  Using Ponzu Addons  Quickstart  Backups  System Configuration", 
+            "title": "Table of Contents"
+        }, 
+        {
+            "location": "/#need-help-get-in-touch", 
+            "text": "Chat:  #ponzu on Slack  Reach out on Twitter:  @ponzu_cms  File an  issue", 
+            "title": "Need help? Get in touch"
         }, 
         {
             "location": "/CLI/Usage/", 
@@ -611,9 +626,54 @@
             "title": "Using Addons"
         }, 
         {
+            "location": "/Quickstart/Overview/", 
+            "text": "Quickstart Steps\n\n\n1) Install \nGo 1.8+\n\n\n2) Install Ponzu CLI:\n\n\n$ go get github.com/ponzu-cms/ponzu/\u2026\n\n\n\n\n\n3) Create a new project (path is created in your GOPATH):\n\n\n$ ponzu new github.com/nilslice/reviews\n\n\n\n\n\n4) Enter your new project directory:\n\n\n$ \ncd\n \n$GOPATH\n/src/github.com/nilslice/reviews\n\n\n\n\n\n5) Generate content type file and boilerplate code (creates \ncontent/review.go\n):\n\n\n$ ponzu generate content review title:\nstring\n author:\nstring\n rating:\nfloat64\n body:\nstring\n:richtext website_url:\nstring\n items:\n[]string\n photo:string:file\n`\n\n\n\n\n\n\n6) Build your project:\n\n\n$ ponzu build\n\n\n\n\n\n7) Run your project with defaults:\n\n\n$ ponzu run\n\n\n\n\n\n8) Open browser to \nhttp://localhost:8080/admin\n\n\nNotes\n\n\n\n\nOne-time initialization to set configuration\n\n\nAll fields can be changed in Configuration afterward", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/Quickstart/Overview/#quickstart-steps", 
+            "text": "1) Install  Go 1.8+  2) Install Ponzu CLI:  $ go get github.com/ponzu-cms/ponzu/\u2026  3) Create a new project (path is created in your GOPATH):  $ ponzu new github.com/nilslice/reviews  4) Enter your new project directory:  $  cd   $GOPATH /src/github.com/nilslice/reviews  5) Generate content type file and boilerplate code (creates  content/review.go ):  $ ponzu generate content review title: string  author: string  rating: float64  body: string :richtext website_url: string  items: []string  photo:string:file `   6) Build your project:  $ ponzu build  7) Run your project with defaults:  $ ponzu run  8) Open browser to  http://localhost:8080/admin", 
+            "title": "Quickstart Steps"
+        }, 
+        {
+            "location": "/Quickstart/Overview/#notes", 
+            "text": "One-time initialization to set configuration  All fields can be changed in Configuration afterward", 
+            "title": "Notes"
+        }, 
+        {
+            "location": "/Running-Backups/Backups/", 
+            "text": "", 
+            "title": "Backups"
+        }, 
+        {
             "location": "/System-Configuration/Settings/", 
             "text": "", 
             "title": "Settings"
+        }, 
+        {
+            "location": "/System-Deployment/Docker/", 
+            "text": "Ponzu Docker build\n\n\nPonzu is distributed as a \ndocker image\n, \nwhich aids in ponzu deployment. The Dockerfile in this directory is used by Ponzu \nto generate the docker image which contains the ponzu executable.\n\n\nIf you are deploying your own Ponzu project, you can write a new Dockerfile that\nis based from the \nponzu/ponzu\n image of your choice. For example:\n\n\nFROM\n ponzu/ponzu:latest\n\n\n\n# your project set up ...\n\n\n# ...\n\n\n# ...\n\n\n\n\n\n\nThe following are convenient commands during development of Ponzu core:\n\n\nBuild the docker image. Run from the root of the project.\n\n\n# from the root of ponzu:\n\ndocker build -t ponzu-dev\n\n\n\n\n\nStart the image, share the local directory and pseudo terminal (tty) into for debugging:\n\n\ndocker run -v \n$(\npwd\n)\n:/go/src/github.com/ponzu-cms/ponzu -it ponzu-dev\n\npwd\n \n# will output the go src directory for ponzu\n\nponzu version \n# will output the ponzu version\n\n\n# make an edit on your local and rebuild\n\ngo install ./...\n\n\n\n\n\nSpecial thanks to \n@krismeister\n for contributing this!", 
+            "title": "Docker"
+        }, 
+        {
+            "location": "/System-Deployment/Docker/#ponzu-docker-build", 
+            "text": "Ponzu is distributed as a  docker image , \nwhich aids in ponzu deployment. The Dockerfile in this directory is used by Ponzu \nto generate the docker image which contains the ponzu executable.  If you are deploying your own Ponzu project, you can write a new Dockerfile that\nis based from the  ponzu/ponzu  image of your choice. For example:  FROM  ponzu/ponzu:latest  # your project set up ...  # ...  # ...", 
+            "title": "Ponzu Docker build"
+        }, 
+        {
+            "location": "/System-Deployment/Docker/#the-following-are-convenient-commands-during-development-of-ponzu-core", 
+            "text": "", 
+            "title": "The following are convenient commands during development of Ponzu core:"
+        }, 
+        {
+            "location": "/System-Deployment/Docker/#build-the-docker-image-run-from-the-root-of-the-project", 
+            "text": "# from the root of ponzu: \ndocker build -t ponzu-dev", 
+            "title": "Build the docker image. Run from the root of the project."
+        }, 
+        {
+            "location": "/System-Deployment/Docker/#start-the-image-share-the-local-directory-and-pseudo-terminal-tty-into-for-debugging", 
+            "text": "docker run -v  $( pwd ) :/go/src/github.com/ponzu-cms/ponzu -it ponzu-dev pwd   # will output the go src directory for ponzu \nponzu version  # will output the ponzu version  # make an edit on your local and rebuild \ngo install ./...  Special thanks to  @krismeister  for contributing this!", 
+            "title": "Start the image, share the local directory and pseudo terminal (tty) into for debugging:"
         }
     ]
 }

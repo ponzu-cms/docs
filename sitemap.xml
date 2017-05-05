@@ -104,7 +104,37 @@
     
         
     <url>
+     <loc>/Quickstart/Overview/</loc>
+     <lastmod>2017-05-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/Running-Backups/Backups/</loc>
+     <lastmod>2017-05-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
      <loc>/System-Configuration/Settings/</loc>
+     <lastmod>2017-05-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/System-Deployment/Docker/</loc>
      <lastmod>2017-05-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
