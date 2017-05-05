@@ -15,7 +15,7 @@
     
     
       
-        <title>Settings - Ponzu</title>
+        <title>Configuring Your Ponzu System Settings</title>
       
     
     
@@ -601,9 +601,110 @@
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
     
     
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Settings
+      </label>
+    
     <a href="./" title="Settings" class="md-nav__link md-nav__link--active">
       Settings
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#site-name" title="Site Name" class="md-nav__link">
+    Site Name
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domain-name" title="Domain Name" class="md-nav__link">
+    Domain Name
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-environment" title="Development Environment" class="md-nav__link">
+    Development Environment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#administrator-email" title="Administrator Email" class="md-nav__link">
+    Administrator Email
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#client-secret" title="Client Secret" class="md-nav__link">
+    Client Secret
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etag-header" title="Etag Header" class="md-nav__link">
+    Etag Header
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cors" title="CORS" class="md-nav__link">
+    CORS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gzip" title="GZIP" class="md-nav__link">
+    GZIP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-cache" title="HTTP Cache" class="md-nav__link">
+    HTTP Cache
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalidate-cache" title="Invalidate Cache" class="md-nav__link">
+    Invalidate Cache
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-backup-credentials" title="Database Backup Credentials" class="md-nav__link">
+    Database Backup Credentials
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -644,6 +745,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../System-Deployment/SysV-Style/" title="SysV Style" class="md-nav__link">
+      SysV Style
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -664,6 +777,96 @@
   
   
   
+    <label class="md-nav__title" for="toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#site-name" title="Site Name" class="md-nav__link">
+    Site Name
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#domain-name" title="Domain Name" class="md-nav__link">
+    Domain Name
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-environment" title="Development Environment" class="md-nav__link">
+    Development Environment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#administrator-email" title="Administrator Email" class="md-nav__link">
+    Administrator Email
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#client-secret" title="Client Secret" class="md-nav__link">
+    Client Secret
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etag-header" title="Etag Header" class="md-nav__link">
+    Etag Header
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cors" title="CORS" class="md-nav__link">
+    CORS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gzip" title="GZIP" class="md-nav__link">
+    GZIP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-cache" title="HTTP Cache" class="md-nav__link">
+    HTTP Cache
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invalidate-cache" title="Invalidate Cache" class="md-nav__link">
+    Invalidate Cache
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-backup-credentials" title="Database Backup Credentials" class="md-nav__link">
+    Database Backup Credentials
+  </a>
+  
+</li>
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -677,7 +880,105 @@
                 
                   <h1>Settings</h1>
                 
-                
+                <p>Ponzu has several options which can be configured at run-time. To view these
+configuration settings, visit the <code>/admin/configure</code> page of your Ponzu CMS.</p>
+<hr />
+<h4 id="site-name">Site Name<a class="headerlink" href="#site-name" title="Permanent link">&para;</a></h4>
+<p>The Site Name setting changes the displayed name on your admin dashboard. This is
+visible publicly on the <code>/admin/login</code> page.</p>
+<hr />
+<h4 id="domain-name">Domain Name<a class="headerlink" href="#domain-name" title="Permanent link">&para;</a></h4>
+<p>Internally, Ponzu needs to know where its canonical HTTP access origin is, and
+requires you to add the qualified domain name you are using. In development, use 
+<code>localhost</code> or some other name mapped to the loopback address (<code>127.0.0.1</code>).</p>
+<p>Once you have deployed your Ponzu server to a remote host and pointed a public 
+domain at it, you need to change the Domain Name setting to match. This is 
+especially important when fetching TLS (SSL) certificates from <a href="https://letsencrypt.org">Let's Encrypt</a>
+- since the process requires an active, verifyable domain. To set up your server
+with TLS over HTTPS connections, follow these steps:</p>
+<ol>
+<li>Set your Domain Name in the system configuration</li>
+<li>Set the Administrator Email to register with Let's Encrypt</li>
+<li>Stop your Ponzu server</li>
+<li>Run your Ponzu server with the <code>--https</code> flag e.g. <code>$ ponzu --https run</code></li>
+<li>Visit your CMS admin with <code>https://</code> prepended to your URL</li>
+</ol>
+<div class="admonition success">
+<p class="admonition-title">Verifying HTTPS / TLS Connections</p>
+<p>If successful, your APIs and CMS will be accessible via HTTPS, and you will
+see a green indicator near the URL bar of most browsers. This also enables 
+your server to use the HTTP/2 protocol.</p>
+</div>
+<h5 id="development-environment">Development Environment<a class="headerlink" href="#development-environment" title="Permanent link">&para;</a></h5>
+<p>You can test HTTPS &amp; HTTP/2 connections in your development environment on <code>localhost</code>,
+by running Ponzu with the <code>--devhttps</code> flag e.g. <code>$ ponzu --devhttps run</code> </p>
+<p>If you're greeted with a warning from the browser saying the connection is not
+secure, follow the steps outlined in the CLI message, or here:</p>
+<div class="codehilite"><pre><span></span>If your browser rejects HTTPS requests, try allowing insecure connections on localhost.
+on Chrome, visit chrome://flags/#allow-insecure-localhost
+</pre></div>
+
+
+<hr />
+<h4 id="administrator-email">Administrator Email<a class="headerlink" href="#administrator-email" title="Permanent link">&para;</a></h4>
+<p>The Administrator Email is the contact email for the person who is the main admin
+of your Ponzu CMS. This can be changed at any point, but once a Let's Encrypt
+certificate has been fetched using an Administrator Email, it will remain the 
+contact until a new certificate is requested. </p>
+<hr />
+<h4 id="client-secret">Client Secret<a class="headerlink" href="#client-secret" title="Permanent link">&para;</a></h4>
+<p>The Client Secret is a secure value used by the server to sign tokens and authenticate requests.
+<strong>Do not share this</strong> value with any untrusted party.</p>
+<div class="admonition danger">
+<p class="admonition-title">Security and the Client Secret</p>
+<p>HTTP requests with a valid token, signed with the Client Secret, can take any
+action an Admin can within the CMS. Be cautious of this when sharing account
+logins or details with anyone.</p>
+</div>
+<hr />
+<h4 id="etag-header">Etag Header<a class="headerlink" href="#etag-header" title="Permanent link">&para;</a></h4>
+<p>The Etag Header value is automatically created when content is changed and serves
+as a caching validation mechanism.</p>
+<hr />
+<h4 id="cors">CORS<a class="headerlink" href="#cors" title="Permanent link">&para;</a></h4>
+<p>CORS, or "Cross-Origin Resource Sharing" is a security setting which defines how
+resources (or URLs) can be accessed from outside clients / domains. By default, 
+Ponzu HTTP APIs can be accessed from any origin, meaning a script from an unknown
+website could fetch data. </p>
+<p>By disabling CORS, you limit API requests to only the Domain Name you set.</p>
+<hr />
+<h4 id="gzip">GZIP<a class="headerlink" href="#gzip" title="Permanent link">&para;</a></h4>
+<p>GZIP is a popular codec which when applied to most HTTP responses, decreases data
+transmission size and response times. The GZIP setting on Ponzu has a minor 
+side-effect of using more CPU, so you can disable it if you notice your system 
+is CPU-constrained. However, traffic levels would need to be extremely demanding
+for this to be noticable. </p>
+<hr />
+<h4 id="http-cache">HTTP Cache<a class="headerlink" href="#http-cache" title="Permanent link">&para;</a></h4>
+<p>The HTTP Cache configuration allows a system to disable the default HTTP cache,
+which saves the server from repeating API queries and sending responses -- it's
+generally advised to keep this enabled unless you have <em>frequently</em> changing data.</p>
+<p>The <code>Max-Age</code> value setting overrides the default 2592000-second (30 day) cache
+<code>max-age</code> duration set in API response headers. The <code>0</code> value is an alias to 
+<code>2592000</code>, so check the the <code>Disable HTTP Cache</code> box if you don't want any caching.</p>
+<hr />
+<h4 id="invalidate-cache">Invalidate Cache<a class="headerlink" href="#invalidate-cache" title="Permanent link">&para;</a></h4>
+<p>If this box is checked and then the configuration is saved, the server will 
+re-generate an Etag to send in responses. By doing so, the cache becomes invalidated
+and reset so new content or assets will be included in previously cached responses.</p>
+<p>The cache is invalidated when content changes, so this is typically not a widely 
+used setting.</p>
+<hr />
+<h4 id="database-backup-credentials">Database Backup Credentials<a class="headerlink" href="#database-backup-credentials" title="Permanent link">&para;</a></h4>
+<p>In order to enable HTTP backups of the components that make up your system, you
+will need to add an HTTP Basic Auth user and password pair. When used to 
+<a href="../../Running-Backups/Backups">run backups</a>, the <code>user:password</code> pair tells your server
+that the backup request is made from a trusted party. </p>
+<div class="admonition danger">
+<p class="admonition-title">Backup Access with Credentials</p>
+<p>This <code>user:password</code> pair should not be shared outside of your organization as 
+it allows full database downloads and archives of your system's uploads.</p>
+</div>
                 
                   
                 
