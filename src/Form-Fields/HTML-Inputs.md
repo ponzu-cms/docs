@@ -309,7 +309,7 @@ editor.Field{
 ## Data References
 It is common to want to keep a reference from one Content type to another. To do
 this in Ponzu, use the [`bosssauce/reference`](https://github.com/bosssauce/reference) 
-package. It comes pre-installed in Ponuz as an ["Addon"](/Ponzu-Addons/Using-Addons).
+package. It comes pre-installed in Ponzu as an ["Addon"](/Ponzu-Addons/Using-Addons).
 
 ### reference.Select
 
