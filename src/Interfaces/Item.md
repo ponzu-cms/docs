@@ -432,7 +432,28 @@ type Identifiable interface {
 ```
 
 ##### Implementation
+`item.Identifiable` has a default implementation in the `system/item` package. 
+It is not advised to override these methods, with the exception of `String()`, 
+which is commonly used to set the display name of Content items when listed in 
+the CMS, and to customize slugs.
 
+```go
+func (i Item) ItemID() int {
+	return i.ID
+}
+
+func (i *Item) SetItemID(id int) {
+	i.ID = id
+}
+
+func (i Item) UniqueID() uuid.UUID {
+	return i.UUID
+}
+
+func (i Item) String() string {
+	return fmt.Sprintf("Item ID: %s", i.UniqueID())
+}
+```
 ---
 
 ### [item.Sluggable](https://godoc.org/github.com/ponzu-cms/ponzu/system/item#Sluggable)
@@ -449,7 +470,22 @@ type Sluggable interface {
 ```
 
 ##### Implementation
+`item.Sluggable` has a default implementation in the `system/item` package. It is
+possible to override these methods on your own Content types, but beware, behavior
+is undefined. It is tempting to override the `SetSlug()` method to customize your
+Content item slug, but try first to override the `String()` method found in the
+`item.Identifiable` interface instead. If you don't get the desired results, try
+`SetSlug()`.
 
+```go
+func (i *Item) SetSlug(slug string) {
+	i.Slug = slug
+}
+
+func (i *Item) ItemSlug() string {
+	return i.Slug
+}
+```
 ---
 
 
@@ -465,5 +501,17 @@ type Sortable interface {
 ```
 
 ##### Implementation
+`item.Sortable` has a default implementation in the `system/item` package. It is
+possible to override these methods on your own Content type, but beware, behavior 
+is undefined.
 
+```go
+func (i Item) Time() int64 {
+	return i.Timestamp
+}
+
+func (i Item) Touch() int64 {
+	return i.Updated
+}
+```
 
