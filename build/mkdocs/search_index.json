@@ -912,8 +912,63 @@
         }, 
         {
             "location": "/System-Configuration/Settings/", 
-            "text": "", 
+            "text": "Ponzu has several options which can be configured at run-time. To view these\nconfiguration settings, visit the \n/admin/configure\n page of your Ponzu CMS.\n\n\n\n\nSite Name\n\n\nThe Site Name setting changes the displayed name on your admin dashboard. This is\nvisible publicly on the \n/admin/login\n page.\n\n\n\n\nDomain Name\n\n\nInternally, Ponzu needs to know where its canonical HTTP access origin is, and\nrequires you to add the qualified domain name you are using. In development, use \n\nlocalhost\n or some other name mapped to the loopback address (\n127.0.0.1\n).\n\n\nOnce you have deployed your Ponzu server to a remote host and pointed a public \ndomain at it, you need to change the Domain Name setting to match. This is \nespecially important when fetching TLS (SSL) certificates from \nLet's Encrypt\n\n- since the process requires an active, verifyable domain. To set up your server\nwith TLS over HTTPS connections, follow these steps:\n\n\n\n\nSet your Domain Name in the system configuration\n\n\nSet the Administrator Email to register with Let's Encrypt\n\n\nStop your Ponzu server\n\n\nRun your Ponzu server with the \n--https\n flag e.g. \n$ ponzu --https run\n\n\nVisit your CMS admin with \nhttps://\n prepended to your URL\n\n\n\n\n\n\nVerifying HTTPS / TLS Connections\n\n\nIf successful, your APIs and CMS will be accessible via HTTPS, and you will\nsee a green indicator near the URL bar of most browsers. This also enables \nyour server to use the HTTP/2 protocol.\n\n\n\n\nDevelopment Environment\n\n\nYou can test HTTPS \n HTTP/2 connections in your development environment on \nlocalhost\n,\nby running Ponzu with the \n--devhttps\n flag e.g. \n$ ponzu --devhttps run\n \n\n\nIf you're greeted with a warning from the browser saying the connection is not\nsecure, follow the steps outlined in the CLI message, or here:\n\n\nIf your browser rejects HTTPS requests, try allowing insecure connections on localhost.\non Chrome, visit chrome://flags/#allow-insecure-localhost\n\n\n\n\n\n\n\nAdministrator Email\n\n\nThe Administrator Email is the contact email for the person who is the main admin\nof your Ponzu CMS. This can be changed at any point, but once a Let's Encrypt\ncertificate has been fetched using an Administrator Email, it will remain the \ncontact until a new certificate is requested. \n\n\n\n\nClient Secret\n\n\nThe Client Secret is a secure value used by the server to sign tokens and authenticate requests.\n\nDo not share this\n value with any untrusted party.\n\n\n\n\nSecurity and the Client Secret\n\n\nHTTP requests with a valid token, signed with the Client Secret, can take any\naction an Admin can within the CMS. Be cautious of this when sharing account\nlogins or details with anyone.\n\n\n\n\n\n\nEtag Header\n\n\nThe Etag Header value is automatically created when content is changed and serves\nas a caching validation mechanism.\n\n\n\n\nCORS\n\n\nCORS, or \"Cross-Origin Resource Sharing\" is a security setting which defines how\nresources (or URLs) can be accessed from outside clients / domains. By default, \nPonzu HTTP APIs can be accessed from any origin, meaning a script from an unknown\nwebsite could fetch data. \n\n\nBy disabling CORS, you limit API requests to only the Domain Name you set.\n\n\n\n\nGZIP\n\n\nGZIP is a popular codec which when applied to most HTTP responses, decreases data\ntransmission size and response times. The GZIP setting on Ponzu has a minor \nside-effect of using more CPU, so you can disable it if you notice your system \nis CPU-constrained. However, traffic levels would need to be extremely demanding\nfor this to be noticable. \n\n\n\n\nHTTP Cache\n\n\nThe HTTP Cache configuration allows a system to disable the default HTTP cache,\nwhich saves the server from repeating API queries and sending responses -- it's\ngenerally advised to keep this enabled unless you have \nfrequently\n changing data.\n\n\nThe \nMax-Age\n value setting overrides the default 2592000-second (30 day) cache\n\nmax-age\n duration set in API response headers. The \n0\n value is an alias to \n\n2592000\n, so check the the \nDisable HTTP Cache\n box if you don't want any caching.\n\n\n\n\nInvalidate Cache\n\n\nIf this box is checked and then the configuration is saved, the server will \nre-generate an Etag to send in responses. By doing so, the cache becomes invalidated\nand reset so new content or assets will be included in previously cached responses.\n\n\nThe cache is invalidated when content changes, so this is typically not a widely \nused setting.\n\n\n\n\nDatabase Backup Credentials\n\n\nIn order to enable HTTP backups of the components that make up your system, you\nwill need to add an HTTP Basic Auth user and password pair. When used to \n\nrun backups\n, the \nuser:password\n pair tells your server\nthat the backup request is made from a trusted party. \n\n\n\n\nBackup Access with Credentials\n\n\nThis \nuser:password\n pair should not be shared outside of your organization as \nit allows full database downloads and archives of your system's uploads.", 
             "title": "Settings"
+        }, 
+        {
+            "location": "/System-Configuration/Settings/#site-name", 
+            "text": "The Site Name setting changes the displayed name on your admin dashboard. This is\nvisible publicly on the  /admin/login  page.", 
+            "title": "Site Name"
+        }, 
+        {
+            "location": "/System-Configuration/Settings/#domain-name", 
+            "text": "Internally, Ponzu needs to know where its canonical HTTP access origin is, and\nrequires you to add the qualified domain name you are using. In development, use  localhost  or some other name mapped to the loopback address ( 127.0.0.1 ).  Once you have deployed your Ponzu server to a remote host and pointed a public \ndomain at it, you need to change the Domain Name setting to match. This is \nespecially important when fetching TLS (SSL) certificates from  Let's Encrypt \n- since the process requires an active, verifyable domain. To set up your server\nwith TLS over HTTPS connections, follow these steps:   Set your Domain Name in the system configuration  Set the Administrator Email to register with Let's Encrypt  Stop your Ponzu server  Run your Ponzu server with the  --https  flag e.g.  $ ponzu --https run  Visit your CMS admin with  https://  prepended to your URL    Verifying HTTPS / TLS Connections  If successful, your APIs and CMS will be accessible via HTTPS, and you will\nsee a green indicator near the URL bar of most browsers. This also enables \nyour server to use the HTTP/2 protocol.", 
+            "title": "Domain Name"
+        }, 
+        {
+            "location": "/System-Configuration/Settings/#development-environment", 
+            "text": "You can test HTTPS   HTTP/2 connections in your development environment on  localhost ,\nby running Ponzu with the  --devhttps  flag e.g.  $ ponzu --devhttps run    If you're greeted with a warning from the browser saying the connection is not\nsecure, follow the steps outlined in the CLI message, or here:  If your browser rejects HTTPS requests, try allowing insecure connections on localhost.\non Chrome, visit chrome://flags/#allow-insecure-localhost", 
+            "title": "Development Environment"
+        }, 
+        {
+            "location": "/System-Configuration/Settings/#administrator-email", 
+            "text": "The Administrator Email is the contact email for the person who is the main admin\nof your Ponzu CMS. This can be changed at any point, but once a Let's Encrypt\ncertificate has been fetched using an Administrator Email, it will remain the \ncontact until a new certificate is requested.", 
+            "title": "Administrator Email"
+        }, 
+        {
+            "location": "/System-Configuration/Settings/#client-secret", 
+            "text": "The Client Secret is a secure value used by the server to sign tokens and authenticate requests. Do not share this  value with any untrusted party.   Security and the Client Secret  HTTP requests with a valid token, signed with the Client Secret, can take any\naction an Admin can within the CMS. Be cautious of this when sharing account\nlogins or details with anyone.", 
+            "title": "Client Secret"
+        }, 
+        {
+            "location": "/System-Configuration/Settings/#etag-header", 
+            "text": "The Etag Header value is automatically created when content is changed and serves\nas a caching validation mechanism.", 
+            "title": "Etag Header"
+        }, 
+        {
+            "location": "/System-Configuration/Settings/#cors", 
+            "text": "CORS, or \"Cross-Origin Resource Sharing\" is a security setting which defines how\nresources (or URLs) can be accessed from outside clients / domains. By default, \nPonzu HTTP APIs can be accessed from any origin, meaning a script from an unknown\nwebsite could fetch data.   By disabling CORS, you limit API requests to only the Domain Name you set.", 
+            "title": "CORS"
+        }, 
+        {
+            "location": "/System-Configuration/Settings/#gzip", 
+            "text": "GZIP is a popular codec which when applied to most HTTP responses, decreases data\ntransmission size and response times. The GZIP setting on Ponzu has a minor \nside-effect of using more CPU, so you can disable it if you notice your system \nis CPU-constrained. However, traffic levels would need to be extremely demanding\nfor this to be noticable.", 
+            "title": "GZIP"
+        }, 
+        {
+            "location": "/System-Configuration/Settings/#http-cache", 
+            "text": "The HTTP Cache configuration allows a system to disable the default HTTP cache,\nwhich saves the server from repeating API queries and sending responses -- it's\ngenerally advised to keep this enabled unless you have  frequently  changing data.  The  Max-Age  value setting overrides the default 2592000-second (30 day) cache max-age  duration set in API response headers. The  0  value is an alias to  2592000 , so check the the  Disable HTTP Cache  box if you don't want any caching.", 
+            "title": "HTTP Cache"
+        }, 
+        {
+            "location": "/System-Configuration/Settings/#invalidate-cache", 
+            "text": "If this box is checked and then the configuration is saved, the server will \nre-generate an Etag to send in responses. By doing so, the cache becomes invalidated\nand reset so new content or assets will be included in previously cached responses.  The cache is invalidated when content changes, so this is typically not a widely \nused setting.", 
+            "title": "Invalidate Cache"
+        }, 
+        {
+            "location": "/System-Configuration/Settings/#database-backup-credentials", 
+            "text": "In order to enable HTTP backups of the components that make up your system, you\nwill need to add an HTTP Basic Auth user and password pair. When used to  run backups , the  user:password  pair tells your server\nthat the backup request is made from a trusted party.    Backup Access with Credentials  This  user:password  pair should not be shared outside of your organization as \nit allows full database downloads and archives of your system's uploads.", 
+            "title": "Database Backup Credentials"
         }, 
         {
             "location": "/System-Deployment/Docker/", 
@@ -939,6 +994,11 @@
             "location": "/System-Deployment/Docker/#start-the-image-share-the-local-directory-and-pseudo-terminal-tty-into-for-debugging", 
             "text": "docker run -v  $( pwd ) :/go/src/github.com/ponzu-cms/ponzu -it ponzu-dev pwd   # will output the go src directory for ponzu \nponzu version  # will output the ponzu version  # make an edit on your local and rebuild \ngo install ./...  Special thanks to  @krismeister  for contributing this!", 
             "title": "Start the image, share the local directory and pseudo terminal (tty) into for debugging:"
+        }, 
+        {
+            "location": "/System-Deployment/SysV-Style/", 
+            "text": "For reference, here is an example init script to run Ponzu servers. You must \ndefine the \nPROJECT_DIR\n \n \nRUNAS\n variables by replacing \nPROJECT DIRECTORY\n\n\n \nUSER\n in the script below:\n\n\n#!/bin/sh\n\n\n### BEGIN INIT INFO\n\n\n# Provides:          ponzu-server\n\n\n# Required-Start:    $local_fs $network $named $time $syslog\n\n\n# Required-Stop:     $local_fs $network $named $time $syslog\n\n\n# Default-Start:     2 3 4 5\n\n\n# Default-Stop:      0 1 6\n\n\n# Description:       Ponzu API \n Admin server\n\n\n### END INIT INFO\n\n\n\nPROJECT_DIR\n=\nPROJECT DIRECTORY\n\n\nSCRIPT\n=\ncd $PROJECT_DIR \n ponzu --port=80 run\n\n\nRUNAS\n=\nUSER\n\n\n\nPIDFILE\n=\n/var/run/ponzu-server.pid\n\nLOGFILE\n=\n/var/log/ponzu-server.log\n\nstart\n()\n \n{\n\n  \nif\n \n[\n -f /var/run/\n$PIDNAME\n \n]\n \n \nkill\n -0 \n$(\ncat /var/run/\n$PIDNAME\n)\n;\n \nthen\n\n    \necho\n \nService already running\n \n2\n\n    \nreturn\n \n1\n\n  \nfi\n\n  \necho\n \nStarting service\u2026\n \n2\n\n  \nlocal\n \nCMD\n=\n$SCRIPT\n \n \\\n$LOGFILE\n\\\n \n echo \\$!\n\n  su -c \n$CMD\n \n$RUNAS\n \n \n$PIDFILE\n\n  \necho\n \nService started\n \n2\n\n\n}\n\n\nstop\n()\n \n{\n\n  \nif\n \n[\n ! -f \n$PIDFILE\n \n]\n \n||\n ! \nkill\n -0 \n$(\ncat \n$PIDFILE\n)\n;\n \nthen\n\n    \necho\n \nService not running\n \n2\n\n    \nreturn\n \n1\n\n  \nfi\n\n  \necho\n \nStopping service\u2026\n \n2\n\n  \nkill\n -15 \n$(\ncat \n$PIDFILE\n)\n \n rm -f \n$PIDFILE\n\n  \necho\n \nService stopped\n \n2\n\n\n}\n\n\nuninstall\n()\n \n{\n\n  \necho\n -n \nAre you really sure you want to uninstall this service? That cannot be undone. [yes|No] \n\n  \nlocal\n SURE\n  \nread\n SURE\n  \nif\n \n[\n \n$SURE\n \n=\n \nyes\n \n]\n;\n \nthen\n\n    stop\n    rm -f \n$PIDFILE\n\n    \necho\n \nNotice: log file is not be removed: \n$LOGFILE\n \n2\n\n    update-rc.d -f \nNAME\n remove\n    rm -fv \n$0\n\n  \nfi\n\n\n}\n\n\n\ncase\n \n$1\n in\n  start\n)\n\n    start\n    \n;;\n\n  stop\n)\n\n    stop\n    \n;;\n\n  uninstall\n)\n\n    uninstall\n    \n;;\n\n  restart\n)\n\n    stop\n    start\n    \n;;\n\n  *\n)\n\n    \necho\n \nUsage: \n$0\n {start|stop|restart|uninstall}\n\n\nesac", 
+            "title": "SysV Style"
         }
     ]
 }

@@ -15,7 +15,7 @@
     
     
       
-        <title>Extending Content through built-in Interfaces and optional Addons</title>
+        <title>Deploying Ponzu on Linux with System-V style init</title>
       
     
     
@@ -77,11 +77,11 @@
             
               
                 <span class="md-header-nav__parent">
-                  Content
+                  System Deployment
                 </span>
               
             
-            Extending Content
+            SysV Style
           
         </span>
       </div>
@@ -236,12 +236,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       Content
@@ -259,7 +257,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../An-Overview/" title="An Overview" class="md-nav__link">
+    <a href="../../Content/An-Overview/" title="An Overview" class="md-nav__link">
       An Overview
     </a>
   </li>
@@ -269,64 +267,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="toc">
-        Extending Content
-      </label>
-    
-    <a href="./" title="Extending Content" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../Content/Extending-Content/" title="Extending Content" class="md-nav__link">
       Extending Content
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#item-interfaces" title="Item Interfaces" class="md-nav__link">
-    Item Interfaces
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-interfaces" title="API Interfaces" class="md-nav__link">
-    API Interfaces
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#editor-interfaces" title="Editor Interfaces" class="md-nav__link">
-    Editor Interfaces
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#search-interfaces" title="Search Interfaces" class="md-nav__link">
-    Search Interfaces
-  </a>
-  
-</li>
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -663,10 +608,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11" checked>
     
     <label class="md-nav__link" for="nav-11">
       System Deployment
@@ -684,7 +631,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../System-Deployment/Docker/" title="Docker" class="md-nav__link">
+    <a href="../Docker/" title="Docker" class="md-nav__link">
       Docker
     </a>
   </li>
@@ -694,11 +641,18 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../System-Deployment/SysV-Style/" title="SysV Style" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+    
+    <a href="./" title="SysV Style" class="md-nav__link md-nav__link--active">
       SysV Style
     </a>
+    
   </li>
 
         
@@ -722,41 +676,6 @@
   
   
   
-    <label class="md-nav__title" for="toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#item-interfaces" title="Item Interfaces" class="md-nav__link">
-    Item Interfaces
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-interfaces" title="API Interfaces" class="md-nav__link">
-    API Interfaces
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#editor-interfaces" title="Editor Interfaces" class="md-nav__link">
-    Editor Interfaces
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#search-interfaces" title="Search Interfaces" class="md-nav__link">
-    Search Interfaces
-  </a>
-  
-</li>
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -768,45 +687,80 @@
               
                 
                 
-                  <h1>Extending Content</h1>
+                  <h1>SysV Style</h1>
                 
-                <p>Extending your Content types with more features and functionality within the system
-is done by implementing the various built-in interfaces provided by Ponzu. To learn 
-more about interfaces, see <a href="https://tour.golang.org/methods/10">A Tour of Go - Interfaces</a>.</p>
-<p>It is also common to add more advanced functionality to Content types using Addons. Refer to the <a href="../../Ponzu-Addons">Addon documentation</a> for more information about how to use and create Ponzu Addons.</p>
-<h2 id="item-interfaces">Item Interfaces<a class="headerlink" href="#item-interfaces" title="Permanent link">&para;</a></h2>
-<p>All Content types which embed an <code>item.Item</code> will implicitly <a href="#">implement</a> its many
-interfaces. In Ponzu, the following interfaces are exported from the <code>system/item</code>
-package and have a default implementation which can be overridden to change your
-content types' functionality within the system.</p>
-<ul>
-<li><a href="../../Interfaces/Item#itempushable">item.Pushable</a></li>
-<li><a href="../../Interfaces/Item#itemhideable">item.Hideable</a></li>
-<li><a href="../../Interfaces/Item#itemomittable">item.Omittable</a></li>
-<li><a href="../../Interfaces/Item#itemhookable">item.Hookable</a></li>
-<li><a href="../../Interfaces/Item#itemidentifiable">item.Identifiable</a></li>
-<li><a href="../../Interfaces/Item#itemsortable">item.Sortable</a></li>
-<li><a href="../../Interfaces/Item#itemsluggable">item.Sluggable</a></li>
-</ul>
-<h2 id="api-interfaces">API Interfaces<a class="headerlink" href="#api-interfaces" title="Permanent link">&para;</a></h2>
-<p>To enable 3rd-party clients to interact with your Content types, you can extend your types with the API interfaces:</p>
-<ul>
-<li><a href="../../Interfaces/API/#apicreateable">api.Createable</a></li>
-<li><a href="../../Interfaces/API/#apiupdateable">api.Updateable</a></li>
-<li><a href="../../Interfaces/API/#apideleteable">api.Deleteable</a></li>
-<li><a href="../../Interfaces/API/#apitrustable">api.Trustable</a></li>
-</ul>
-<h2 id="editor-interfaces">Editor Interfaces<a class="headerlink" href="#editor-interfaces" title="Permanent link">&para;</a></h2>
-<p>To manage how content is edited and handled in the CMS, use the following Editor interfaces:</p>
-<ul>
-<li><a href="../../Interfaces/Editor/#editoreditable">editor.Editable</a></li>
-<li><a href="../../Interfaces/Editor/#editormergeable">editor.Mergeable</a></li>
-</ul>
-<h2 id="search-interfaces">Search Interfaces<a class="headerlink" href="#search-interfaces" title="Permanent link">&para;</a></h2>
-<p>To enable and customize full-text search on your content types, use the following interfaces:</p>
-<ul>
-<li><a href="../../Interfaces/Search/#searchsearchable">search.Searchable</a></li>
-</ul>
+                <p>For reference, here is an example init script to run Ponzu servers. You must 
+define the <code>PROJECT_DIR</code> &amp; <code>RUNAS</code> variables by replacing <code>&lt;PROJECT DIRECTORY&gt;</code>
+&amp; <code>&lt;USER&gt;</code> in the script below:</p>
+<div class="codehilite"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="c1">### BEGIN INIT INFO</span>
+<span class="c1"># Provides:          ponzu-server</span>
+<span class="c1"># Required-Start:    $local_fs $network $named $time $syslog</span>
+<span class="c1"># Required-Stop:     $local_fs $network $named $time $syslog</span>
+<span class="c1"># Default-Start:     2 3 4 5</span>
+<span class="c1"># Default-Stop:      0 1 6</span>
+<span class="c1"># Description:       Ponzu API &amp; Admin server</span>
+<span class="c1">### END INIT INFO</span>
+
+<span class="nv">PROJECT_DIR</span><span class="o">=</span>&lt;PROJECT DIRECTORY&gt;
+<span class="nv">SCRIPT</span><span class="o">=</span><span class="s1">&#39;cd $PROJECT_DIR &amp;&amp; ponzu --port=80 run&#39;</span>
+<span class="nv">RUNAS</span><span class="o">=</span>&lt;USER&gt;
+
+<span class="nv">PIDFILE</span><span class="o">=</span>/var/run/ponzu-server.pid
+<span class="nv">LOGFILE</span><span class="o">=</span>/var/log/ponzu-server.log
+
+start<span class="o">()</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">[</span> -f /var/run/<span class="nv">$PIDNAME</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">kill</span> -0 <span class="k">$(</span>cat /var/run/<span class="nv">$PIDNAME</span><span class="k">)</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s1">&#39;Service already running&#39;</span> &gt;<span class="p">&amp;</span><span class="m">2</span>
+    <span class="k">return</span> <span class="m">1</span>
+  <span class="k">fi</span>
+  <span class="nb">echo</span> <span class="s1">&#39;Starting service…&#39;</span> &gt;<span class="p">&amp;</span><span class="m">2</span>
+  <span class="nb">local</span> <span class="nv">CMD</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$SCRIPT</span><span class="s2"> &amp;&gt; \&quot;</span><span class="nv">$LOGFILE</span><span class="s2">\&quot; &amp; echo \$!&quot;</span>
+  su -c <span class="s2">&quot;</span><span class="nv">$CMD</span><span class="s2">&quot;</span> <span class="nv">$RUNAS</span> &gt; <span class="s2">&quot;</span><span class="nv">$PIDFILE</span><span class="s2">&quot;</span>
+  <span class="nb">echo</span> <span class="s1">&#39;Service started&#39;</span> &gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="o">}</span>
+
+stop<span class="o">()</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">[</span> ! -f <span class="s2">&quot;</span><span class="nv">$PIDFILE</span><span class="s2">&quot;</span> <span class="o">]</span> <span class="o">||</span> ! <span class="nb">kill</span> -0 <span class="k">$(</span>cat <span class="s2">&quot;</span><span class="nv">$PIDFILE</span><span class="s2">&quot;</span><span class="k">)</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s1">&#39;Service not running&#39;</span> &gt;<span class="p">&amp;</span><span class="m">2</span>
+    <span class="k">return</span> <span class="m">1</span>
+  <span class="k">fi</span>
+  <span class="nb">echo</span> <span class="s1">&#39;Stopping service…&#39;</span> &gt;<span class="p">&amp;</span><span class="m">2</span>
+  <span class="nb">kill</span> -15 <span class="k">$(</span>cat <span class="s2">&quot;</span><span class="nv">$PIDFILE</span><span class="s2">&quot;</span><span class="k">)</span> <span class="o">&amp;&amp;</span> rm -f <span class="s2">&quot;</span><span class="nv">$PIDFILE</span><span class="s2">&quot;</span>
+  <span class="nb">echo</span> <span class="s1">&#39;Service stopped&#39;</span> &gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="o">}</span>
+
+uninstall<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> -n <span class="s2">&quot;Are you really sure you want to uninstall this service? That cannot be undone. [yes|No] &quot;</span>
+  <span class="nb">local</span> SURE
+  <span class="nb">read</span> SURE
+  <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$SURE</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;yes&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    stop
+    rm -f <span class="s2">&quot;</span><span class="nv">$PIDFILE</span><span class="s2">&quot;</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Notice: log file is not be removed: &#39;</span><span class="nv">$LOGFILE</span><span class="s2">&#39;&quot;</span> &gt;<span class="p">&amp;</span><span class="m">2</span>
+    update-rc.d -f &lt;NAME&gt; remove
+    rm -fv <span class="s2">&quot;</span><span class="nv">$0</span><span class="s2">&quot;</span>
+  <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> in
+  start<span class="o">)</span>
+    start
+    <span class="p">;;</span>
+  stop<span class="o">)</span>
+    stop
+    <span class="p">;;</span>
+  uninstall<span class="o">)</span>
+    uninstall
+    <span class="p">;;</span>
+  restart<span class="o">)</span>
+    stop
+    start
+    <span class="p">;;</span>
+  *<span class="o">)</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Usage: </span><span class="nv">$0</span><span class="s2"> {start|stop|restart|uninstall}&quot;</span>
+<span class="k">esac</span>
+</pre></div>
                 
                   
                 
@@ -825,7 +779,7 @@ content types' functionality within the system.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../An-Overview/" title="An Overview" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../Docker/" title="Docker" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -834,25 +788,11 @@ content types' functionality within the system.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                An Overview
+                Docker
               </span>
             </div>
           </a>
         
-        
-          <a href="../../Form-Fields/HTML-Inputs/" title="HTML Inputs" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                HTML Inputs
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
         
       </nav>
     </div>
