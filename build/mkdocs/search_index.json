@@ -116,6 +116,261 @@
             "title": "Search Interfaces"
         }, 
         {
+            "location": "/Form-Fields/HTML-Inputs/", 
+            "text": "Ponzu provides a number of helpful HTML Inputs to create forms which CMS admins\nuse to manage content. The input functions are typically used inside a Content\ntype's \nMarshalEditor()\n func from within an \neditor.Form()\n - for example:\n\n\n// MarshalEditor writes a buffer of html to edit a Post within the CMS\n\n\n// and implements editor.Editable\n\n\nfunc\n \n(\np\n \n*\nPost\n)\n \nMarshalEditor\n()\n \n([]\nbyte\n,\n \nerror\n)\n \n{\n\n    \nview\n,\n \nerr\n \n:=\n \neditor\n.\nForm\n(\np\n,\n\n        \neditor\n.\nField\n{\n \n// \n- editor.Fields contain input-like funcs\n\n            \nView\n:\n \neditor\n.\nInput\n(\nTitle\n,\n \np\n,\n \nmap\n[\nstring\n]\nstring\n{\n \n// \n- makes a text input\n\n                \nlabel\n:\n       \nTitle\n,\n\n                \ntype\n:\n        \ntext\n,\n\n                \nplaceholder\n:\n \nEnter the Title here\n,\n\n            \n}),\n\n        \n},\n\n        \neditor\n.\nField\n{\n\n            \nView\n:\n \neditor\n.\nRichtext\n(\nBody\n,\n \np\n,\n \nmap\n[\nstring\n]\nstring\n{\n \n// \n- makes a WYSIWIG editor\n\n                \nlabel\n:\n       \nBody\n,\n\n                \nplaceholder\n:\n \nEnter the Body here\n,\n\n            \n}),\n\n        \n},\n\n        \neditor\n.\nField\n{\n\n            \nView\n:\n \neditor\n.\nInput\n(\nAuthor\n,\n \np\n,\n \nmap\n[\nstring\n]\nstring\n{\n\n                \nlabel\n:\n       \nAuthor\n,\n\n                \ntype\n:\n        \ntext\n,\n\n                \nplaceholder\n:\n \nEnter the Author here\n,\n\n            \n}),\n\n        \n},\n\n    \n)\n\n\n    \nif\n \nerr\n \n!=\n \nnil\n \n{\n\n        \nreturn\n \nnil\n,\n \nfmt\n.\nErrorf\n(\nFailed to render Post editor view: %s\n,\n \nerr\n.\nError\n())\n\n    \n}\n\n\n    \nreturn\n \nview\n,\n \nnil\n\n\n}\n\n\n\n\n\n\n\n\nField Input Functions\n\n\nThere are many of these input-like HTML view funcs exported from Ponzu's\n\nmanagement/editor\n package. Below is a list of the built-in options:\n\n\neditor.Input\n\n\nScreenshot\n\n\n\n\nFunction Signature\n\n\nInput\n(\nfieldName\n \nstring\n,\n \np\n \ninterface\n{},\n \nattrs\n,\n \noptions\n \nmap\n[\nstring\n]\nstring\n)\n \n[]\nbyte\n\n\n\n\n\n\nExample\n\n\n...\n\n\neditor\n.\nField\n{\n\n    \nView\n:\n \neditor\n.\nInput\n(\nTitle\n,\n \ns\n,\n \nmap\n[\nstring\n]\nstring\n{\n\n        \nlabel\n:\n       \nTitle\n,\n\n        \ntype\n:\n        \ntext\n,\n\n        \nplaceholder\n:\n \nEnter the Title here\n,\n\n    \n}),\n\n\n},\n\n\n...\n\n\n\n\n\n\n\n\neditor.InputRepeater\n\n\nScreenshot\n\n\n\n\nFunction Signature\n\n\nInputRepeater\n(\nfieldName\n \nstring\n,\n \np\n \ninterface\n{},\n \nattrs\n,\n \noptions\n \nmap\n[\nstring\n]\nstring\n)\n \n[]\nbyte\n\n\n\n\n\n\nExample\n\n\n...\n\n\neditor\n.\nField\n{\n\n    \nView\n:\n \neditor\n.\nInputRepeater\n(\nTitle\n,\n \ns\n,\n \nmap\n[\nstring\n]\nstring\n{\n\n        \nlabel\n:\n       \nTitles\n,\n\n        \ntype\n:\n        \ntext\n,\n\n        \nplaceholder\n:\n \nEnter the Title here\n,\n\n    \n}),\n\n\n},\n\n\n...\n\n\n\n\n\n\n\n\neditor.Checkbox\n\n\nThe \neditor.Checkbox\n function returns any number of checkboxes in a collection,\ndefined by the value:name map of options.\n\n\nScreenshot\n\n\n\n\nFunction Signature\n\n\nCheckbox\n(\nfieldName\n \nstring\n,\n \np\n \ninterface\n{},\n \nattrs\n,\n \noptions\n \nmap\n[\nstring\n]\nstring\n)\n \n[]\nbyte\n\n\n\n\n\n\nExample\n\n\n...\n\n\neditor\n.\nField\n{\n\n    \nView\n:\n \neditor\n.\nCheckbox\n(\nOptions\n,\n \ns\n,\n \nmap\n[\nstring\n]\nstring\n{\n\n        \nlabel\n:\n \nOptions\n,\n\n    \n},\n \nmap\n[\nstring\n]\nstring\n{\n\n        \n// \nvalue\n: \nDisplay Name\n,\n\n        \n1\n:\n \nFirst\n,\n\n        \n2\n:\n \nSecond\n,\n\n        \n3\n:\n \nThird\n,\n\n    \n}),\n\n\n},\n\n\n...\n\n\n\n\n\n\n\n\neditor.Richtext\n\n\nScreenshot\n\n\n\n\nFunction Signature\n\n\nRichtext\n(\nfieldName\n \nstring\n,\n \np\n \ninterface\n{},\n \nattrs\n \nmap\n[\nstring\n]\nstring\n)\n \n[]\nbyte\n\n\n\n\n\n\nExample\n\n\n...\n\n\neditor\n.\nField\n{\n\n    \nView\n:\n \neditor\n.\nRichtext\n(\nOpinion\n,\n \ns\n,\n \nmap\n[\nstring\n]\nstring\n{\n\n        \nlabel\n:\n       \nRich Text Editor\n,\n\n        \nplaceholder\n:\n \nEnter the Opinion here\n,\n\n    \n}),\n\n\n},\n\n\n...\n\n\n\n\n\n\n\n\neditor.Tags\n\n\nScreenshot\n\n\n\n\nFunction Signature\n\n\nTags\n(\nfieldName\n \nstring\n,\n \np\n \ninterface\n{},\n \nattrs\n \nmap\n[\nstring\n]\nstring\n)\n \n[]\nbyte\n\n\n\n\n\n\nExample\n\n\n...\n\n\neditor\n.\nField\n{\n\n    \nView\n:\n \neditor\n.\nTags\n(\nCategory\n,\n \ns\n,\n \nmap\n[\nstring\n]\nstring\n{\n\n        \nlabel\n:\n       \nTags\n,\n\n        \nplaceholder\n:\n \n+Category\n,\n\n    \n}),\n\n\n},\n\n\n...\n\n\n\n\n\n\n\n\neditor.File\n\n\nScreenshot\n\n\n\n\nFunction Signature\n\n\nFile\n(\nfieldName\n \nstring\n,\n \np\n \ninterface\n{},\n \nattrs\n \nmap\n[\nstring\n]\nstring\n)\n \n[]\nbyte\n\n\n\n\n\n\nExample\n\n\n...\n\n\neditor\n.\nField\n{\n\n    \nView\n:\n \neditor\n.\nFile\n(\nPhoto\n,\n \ns\n,\n \nmap\n[\nstring\n]\nstring\n{\n\n        \nlabel\n:\n       \nFile Upload\n,\n\n        \nplaceholder\n:\n \nUpload the Photo here\n,\n\n    \n}),\n\n\n},\n\n\n...\n\n\n\n\n\n\n\n\neditor.FileRepeater\n\n\nScreenshot\n\n\n\n\nFunction Signature\n\n\nFileRepeater\n(\nfieldName\n \nstring\n,\n \np\n \ninterface\n{},\n \nattrs\n \nmap\n[\nstring\n]\nstring\n)\n \n[]\nbyte\n\n\n\n\n\n\nExample\n\n\n...\n\n\neditor\n.\nField\n{\n\n    \nView\n:\n \neditor\n.\nFileRepeater\n(\nPhoto\n,\n \ns\n,\n \nmap\n[\nstring\n]\nstring\n{\n\n        \nlabel\n:\n       \nFile Upload Repeater\n,\n\n        \nplaceholder\n:\n \nUpload the Photo here\n,\n\n    \n}),\n\n\n},\n\n\n...\n\n\n\n\n\n\n\n\neditor.Select\n\n\nScreenshot\n\n\n\n\nFunction Signature\n\n\nfunc\n \nSelect\n(\nfieldName\n \nstring\n,\n \np\n \ninterface\n{},\n \nattrs\n,\n \noptions\n \nmap\n[\nstring\n]\nstring\n)\n \n[]\nbyte\n\n\n\n\n\n\nExample\n\n\n...\n\n\neditor\n.\nField\n{\n\n    \nView\n:\n \neditor\n.\nSelect\n(\nRating\n,\n \ns\n,\n \nmap\n[\nstring\n]\nstring\n{\n\n        \nlabel\n:\n \nSelect Dropdown\n,\n\n    \n},\n \nmap\n[\nstring\n]\nstring\n{\n\n        \n// \nvalue\n: \nDisplay Name\n,\n\n        \nG\n:\n     \nG\n,\n\n        \nPG\n:\n    \nPG\n,\n\n        \nPG-13\n:\n \nPG-13\n,\n\n        \nR\n:\n     \nR\n,\n\n    \n}),\n\n\n},\n\n\n...\n\n\n\n\n\n\n\n\neditor.SelectRepeater\n\n\nScreenshot\n\n\n\n\nFunction Signature\n\n\nfunc\n \nSelectRepeater\n(\nfieldName\n \nstring\n,\n \np\n \ninterface\n{},\n \nattrs\n,\n \noptions\n \nmap\n[\nstring\n]\nstring\n)\n \n[]\nbyte\n\n\n\n\n\n\nExample\n\n\n...\n\n\neditor\n.\nField\n{\n\n    \nView\n:\n \neditor\n.\nSelectRepeater\n(\nRating\n,\n \ns\n,\n \nmap\n[\nstring\n]\nstring\n{\n\n        \nlabel\n:\n \nSelect Dropdown Repeater\n,\n\n    \n},\n \nmap\n[\nstring\n]\nstring\n{\n\n        \n// \nvalue\n: \nDisplay Name\n,\n\n        \nG\n:\n     \nG\n,\n\n        \nPG\n:\n    \nPG\n,\n\n        \nPG-13\n:\n \nPG-13\n,\n\n        \nR\n:\n     \nR\n,\n\n    \n}),\n\n\n},\n\n\n...\n\n\n\n\n\n\n\n\neditor.Textarea\n\n\nScreenshot\n\n\n\n\nFunction Signature\n\n\nTextarea\n(\nfieldName\n \nstring\n,\n \np\n \ninterface\n{},\n \nattrs\n \nmap\n[\nstring\n]\nstring\n)\n \n[]\nbyte\n\n\n\n\n\n\nExample\n\n\n...\n\n\neditor\n.\nField\n{\n\n    \nView\n:\n \neditor\n.\nTextarea\n(\nReadme\n,\n \ns\n,\n \nmap\n[\nstring\n]\nstring\n{\n\n        \nlabel\n:\n       \nTextarea\n,\n\n        \nplaceholder\n:\n \nEnter the Readme here\n,\n\n    \n}),\n\n\n},\n\n\n...\n\n\n\n\n\n\n\n\nData References\n\n\nIt is common to want to keep a reference from one Content type to another. To do\nthis in Ponzu, use the \nbosssauce/reference\n package. It comes pre-installed in\nPonuz as an \n\"Addon\"\n.\n\n\nreference.Select\n\n\nScreenshot\n\n\n\n\nFunction Signature\n\n\nfunc\n \nSelect\n(\nfieldName\n \nstring\n,\n \np\n \ninterface\n{},\n \nattrs\n,\n \noptions\n \nmap\n[\nstring\n]\nstring\n)\n \n[]\nbyte\n\n\n\n\n\n\nExample\n\n\n...\n\n\neditor\n.\nField\n{\n\n    \nView\n:\n \nreference\n.\nSelect\n(\nRating\n,\n \ns\n,\n \nmap\n[\nstring\n]\nstring\n{\n\n        \nlabel\n:\n \nSelect Dropdown\n,\n\n    \n},\n \nmap\n[\nstring\n]\nstring\n{\n\n        \n// \nvalue\n: \nDisplay Name\n,\n\n        \nG\n:\n     \nG\n,\n\n        \nPG\n:\n    \nPG\n,\n\n        \nPG-13\n:\n \nPG-13\n,\n\n        \nR\n:\n     \nR\n,\n\n    \n}),\n\n\n},\n\n\n...\n\n\n\n\n\n\n\n\nreference.SelectRepeater\n\n\nScreenshot\n\n\n\n\nFunction Signature\n\n\nfunc\n \nSelectRepeater\n(\nfieldName\n \nstring\n,\n \np\n \ninterface\n{},\n \nattrs\n,\n \noptions\n \nmap\n[\nstring\n]\nstring\n)\n \n[]\nbyte\n\n\n\n\n\n\nExample\n\n\n...\n\n\neditor\n.\nField\n{\n\n    \nView\n:\n \nreference\n.\nSelectRepeater\n(\nRating\n,\n \ns\n,\n \nmap\n[\nstring\n]\nstring\n{\n\n        \nlabel\n:\n \nSelect Dropdown Repeater\n,\n\n    \n},\n \nFilmRating\n,\n \n`{{.rating}}`\n),\n\n\n},\n\n\n...", 
+            "title": "HTML Inputs"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#field-input-functions", 
+            "text": "There are many of these input-like HTML view funcs exported from Ponzu's management/editor  package. Below is a list of the built-in options:", 
+            "title": "Field Input Functions"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#editorinput", 
+            "text": "", 
+            "title": "editor.Input"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#screenshot", 
+            "text": "", 
+            "title": "Screenshot"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#function-signature", 
+            "text": "Input ( fieldName   string ,   p   interface {},   attrs ,   options   map [ string ] string )   [] byte", 
+            "title": "Function Signature"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#example", 
+            "text": "...  editor . Field { \n     View :   editor . Input ( Title ,   s ,   map [ string ] string { \n         label :         Title , \n         type :          text , \n         placeholder :   Enter the Title here , \n     }),  },  ...", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#editorinputrepeater", 
+            "text": "", 
+            "title": "editor.InputRepeater"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#screenshot_1", 
+            "text": "", 
+            "title": "Screenshot"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#function-signature_1", 
+            "text": "InputRepeater ( fieldName   string ,   p   interface {},   attrs ,   options   map [ string ] string )   [] byte", 
+            "title": "Function Signature"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#example_1", 
+            "text": "...  editor . Field { \n     View :   editor . InputRepeater ( Title ,   s ,   map [ string ] string { \n         label :         Titles , \n         type :          text , \n         placeholder :   Enter the Title here , \n     }),  },  ...", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#editorcheckbox", 
+            "text": "The  editor.Checkbox  function returns any number of checkboxes in a collection,\ndefined by the value:name map of options.", 
+            "title": "editor.Checkbox"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#screenshot_2", 
+            "text": "", 
+            "title": "Screenshot"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#function-signature_2", 
+            "text": "Checkbox ( fieldName   string ,   p   interface {},   attrs ,   options   map [ string ] string )   [] byte", 
+            "title": "Function Signature"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#example_2", 
+            "text": "...  editor . Field { \n     View :   editor . Checkbox ( Options ,   s ,   map [ string ] string { \n         label :   Options , \n     },   map [ string ] string { \n         //  value :  Display Name , \n         1 :   First , \n         2 :   Second , \n         3 :   Third , \n     }),  },  ...", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#editorrichtext", 
+            "text": "", 
+            "title": "editor.Richtext"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#screenshot_3", 
+            "text": "", 
+            "title": "Screenshot"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#function-signature_3", 
+            "text": "Richtext ( fieldName   string ,   p   interface {},   attrs   map [ string ] string )   [] byte", 
+            "title": "Function Signature"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#example_3", 
+            "text": "...  editor . Field { \n     View :   editor . Richtext ( Opinion ,   s ,   map [ string ] string { \n         label :         Rich Text Editor , \n         placeholder :   Enter the Opinion here , \n     }),  },  ...", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#editortags", 
+            "text": "", 
+            "title": "editor.Tags"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#screenshot_4", 
+            "text": "", 
+            "title": "Screenshot"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#function-signature_4", 
+            "text": "Tags ( fieldName   string ,   p   interface {},   attrs   map [ string ] string )   [] byte", 
+            "title": "Function Signature"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#example_4", 
+            "text": "...  editor . Field { \n     View :   editor . Tags ( Category ,   s ,   map [ string ] string { \n         label :         Tags , \n         placeholder :   +Category , \n     }),  },  ...", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#editorfile", 
+            "text": "", 
+            "title": "editor.File"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#screenshot_5", 
+            "text": "", 
+            "title": "Screenshot"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#function-signature_5", 
+            "text": "File ( fieldName   string ,   p   interface {},   attrs   map [ string ] string )   [] byte", 
+            "title": "Function Signature"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#example_5", 
+            "text": "...  editor . Field { \n     View :   editor . File ( Photo ,   s ,   map [ string ] string { \n         label :         File Upload , \n         placeholder :   Upload the Photo here , \n     }),  },  ...", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#editorfilerepeater", 
+            "text": "", 
+            "title": "editor.FileRepeater"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#screenshot_6", 
+            "text": "", 
+            "title": "Screenshot"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#function-signature_6", 
+            "text": "FileRepeater ( fieldName   string ,   p   interface {},   attrs   map [ string ] string )   [] byte", 
+            "title": "Function Signature"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#example_6", 
+            "text": "...  editor . Field { \n     View :   editor . FileRepeater ( Photo ,   s ,   map [ string ] string { \n         label :         File Upload Repeater , \n         placeholder :   Upload the Photo here , \n     }),  },  ...", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#editorselect", 
+            "text": "", 
+            "title": "editor.Select"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#screenshot_7", 
+            "text": "", 
+            "title": "Screenshot"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#function-signature_7", 
+            "text": "func   Select ( fieldName   string ,   p   interface {},   attrs ,   options   map [ string ] string )   [] byte", 
+            "title": "Function Signature"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#example_7", 
+            "text": "...  editor . Field { \n     View :   editor . Select ( Rating ,   s ,   map [ string ] string { \n         label :   Select Dropdown , \n     },   map [ string ] string { \n         //  value :  Display Name , \n         G :       G , \n         PG :      PG , \n         PG-13 :   PG-13 , \n         R :       R , \n     }),  },  ...", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#editorselectrepeater", 
+            "text": "", 
+            "title": "editor.SelectRepeater"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#screenshot_8", 
+            "text": "", 
+            "title": "Screenshot"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#function-signature_8", 
+            "text": "func   SelectRepeater ( fieldName   string ,   p   interface {},   attrs ,   options   map [ string ] string )   [] byte", 
+            "title": "Function Signature"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#example_8", 
+            "text": "...  editor . Field { \n     View :   editor . SelectRepeater ( Rating ,   s ,   map [ string ] string { \n         label :   Select Dropdown Repeater , \n     },   map [ string ] string { \n         //  value :  Display Name , \n         G :       G , \n         PG :      PG , \n         PG-13 :   PG-13 , \n         R :       R , \n     }),  },  ...", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#editortextarea", 
+            "text": "", 
+            "title": "editor.Textarea"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#screenshot_9", 
+            "text": "", 
+            "title": "Screenshot"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#function-signature_9", 
+            "text": "Textarea ( fieldName   string ,   p   interface {},   attrs   map [ string ] string )   [] byte", 
+            "title": "Function Signature"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#example_9", 
+            "text": "...  editor . Field { \n     View :   editor . Textarea ( Readme ,   s ,   map [ string ] string { \n         label :         Textarea , \n         placeholder :   Enter the Readme here , \n     }),  },  ...", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#data-references", 
+            "text": "It is common to want to keep a reference from one Content type to another. To do\nthis in Ponzu, use the  bosssauce/reference  package. It comes pre-installed in\nPonuz as an  \"Addon\" .", 
+            "title": "Data References"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#referenceselect", 
+            "text": "", 
+            "title": "reference.Select"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#screenshot_10", 
+            "text": "", 
+            "title": "Screenshot"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#function-signature_10", 
+            "text": "func   Select ( fieldName   string ,   p   interface {},   attrs ,   options   map [ string ] string )   [] byte", 
+            "title": "Function Signature"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#example_10", 
+            "text": "...  editor . Field { \n     View :   reference . Select ( Rating ,   s ,   map [ string ] string { \n         label :   Select Dropdown , \n     },   map [ string ] string { \n         //  value :  Display Name , \n         G :       G , \n         PG :      PG , \n         PG-13 :   PG-13 , \n         R :       R , \n     }),  },  ...", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#referenceselectrepeater", 
+            "text": "", 
+            "title": "reference.SelectRepeater"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#screenshot_11", 
+            "text": "", 
+            "title": "Screenshot"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#function-signature_11", 
+            "text": "func   SelectRepeater ( fieldName   string ,   p   interface {},   attrs ,   options   map [ string ] string )   [] byte", 
+            "title": "Function Signature"
+        }, 
+        {
+            "location": "/Form-Fields/HTML-Inputs/#example_11", 
+            "text": "...  editor . Field { \n     View :   reference . SelectRepeater ( Rating ,   s ,   map [ string ] string { \n         label :   Select Dropdown Repeater , \n     },   FilmRating ,   `{{.rating}}` ),  },  ...", 
+            "title": "Example"
+        }, 
+        {
             "location": "/HTTP-APIs/Content/", 
             "text": "Ponzu provides a read \n write HTTP API to access and interact with content on a\nsystem. By default, write access (including create, update and delete) and search \nare disabled. See the section on Ponzu's \nAPI Interfaces\n to learn\nmore about how to enable these endpoints.\n\n\n\n\nEndpoints\n\n\nGet Content by Type\n\n\nGET\n \n/api/content?type=\nType\nid=\nID\n\n\nSample Response\n\n\n{\n\n  \ndata\n:\n \n[\n\n    \n{\n\n        \nuuid\n:\n \n024a5797-e064-4ee0-abe3-415cb6d3ed18\n,\n\n        \nid\n:\n \n6\n,\n\n        \nslug\n:\n \nitem-id-024a5797-e064-4ee0-abe3-415cb6d3ed18\n \n// customizable\n\n        \ntimestamp\n:\n \n1493926453826\n,\n \n// milliseconds since Unix epoch\n\n        \nupdated\n:\n \n1493926453826\n,\n\n        \n// your content data...,\n\n    \n}\n\n  \n]\n\n\n}\n\n\n\n\n\n\n\n\nGet Contents by Type\n\n\nGET\n \n/api/contents?type=\nType\n\n\n\n\noptional params:\n\n\norder\n (string: ASC / DESC, default: DESC)\n\n\ncount\n (int: -1 - N, default: 10, -1 returns all)\n\n\noffset\n (int: 0 - N, default: 0)\n\n\n\n\n\n\n\n\nSample Response\n\n\n{\n\n  \ndata\n:\n \n[\n\n    \n{\n\n        \nuuid\n:\n \n024a5797-e064-4ee0-abe3-415cb6d3ed18\n,\n\n        \nid\n:\n \n6\n,\n\n        \nslug\n:\n \nitem-id-024a5797-e064-4ee0-abe3-415cb6d3ed18\n \n// customizable\n\n        \ntimestamp\n:\n \n1493926453826\n,\n \n// milliseconds since Unix epoch\n\n        \nupdated\n:\n \n1493926453826\n,\n\n        \n// your content data...,\n\n    \n},\n\n    \n{\n\n        \nuuid\n:\n \n5a9177c7-634d-4fb1-88a6-ef6c45de797c\n,\n\n        \nid\n:\n \n7\n,\n\n        \nslug\n:\n \nitem-id-5a9177c7-634d-4fb1-88a6-ef6c45de797c\n \n// customizable\n\n        \ntimestamp\n:\n \n1493926453826\n,\n \n// milliseconds since Unix epoch\n\n        \nupdated\n:\n \n1493926453826\n,\n\n        \n// your content data...,\n\n    \n},\n\n    \n// more objects...\n\n  \n]\n\n\n}\n\n\n\n\n\n\n\n\nGet Content by Slug\n\n\nGET\n \n/api/content?slug=\nSlug\n\n\nSample Response\n\n\n{\n\n  \ndata\n:\n \n[\n\n    \n{\n\n        \nuuid\n:\n \n024a5797-e064-4ee0-abe3-415cb6d3ed18\n,\n\n        \nid\n:\n \n6\n,\n\n        \nslug\n:\n \nitem-id-024a5797-e064-4ee0-abe3-415cb6d3ed18\n \n// customizable\n\n        \ntimestamp\n:\n \n1493926453826\n,\n \n// milliseconds since Unix epoch\n\n        \nupdated\n:\n \n1493926453826\n,\n\n        \n// your content data...,\n\n    \n}\n\n  \n]\n\n\n}\n\n\n\n\n\n\n\n\nNew Content\n\n\nPOST\n \n/api/content/create?type=\nType\n\n\n\n\nRequest Data Encoding\n\n\nRequest must be \nmultipart/form-data\n encoded. If not, a \n400 Bad Request\n \nResponse will be returned.\n\n\n\n\nSample Response\n\n\n{\n\n  \ndata\n:\n \n[\n\n    \n{\n\n        \nid\n:\n \n6\n,\n \n// will be omitted if status is pending\n\n        \ntype\n:\n \nReview\n,\n\n        \nstatus\n:\n \npublic\n\n    \n}\n\n  \n]\n\n\n}\n\n\n\n\n\n\n\n\nUpdate Content\n\n\nPOST\n \n/api/content/update?type=\nType\nid=\nid\n\n\n\n\nRequest Data Encoding\n\n\nRequest must be \nmultipart/form-data\n encoded. If not, a \n400 Bad Request\n \nResponse will be returned.\n\n\n\n\nSample Response\n\n\n{\n\n  \ndata\n:\n \n[\n\n    \n{\n\n        \nid\n:\n \n6\n,\n\n        \ntype\n:\n \nReview\n,\n\n        \nstatus\n:\n \npublic\n\n    \n}\n\n  \n]\n\n\n}\n\n\n\n\n\n\n\n\nDelete Content\n\n\nPOST\n \n/api/content/delete?type=\nType\nid=\nid\n\n\n\n\nRequest Data Encoding\n\n\nRequest must be \nmultipart/form-data\n encoded. If not, a \n400 Bad Request\n \nResponse will be returned.\n\n\n\n\nSample Response\n\n\n{\n\n  \ndata\n:\n \n[\n\n    \n{\n\n        \nid\n:\n \n6\n,\n\n        \ntype\n:\n \nReview\n,\n\n        \nstatus\n:\n \ndeleted\n\n    \n}\n\n  \n]\n\n\n}\n\n\n\n\n\n\n\n\nAdditional Information\n\n\nAll API endpoints are CORS-enabled (can be disabled in configuration at run-time) and API requests are recorded by your system to generate graphs of total requests and unique client requests within the Admin dashboard.\n\n\nResponse Headers\n\n\nThe following headers are common across all Ponzu API responses. Some of them can be modified\nin the \nsystem configuration\n while your system is running.\n\n\nHTTP/1.1\n\n\nHTTP/1.1 200 OK\nAccess-Control-Allow-Headers: Accept, Authorization, Content-Type\nAccess-Control-Allow-Origin: *\nCache-Control: max-age=2592000, public\nContent-Encoding: gzip\nContent-Type: application/json\nEtag: MTQ5Mzk0NTYzNQ==\nVary: Accept-Encoding\nDate: Fri, 05 May 2017 01:15:49 GMT\nContent-Length: 199\n\n\n\n\n\nHTTP/2\n\n\naccess-control-allow-headers: Accept, Authorization, Content-Type\naccess-control-allow-origin: *\ncache-control: max-age=2592000, public\ncontent-encoding: gzip\ncontent-length: 199\ncontent-type: application/json\ndate: Fri, 05 May 2017 01:38:11 GMT\netag: MTQ5Mzk0ODI4MA==\nstatus: 200\nvary: Accept-Encoding\n\n\n\n\n\nHelpful links\n\n\nTypewriter\n\nGenerate \n sync front-end data structures from Ponzu content types. (\nPonzu example\n)", 
             "title": "Content"
@@ -642,8 +897,18 @@
         }, 
         {
             "location": "/Running-Backups/Backups/", 
-            "text": "", 
+            "text": "Both the databases \nsystem.db\n \n \nanalytics.db\n, and the \n/uploads\n directory can be backed up over HTTP using \nwget\n, \ncurl\n, etc. All of which are located at the \n/admin/backup\n route and require HTTP Basic Auth. In order to enable backups, you must add a user/password pair inside the CMS Configuration at \n/admin/configure\n near the bottom of the page.\n\n\nAll backups are made using a \nGET\n request to the \n/admin/backup\n path with a query parameter of \n?source={system,analytics,uploads}\n (only one source can be included in the URL).\n\n\nHere are some full backup scripts to use or modify to fit your needs:\n\nhttps://github.com/ponzu-cms/backup-scripts\n\n\nSystem \n Analytics\n\n\nThe \nsystem.db\n \n \nanalytics.db\n data files are sent uncompressed in their original form as they exist on your server. No temporary copy is stored on the origin server, and it is possible that the backup could fail so checking for successful backups is recommended. See https://github.com/boltdb/bolt#database-backups for more information about how BoltDB handles HTTP backups.\n\n\nAn example backup request for the \nsystem.db\n data file would look like:\n\n\n$ curl --user user:pass \nhttps://example.com/admin/backup?source=system\n \n system.db.bak\n\n\n\n\n\nUploads\n\n\nThe \n/uploads\n directory is gzip compressed and archived as a tar file, stored in the temporary directory (typically \n/tmp\n on Linux) on your origin server with a timestamp in the file name. \n\n\nAn example backup request for the \n/uploads\n directory would look like:\n\n\n$ curl --user user:pass \nhttps://example.com/admin/backup?source=uploads\n \n uploads.tar.gz\n\n# unarchive the tarball with gzip \n\n$ tar xzf uploads.tar.gz", 
             "title": "Backups"
+        }, 
+        {
+            "location": "/Running-Backups/Backups/#system-analytics", 
+            "text": "The  system.db     analytics.db  data files are sent uncompressed in their original form as they exist on your server. No temporary copy is stored on the origin server, and it is possible that the backup could fail so checking for successful backups is recommended. See https://github.com/boltdb/bolt#database-backups for more information about how BoltDB handles HTTP backups.  An example backup request for the  system.db  data file would look like:  $ curl --user user:pass  https://example.com/admin/backup?source=system    system.db.bak", 
+            "title": "System &amp; Analytics"
+        }, 
+        {
+            "location": "/Running-Backups/Backups/#uploads", 
+            "text": "The  /uploads  directory is gzip compressed and archived as a tar file, stored in the temporary directory (typically  /tmp  on Linux) on your origin server with a timestamp in the file name.   An example backup request for the  /uploads  directory would look like:  $ curl --user user:pass  https://example.com/admin/backup?source=uploads    uploads.tar.gz # unarchive the tarball with gzip  \n$ tar xzf uploads.tar.gz", 
+            "title": "Uploads"
         }, 
         {
             "location": "/System-Configuration/Settings/", 
