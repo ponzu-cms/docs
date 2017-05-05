@@ -11,6 +11,10 @@ markdown_extensions:
       - admonition
       - toc(permalink=true)
 
+google_analytics:
+      - 'UA-98609560-1'
+      - auto
+
 extra:
   palette:
     primary: grey
