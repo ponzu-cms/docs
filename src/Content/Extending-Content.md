@@ -8,7 +8,7 @@ It is also common to add more advanced functionality to Content types using Addo
 
 ## Item Interfaces
 
-All Content types which embed an `item.Item` will implicitly implement its many
+All Content types which embed an `item.Item` will implicitly [implement](#) its many
 interfaces. In Ponzu, the following interfaces are exported from the `system/item`
 package and have a default implementation which can be overridden to change your
 content types' functionality within the system.
