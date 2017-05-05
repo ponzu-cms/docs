@@ -308,32 +308,26 @@ editor.Field{
 
 ## Data References
 It is common to want to keep a reference from one Content type to another. To do
-this in Ponzu, use the `bosssauce/reference` package. It comes pre-installed in
-Ponuz as an ["Addon"](/Ponzu-Addons/Using-Addons).
+this in Ponzu, use the [`bosssauce/reference`](https://github.com/bosssauce/reference) 
+package. It comes pre-installed in Ponuz as an ["Addon"](/Ponzu-Addons/Using-Addons).
 
 ### reference.Select
 
 ##### Screenshot
-![HTML Select Input](/images/reference-select.png)
+![HTML Select Input](/images/editor-select.png)
 
 ##### Function Signature
 ```go
-func Select(fieldName string, p interface{}, attrs, options map[string]string) []byte
+func Select(fieldName string, p interface{}, attrs map[string]string, contentType, tmplString string) []byte
 ```
 
 ##### Example
 ```go 
 ...
 editor.Field{
-    View: reference.Select("Rating", s, map[string]string{
+    View: reference.Select("DirectedBy", s, map[string]string{
         "label": "Select Dropdown",
-    }, map[string]string{
-        // "value": "Display Name",
-        "G":     "G",
-        "PG":    "PG",
-        "PG-13": "PG-13",
-        "R":     "R",
-    }),
+    }, "Director", `{{.last-name}}, {{.first_name}}`),
 },
 ...
 ```
@@ -343,20 +337,20 @@ editor.Field{
 ### reference.SelectRepeater
 
 ##### Screenshot
-![HTML Select Input](/images/reference-select-repeater.png)
+![HTML Select Input](/images/editor-select-repeater.png)
 
 ##### Function Signature
 ```go
-func SelectRepeater(fieldName string, p interface{}, attrs, options map[string]string) []byte
+func SelectRepeater(fieldName string, p interface{}, attrs map[string]string, contentType, tmplString string) []byte
 ```
 
 ##### Example
 ```go 
 ...
 editor.Field{
-    View: reference.SelectRepeater("Rating", s, map[string]string{
+    View: reference.SelectRepeater("PlacesFilmed", s, map[string]string{
         "label": "Select Dropdown Repeater",
-    }, "FilmRating", `{{.rating}}`),
+    }, "Location", `{{.name}}, {{.region}}`),
 },
 ...
 ```
