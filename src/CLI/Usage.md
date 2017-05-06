@@ -18,11 +18,8 @@ over the network.
 Example:
 ```bash
 $ ponzu new myProject
-> New ponzu project created at $GOPATH/src/myProject
+New ponzu project created at $GOPATH/src/myProject
 ```
-
-Errors will be reported, but successful commands return nothing.
-
 ---
 
 ### generate, gen, g
@@ -45,6 +42,8 @@ methods, as well as struct definition, and corresponding field tags like:
 
 ```go
 type Review struct {
+    item.Item
+    
 	Title  string   `json:"title"`
 	Body   string   `json:"body"`
 	Rating int      `json:"rating"`
@@ -107,7 +106,7 @@ Starts the HTTP server for the JSON API, Admin System, or both.
 The segments, separated by a comma, describe which services to start, either 
 'admin' (Admin System / CMS backend) or 'api' (JSON API), and, optionally, 
 if the server should utilize TLS encryption - served over HTTPS, which is
-automatically managed using Let's Encrypt (https://letsencrypt.org) 
+automatically managed using [Let's Encrypt](https://letsencrypt.org) 
 
 Optional flags:
 
@@ -119,13 +118,13 @@ Optional flags:
 Example: 
 ```bash
 $ ponzu run
-(or)
+# (or)
 $ ponzu -port=8080 --https run admin,api
-(or) 
+# (or) 
 $ ponzu run admin
-(or)
+# (or)
 $ ponzu -port=8888 run api
-(or)
+# (or)
 $ ponzu --devhttps run
 ```
 Defaults to `$ ponzu -port=8080 run admin,api` (running Admin & API on port 8080, without TLS)
@@ -154,8 +153,8 @@ $ ponzu upgrade
 
 ### add, a
 
-Downloads an addon to GOPATH/src and copys it to the Ponzu project's ./addons directory.
-Must be called from within a Ponzu project directory.
+Downloads an addon to GOPATH/src and copys it to the current Ponzu project's 
+`/addons` directory.
 
 Example:
 ```bash
@@ -175,10 +174,10 @@ print the version of the Ponzu CLI you have installed.
 Example:
 ```bash
 $ ponzu version
-> Ponzu v0.7.1
-(or)
+Ponzu v0.7.1
+# (or)
 $ ponzu --cli version
-> Ponzu v0.7.2
+Ponzu v0.8.0
 ```
 
 ---

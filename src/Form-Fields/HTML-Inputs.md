@@ -45,7 +45,7 @@ func (p *Post) MarshalEditor() ([]byte, error) {
 There are many of these input-like HTML view funcs exported from Ponzu's
 `management/editor` package. Below is a list of the built-in options:
 
-### editor.Input
+### `editor.Input`
 
 ##### Screenshot
 ![HTML Input](/images/editor-input.png)
@@ -71,7 +71,7 @@ editor.Field{
 
 ---
 
-### editor.InputRepeater
+### `editor.InputRepeater`
 
 ##### Screenshot
 ![HTML Input](/images/editor-input-repeater.png)
@@ -97,7 +97,7 @@ editor.Field{
 
 ---
 
-### editor.Checkbox
+### `editor.Checkbox`
 The `editor.Checkbox` function returns any number of checkboxes in a collection,
 defined by the value:name map of options.
 
@@ -128,7 +128,7 @@ editor.Field{
 
 ---
 
-### editor.Richtext
+### `editor.Richtext`
 
 ##### Screenshot
 ![HTML Richtext Input](/images/editor-richtext.png)
@@ -152,7 +152,7 @@ editor.Field{
 
 ---
 
-### editor.Tags
+### `editor.Tags`
 
 ##### Screenshot
 ![HTML Tags Input](/images/editor-tags.png)
@@ -176,7 +176,7 @@ editor.Field{
 
 ---
 
-### editor.File
+### `editor.File`
 
 ##### Screenshot
 ![HTML File Input](/images/editor-file.png)
@@ -200,7 +200,7 @@ editor.Field{
 
 ---
 
-### editor.FileRepeater
+### `editor.FileRepeater`
 
 ##### Screenshot
 ![HTML File Input](/images/editor-file-repeater.png)
@@ -224,7 +224,7 @@ editor.Field{
 
 ---
 
-### editor.Select
+### `editor.Select`
 
 ##### Screenshot
 ![HTML Select Input](/images/editor-select.png)
@@ -253,7 +253,7 @@ editor.Field{
 
 ---
 
-### editor.SelectRepeater
+### `editor.SelectRepeater`
 
 ##### Screenshot
 ![HTML Select Input](/images/editor-select-repeater.png)
@@ -282,7 +282,7 @@ editor.Field{
 
 ---
 
-### editor.Textarea
+### `editor.Textarea`
 
 ##### Screenshot
 ![HTML Textarea Input](/images/editor-textarea.png)
@@ -311,7 +311,7 @@ It is common to want to keep a reference from one Content type to another. To do
 this in Ponzu, use the [`bosssauce/reference`](https://github.com/bosssauce/reference) 
 package. It comes pre-installed in Ponzu as an ["Addon"](/Ponzu-Addons/Using-Addons).
 
-### reference.Select
+### `reference.Select`
 
 ##### Screenshot
 ![HTML Select Input](/images/editor-select.png)
@@ -334,7 +334,7 @@ editor.Field{
 
 ---
 
-### reference.SelectRepeater
+### `reference.SelectRepeater`
 
 ##### Screenshot
 ![HTML Select Input](/images/editor-select-repeater.png)

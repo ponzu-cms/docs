@@ -866,11 +866,10 @@ there is no local repository to clone from at the local machine's $GOPATH,
 over the network.</p>
 <p>Example:</p>
 <div class="codehilite"><pre><span></span>$ ponzu new myProject
-&gt; New ponzu project created at <span class="nv">$GOPATH</span>/src/myProject
+New ponzu project created at <span class="nv">$GOPATH</span>/src/myProject
 </pre></div>
 
 
-<p>Errors will be reported, but successful commands return nothing.</p>
 <hr />
 <h3 id="generate-gen-g">generate, gen, g<a class="headerlink" href="#generate-gen-g" title="Permanent link">&para;</a></h3>
 <p>Generate boilerplate code for various Ponzu components, such as <code>content</code>.</p>
@@ -888,6 +887,8 @@ $ ponzu gen content review title:<span class="s2">&quot;string&quot;</span> body
 <p>The command above will generate the file <code>content/review.go</code> with boilerplate
 methods, as well as struct definition, and corresponding field tags like:</p>
 <div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">Review</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">item</span><span class="p">.</span><span class="nx">Item</span>
+
     <span class="nx">Title</span>  <span class="kt">string</span>   <span class="s">`json:&quot;title&quot;`</span>
     <span class="nx">Body</span>   <span class="kt">string</span>   <span class="s">`json:&quot;body&quot;`</span>
     <span class="nx">Rating</span> <span class="kt">int</span>      <span class="s">`json:&quot;rating&quot;`</span>
@@ -976,7 +977,7 @@ $ ponzu -gocmd<span class="o">=</span>go1.8rc1 build <span class="c1"># useful f
 The segments, separated by a comma, describe which services to start, either 
 'admin' (Admin System / CMS backend) or 'api' (JSON API), and, optionally, 
 if the server should utilize TLS encryption - served over HTTPS, which is
-automatically managed using Let's Encrypt (https://letsencrypt.org) </p>
+automatically managed using <a href="https://letsencrypt.org">Let's Encrypt</a> </p>
 <p>Optional flags:</p>
 <ul>
 <li><code>-port</code> sets the port on which the server listens for HTTP requests [defaults to 8080]</li>
@@ -986,13 +987,13 @@ automatically managed using Let's Encrypt (https://letsencrypt.org) </p>
 </ul>
 <p>Example: </p>
 <div class="codehilite"><pre><span></span>$ ponzu run
-<span class="o">(</span>or<span class="o">)</span>
+<span class="c1"># (or)</span>
 $ ponzu -port<span class="o">=</span><span class="m">8080</span> --https run admin,api
-<span class="o">(</span>or<span class="o">)</span> 
+<span class="c1"># (or) </span>
 $ ponzu run admin
-<span class="o">(</span>or<span class="o">)</span>
+<span class="c1"># (or)</span>
 $ ponzu -port<span class="o">=</span><span class="m">8888</span> run api
-<span class="o">(</span>or<span class="o">)</span>
+<span class="c1"># (or)</span>
 $ ponzu --devhttps run
 </pre></div>
 
@@ -1016,8 +1017,8 @@ package by running <code>$ go get -u github.com/ponzu-cms/ponzu/...</code> </p>
 
 <hr />
 <h3 id="add-a">add, a<a class="headerlink" href="#add-a" title="Permanent link">&para;</a></h3>
-<p>Downloads an addon to GOPATH/src and copys it to the Ponzu project's ./addons directory.
-Must be called from within a Ponzu project directory.</p>
+<p>Downloads an addon to GOPATH/src and copys it to the current Ponzu project's 
+<code>/addons</code> directory.</p>
 <p>Example:</p>
 <div class="codehilite"><pre><span></span>$ ponzu add github.com/bosssauce/fbscheduler
 </pre></div>
@@ -1031,10 +1032,10 @@ Ponzu project directory. By passing the <code>--cli</code> flag, the <code>versi
 print the version of the Ponzu CLI you have installed.</p>
 <p>Example:</p>
 <div class="codehilite"><pre><span></span>$ ponzu version
-&gt; Ponzu v0.7.1
-<span class="o">(</span>or<span class="o">)</span>
+Ponzu v0.7.1
+<span class="c1"># (or)</span>
 $ ponzu --cli version
-&gt; Ponzu v0.7.2
+Ponzu v0.8.0
 </pre></div>
 
 
