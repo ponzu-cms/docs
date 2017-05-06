@@ -774,38 +774,38 @@
 is done by implementing the various built-in interfaces provided by Ponzu. To learn 
 more about interfaces, see <a href="https://tour.golang.org/methods/10">A Tour of Go - Interfaces</a>.</p>
 <p>It is also common to add more advanced functionality to Content types using Addons. Refer to the <a href="../../Ponzu-Addons">Addon documentation</a> for more information about how to use and create Ponzu Addons.</p>
-<h2 id="item-interfaces">Item Interfaces<a class="headerlink" href="#item-interfaces" title="Permanent link">&para;</a></h2>
+<h2 id="item-interfaces"><a href="../../Interfaces/Item">Item Interfaces</a><a class="headerlink" href="#item-interfaces" title="Permanent link">&para;</a></h2>
 <p>All Content types which embed an <code>item.Item</code> will implicitly <a href="#">implement</a> its many
 interfaces. In Ponzu, the following interfaces are exported from the <code>system/item</code>
 package and have a default implementation which can be overridden to change your
 content types' functionality within the system.</p>
 <ul>
-<li><a href="../../Interfaces/Item#itempushable">item.Pushable</a></li>
-<li><a href="../../Interfaces/Item#itemhideable">item.Hideable</a></li>
-<li><a href="../../Interfaces/Item#itemomittable">item.Omittable</a></li>
-<li><a href="../../Interfaces/Item#itemhookable">item.Hookable</a></li>
-<li><a href="../../Interfaces/Item#itemidentifiable">item.Identifiable</a></li>
-<li><a href="../../Interfaces/Item#itemsortable">item.Sortable</a></li>
-<li><a href="../../Interfaces/Item#itemsluggable">item.Sluggable</a></li>
+<li><a href="../../Interfaces/Item#itempushable"><code>item.Pushable</code></a></li>
+<li><a href="../../Interfaces/Item#itemhideable"><code>item.Hideable</code></a></li>
+<li><a href="../../Interfaces/Item#itemomittable"><code>item.Omittable</code></a></li>
+<li><a href="../../Interfaces/Item#itemhookable"><code>item.Hookable</code></a></li>
+<li><a href="../../Interfaces/Item#itemidentifiable"><code>item.Identifiable</code></a></li>
+<li><a href="../../Interfaces/Item#itemsortable"><code>item.Sortable</code></a></li>
+<li><a href="../../Interfaces/Item#itemsluggable"><code>item.Sluggable</code></a></li>
 </ul>
-<h2 id="api-interfaces">API Interfaces<a class="headerlink" href="#api-interfaces" title="Permanent link">&para;</a></h2>
+<h2 id="api-interfaces"><a href="../../Interfaces/API">API Interfaces</a><a class="headerlink" href="#api-interfaces" title="Permanent link">&para;</a></h2>
 <p>To enable 3rd-party clients to interact with your Content types, you can extend your types with the API interfaces:</p>
 <ul>
-<li><a href="../../Interfaces/API/#apicreateable">api.Createable</a></li>
-<li><a href="../../Interfaces/API/#apiupdateable">api.Updateable</a></li>
-<li><a href="../../Interfaces/API/#apideleteable">api.Deleteable</a></li>
-<li><a href="../../Interfaces/API/#apitrustable">api.Trustable</a></li>
+<li><a href="../../Interfaces/API/#apicreateable"><code>api.Createable</code></a></li>
+<li><a href="../../Interfaces/API/#apiupdateable"><code>api.Updateable</code></a></li>
+<li><a href="../../Interfaces/API/#apideleteable"><code>api.Deleteable</code></a></li>
+<li><a href="../../Interfaces/API/#apitrustable"><code>api.Trustable</code></a></li>
 </ul>
-<h2 id="editor-interfaces">Editor Interfaces<a class="headerlink" href="#editor-interfaces" title="Permanent link">&para;</a></h2>
+<h2 id="editor-interfaces"><a href="../../Interfaces/Editor">Editor Interfaces</a><a class="headerlink" href="#editor-interfaces" title="Permanent link">&para;</a></h2>
 <p>To manage how content is edited and handled in the CMS, use the following Editor interfaces:</p>
 <ul>
-<li><a href="../../Interfaces/Editor/#editoreditable">editor.Editable</a></li>
-<li><a href="../../Interfaces/Editor/#editormergeable">editor.Mergeable</a></li>
+<li><a href="../../Interfaces/Editor/#editoreditable"><code>editor.Editable</code></a></li>
+<li><a href="../../Interfaces/Editor/#editormergeable"><code>editor.Mergeable</code></a></li>
 </ul>
-<h2 id="search-interfaces">Search Interfaces<a class="headerlink" href="#search-interfaces" title="Permanent link">&para;</a></h2>
+<h2 id="search-interfaces"><a href="../../Interfaces/Search">Search Interfaces</a><a class="headerlink" href="#search-interfaces" title="Permanent link">&para;</a></h2>
 <p>To enable and customize full-text search on your content types, use the following interfaces:</p>
 <ul>
-<li><a href="../../Interfaces/Search/#searchsearchable">search.Searchable</a></li>
+<li><a href="../../Interfaces/Search/#searchsearchable"><code>search.Searchable</code></a></li>
 </ul>
                 
                   
