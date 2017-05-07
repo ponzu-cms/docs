@@ -1625,6 +1625,7 @@ type's <code>MarshalEditor()</code> func from within an <code>editor.Form()</cod
 <p>There are many of these input-like HTML view funcs exported from Ponzu's
 <code>management/editor</code> package. Below is a list of the built-in options:</p>
 <h3 id="editorinput"><code>editor.Input</code><a class="headerlink" href="#editorinput" title="Permanent link">&para;</a></h3>
+<p>The <code>editor.Input</code> function produces a standard text input.</p>
 <h5 id="screenshot">Screenshot<a class="headerlink" href="#screenshot" title="Permanent link">&para;</a></h5>
 <p><img alt="HTML Input" src="../../images/editor-input.png" /></p>
 <h5 id="function-signature">Function Signature<a class="headerlink" href="#function-signature" title="Permanent link">&para;</a></h5>
@@ -1647,6 +1648,13 @@ type's <code>MarshalEditor()</code> func from within an <code>editor.Form()</cod
 
 <hr />
 <h3 id="editorinputrepeater"><code>editor.InputRepeater</code><a class="headerlink" href="#editorinputrepeater" title="Permanent link">&para;</a></h3>
+<p>The <code>editor.InputRepeater</code> function applies a controller UI to the <code>editor.Input</code> 
+view so any arbitratry number of inputs can be added for your field.</p>
+<div class="admonition warning">
+<p class="admonition-title">Using Repeaters</p>
+<p>When using the <code>editor.InputRepeater</code> make sure it's corresponding field is a <strong>slice <code>[]T</code></strong>
+type. You will experience errors if it is not.</p>
+</div>
 <h5 id="screenshot_1">Screenshot<a class="headerlink" href="#screenshot_1" title="Permanent link">&para;</a></h5>
 <p><img alt="HTML Input" src="../../images/editor-input-repeater.png" /></p>
 <h5 id="function-signature_1">Function Signature<a class="headerlink" href="#function-signature_1" title="Permanent link">&para;</a></h5>
@@ -1696,6 +1704,10 @@ defined by the value:name map of options.</p>
 
 <hr />
 <h3 id="editorrichtext"><code>editor.Richtext</code><a class="headerlink" href="#editorrichtext" title="Permanent link">&para;</a></h3>
+<p>The <code>editor.Richetext</code> function displays an HTML5 rich text / WYSYWIG editor which
+supports text formatting and styling, images, quotes, arbitrary HTML, and more. </p>
+<p>The rich text editor is a modified version of <a href="http://summernote.org/">Summernote</a> 
+using a theme called <a href="https://github.com/Cerealkillerway/materialNote">MaterialNote</a></p>
 <h5 id="screenshot_3">Screenshot<a class="headerlink" href="#screenshot_3" title="Permanent link">&para;</a></h5>
 <p><img alt="HTML Richtext Input" src="../../images/editor-richtext.png" /></p>
 <h5 id="function-signature_3">Function Signature<a class="headerlink" href="#function-signature_3" title="Permanent link">&para;</a></h5>
@@ -1717,6 +1729,8 @@ defined by the value:name map of options.</p>
 
 <hr />
 <h3 id="editortags"><code>editor.Tags</code><a class="headerlink" href="#editortags" title="Permanent link">&para;</a></h3>
+<p>The <code>editor.Tags</code> function returns a container input element for lists of arbitrary
+bits of information.</p>
 <h5 id="screenshot_4">Screenshot<a class="headerlink" href="#screenshot_4" title="Permanent link">&para;</a></h5>
 <p><img alt="HTML Tags Input" src="../../images/editor-tags.png" /></p>
 <h5 id="function-signature_4">Function Signature<a class="headerlink" href="#function-signature_4" title="Permanent link">&para;</a></h5>
@@ -1738,6 +1752,14 @@ defined by the value:name map of options.</p>
 
 <hr />
 <h3 id="editorfile"><code>editor.File</code><a class="headerlink" href="#editorfile" title="Permanent link">&para;</a></h3>
+<p>The <code>editor.File</code> function returns an HTML file upload element, which saves files
+into the <code>/uploads</code> directory, and can be viewed from the "Uploads" section in the
+Admin dashboard. See also the <a href="../../HTTP-APIs/File-Metadata/">File Metadata API</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Field Type</p>
+<p>When using the <code>editor.File</code> function, its corresponding field type must be
+a <strong><code>string</code></strong>, as files will be stored as URL paths in the database. </p>
+</div>
 <h5 id="screenshot_5">Screenshot<a class="headerlink" href="#screenshot_5" title="Permanent link">&para;</a></h5>
 <p><img alt="HTML File Input" src="../../images/editor-file.png" /></p>
 <h5 id="function-signature_5">Function Signature<a class="headerlink" href="#function-signature_5" title="Permanent link">&para;</a></h5>
@@ -1759,6 +1781,13 @@ defined by the value:name map of options.</p>
 
 <hr />
 <h3 id="editorfilerepeater"><code>editor.FileRepeater</code><a class="headerlink" href="#editorfilerepeater" title="Permanent link">&para;</a></h3>
+<p>The <code>editor.FileRepeater</code> function applies a controller UI to the <code>editor.File</code> 
+view so any arbitratry number of uploads can be added for your field.</p>
+<div class="admonition warning">
+<p class="admonition-title">Using Repeaters</p>
+<p>When using the <code>editor.FileRepeater</code> make sure it's corresponding field is a <strong>slice <code>[]string</code></strong>
+type. You will experience errors if it is not.</p>
+</div>
 <h5 id="screenshot_6">Screenshot<a class="headerlink" href="#screenshot_6" title="Permanent link">&para;</a></h5>
 <p><img alt="HTML File Input" src="../../images/editor-file-repeater.png" /></p>
 <h5 id="function-signature_6">Function Signature<a class="headerlink" href="#function-signature_6" title="Permanent link">&para;</a></h5>
@@ -1780,6 +1809,8 @@ defined by the value:name map of options.</p>
 
 <hr />
 <h3 id="editorselect"><code>editor.Select</code><a class="headerlink" href="#editorselect" title="Permanent link">&para;</a></h3>
+<p>The <code>editor.Select</code> function returns a single HTML select input with options
+as defined in the <code>options map[string]string</code> paramater of the function call.</p>
 <h5 id="screenshot_7">Screenshot<a class="headerlink" href="#screenshot_7" title="Permanent link">&para;</a></h5>
 <p><img alt="HTML Select Input" src="../../images/editor-select.png" /></p>
 <h5 id="function-signature_7">Function Signature<a class="headerlink" href="#function-signature_7" title="Permanent link">&para;</a></h5>
@@ -1806,6 +1837,8 @@ defined by the value:name map of options.</p>
 
 <hr />
 <h3 id="editorselectrepeater"><code>editor.SelectRepeater</code><a class="headerlink" href="#editorselectrepeater" title="Permanent link">&para;</a></h3>
+<p>The <code>editor.SelectRepeater</code> function applies a controller UI to the <code>editor.Select</code> 
+view so any arbitratry number of dropdowns can be added for your field.</p>
 <h5 id="screenshot_8">Screenshot<a class="headerlink" href="#screenshot_8" title="Permanent link">&para;</a></h5>
 <p><img alt="HTML Select Input" src="../../images/editor-select-repeater.png" /></p>
 <h5 id="function-signature_8">Function Signature<a class="headerlink" href="#function-signature_8" title="Permanent link">&para;</a></h5>
@@ -1832,6 +1865,8 @@ defined by the value:name map of options.</p>
 
 <hr />
 <h3 id="editortextarea"><code>editor.Textarea</code><a class="headerlink" href="#editortextarea" title="Permanent link">&para;</a></h3>
+<p>The <code>editor.Textarea</code> function returns an HTML textarea input to add unstyled text
+blocks. Newlines in the textarea are preserved.</p>
 <h5 id="screenshot_9">Screenshot<a class="headerlink" href="#screenshot_9" title="Permanent link">&para;</a></h5>
 <p><img alt="HTML Textarea Input" src="../../images/editor-textarea.png" /></p>
 <h5 id="function-signature_9">Function Signature<a class="headerlink" href="#function-signature_9" title="Permanent link">&para;</a></h5>
@@ -1855,7 +1890,7 @@ defined by the value:name map of options.</p>
 <h2 id="data-references">Data References<a class="headerlink" href="#data-references" title="Permanent link">&para;</a></h2>
 <p>It is common to want to keep a reference from one Content type to another. To do
 this in Ponzu, use the <a href="https://github.com/bosssauce/reference"><code>bosssauce/reference</code></a> 
-package. It comes pre-installed in Ponzu as an <a href="../../Ponzu-Addons/Using-Addons">"Addon"</a>.</p>
+package. It comes pre-installed with Ponzu as an <a href="../../Ponzu-Addons/Using-Addons">"Addon"</a>.</p>
 <h3 id="referenceselect"><code>reference.Select</code><a class="headerlink" href="#referenceselect" title="Permanent link">&para;</a></h3>
 <h5 id="screenshot_10">Screenshot<a class="headerlink" href="#screenshot_10" title="Permanent link">&para;</a></h5>
 <p><img alt="HTML Select Input" src="../../images/editor-select.png" /></p>
