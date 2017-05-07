@@ -46,6 +46,7 @@ There are many of these input-like HTML view funcs exported from Ponzu's
 `management/editor` package. Below is a list of the built-in options:
 
 ### `editor.Input`
+The `editor.Input` function produces a standard text input.
 
 ##### Screenshot
 ![HTML Input](/images/editor-input.png)
@@ -72,6 +73,12 @@ editor.Field{
 ---
 
 ### `editor.InputRepeater`
+The `editor.InputRepeater` function applies a controller UI to the `editor.Input` 
+view so any arbitratry number of inputs can be added for your field.
+
+!!! warning "Using Repeaters"
+    When using the `editor.InputRepeater` make sure it's corresponding field is a **slice `[]T`**
+    type. You will experience errors if it is not.
 
 ##### Screenshot
 ![HTML Input](/images/editor-input-repeater.png)
@@ -129,6 +136,11 @@ editor.Field{
 ---
 
 ### `editor.Richtext`
+The `editor.Richetext` function displays an HTML5 rich text / WYSYWIG editor which
+supports text formatting and styling, images, quotes, arbitrary HTML, and more. 
+
+The rich text editor is a modified version of [Summernote](http://summernote.org/) 
+using a theme called [MaterialNote](https://github.com/Cerealkillerway/materialNote)
 
 ##### Screenshot
 ![HTML Richtext Input](/images/editor-richtext.png)
@@ -153,6 +165,8 @@ editor.Field{
 ---
 
 ### `editor.Tags`
+The `editor.Tags` function returns a container input element for lists of arbitrary
+bits of information.
 
 ##### Screenshot
 ![HTML Tags Input](/images/editor-tags.png)
@@ -177,6 +191,13 @@ editor.Field{
 ---
 
 ### `editor.File`
+The `editor.File` function returns an HTML file upload element, which saves files
+into the `/uploads` directory, and can be viewed from the "Uploads" section in the
+Admin dashboard. See also the [File Metadata API](/HTTP-APIs/File-Metadata.md).
+
+!!! warning "Field Type"
+    When using the `editor.File` function, its corresponding field type must be
+    a **`string`**, as files will be stored as URL paths in the database. 
 
 ##### Screenshot
 ![HTML File Input](/images/editor-file.png)
@@ -201,6 +222,12 @@ editor.Field{
 ---
 
 ### `editor.FileRepeater`
+The `editor.FileRepeater` function applies a controller UI to the `editor.File` 
+view so any arbitratry number of uploads can be added for your field.
+
+!!! warning "Using Repeaters"
+    When using the `editor.FileRepeater` make sure it's corresponding field is a **slice `[]string`**
+    type. You will experience errors if it is not.
 
 ##### Screenshot
 ![HTML File Input](/images/editor-file-repeater.png)
@@ -225,6 +252,8 @@ editor.Field{
 ---
 
 ### `editor.Select`
+The `editor.Select` function returns a single HTML select input with options
+as defined in the `options map[string]string` paramater of the function call.
 
 ##### Screenshot
 ![HTML Select Input](/images/editor-select.png)
@@ -254,6 +283,8 @@ editor.Field{
 ---
 
 ### `editor.SelectRepeater`
+The `editor.SelectRepeater` function applies a controller UI to the `editor.Select` 
+view so any arbitratry number of dropdowns can be added for your field.
 
 ##### Screenshot
 ![HTML Select Input](/images/editor-select-repeater.png)
@@ -283,6 +314,8 @@ editor.Field{
 ---
 
 ### `editor.Textarea`
+The `editor.Textarea` function returns an HTML textarea input to add unstyled text
+blocks. Newlines in the textarea are preserved.
 
 ##### Screenshot
 ![HTML Textarea Input](/images/editor-textarea.png)
@@ -309,7 +342,7 @@ editor.Field{
 ## Data References
 It is common to want to keep a reference from one Content type to another. To do
 this in Ponzu, use the [`bosssauce/reference`](https://github.com/bosssauce/reference) 
-package. It comes pre-installed in Ponzu as an ["Addon"](/Ponzu-Addons/Using-Addons).
+package. It comes pre-installed with Ponzu as an ["Addon"](/Ponzu-Addons/Using-Addons).
 
 ### `reference.Select`
 
