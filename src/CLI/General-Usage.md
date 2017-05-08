@@ -77,6 +77,20 @@ view specifiers are implmeneted:
 | textarea | [`editor.Textarea()`](/Form-Fields/HTML-Inputs/#editortextarea) |
 | tags | [`editor.Tags()`](/Form-Fields/HTML-Inputs/#editortags) |
 
+**Generate Content References**
+
+It's also possible to generate all of the code needed to create references between
+your content types. The syntax to do so is below, but refer to the [documentation](/CLI/Generating-References)
+for more details:
+
+```bash
+$ ponzu gen c author name:string genre:string:select
+$ ponzu gen c book title:string author:@author,name,genre 
+```
+The commands above will generate a `Book` Content type with a reference to an
+`Author` item, by also generating a [`reference.Select`](/Form-Fields/HTML-Inputs/#referenceselect)
+as the view for the `author` field.
+
 ---
 
 ### build
