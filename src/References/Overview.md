@@ -71,7 +71,7 @@ Some example JSON data for the two structs looks like:
             "timestamp": 1493926453826,
             "updated": 1493926453826,
             "name": "Shel Silverstein",
-            "photo": "/api/uploads/05/2017/shel-silverstein.jpg",
+            "photo": "/api/uploads/2017/05/shel-silverstein.jpg",
             "bio": "Sheldon Allan Silverstein was an American poet..."
         }
     ]
@@ -89,7 +89,7 @@ Some example JSON data for the two structs looks like:
             "timestamp": 1493926453826,
             "updated": 1493926453826,
             "title": "The Giving Tree",
-            "author": "/api/content?Author&id=1",
+            "author": "/api/content?type=Author&id=1",
             "pages": 57,
             "year": 1964
         }
