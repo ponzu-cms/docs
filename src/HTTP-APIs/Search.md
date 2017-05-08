@@ -37,7 +37,7 @@ which handles the indexing and querying.
     {
         "uuid": "024a5797-e064-4ee0-abe3-415cb6d3ed18",
         "id": 6,
-        "slug": "item-id-024a5797-e064-4ee0-abe3-415cb6d3ed18" // customizable
+        "slug": "item-id-024a5797-e064-4ee0-abe3-415cb6d3ed18", // customizable
         "timestamp": 1493926453826, // milliseconds since Unix epoch
         "updated": 1493926453826,
         // your content data...,

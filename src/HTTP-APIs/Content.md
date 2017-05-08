@@ -45,7 +45,7 @@ more about how to enable these endpoints.
     {
         "uuid": "024a5797-e064-4ee0-abe3-415cb6d3ed18",
         "id": 6,
-        "slug": "item-id-024a5797-e064-4ee0-abe3-415cb6d3ed18" // customizable
+        "slug": "item-id-024a5797-e064-4ee0-abe3-415cb6d3ed18", // customizable
         "timestamp": 1493926453826, // milliseconds since Unix epoch
         "updated": 1493926453826,
         // your content data...,
@@ -53,7 +53,7 @@ more about how to enable these endpoints.
     {
         "uuid": "5a9177c7-634d-4fb1-88a6-ef6c45de797c",
         "id": 7,
-        "slug": "item-id-5a9177c7-634d-4fb1-88a6-ef6c45de797c" // customizable
+        "slug": "item-id-5a9177c7-634d-4fb1-88a6-ef6c45de797c", // customizable
         "timestamp": 1493926453826, // milliseconds since Unix epoch
         "updated": 1493926453826,
         // your content data...,
@@ -75,7 +75,7 @@ more about how to enable these endpoints.
     {
         "uuid": "024a5797-e064-4ee0-abe3-415cb6d3ed18",
         "id": 6,
-        "slug": "item-id-024a5797-e064-4ee0-abe3-415cb6d3ed18" // customizable
+        "slug": "item-id-024a5797-e064-4ee0-abe3-415cb6d3ed18", // customizable
         "timestamp": 1493926453826, // milliseconds since Unix epoch
         "updated": 1493926453826,
         // your content data...,
