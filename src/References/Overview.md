@@ -122,7 +122,7 @@ programming language, this pattern is fast and scalable.
 
 At this point, you've likely noticed that you're still making two independent 
 HTTP requests to your Ponzu server. Further, if there are multiple references or more
-than one item, you'll be making_many requests -- _how can that be efficient?_ 
+than one item, you'll be making many requests -- _how can that be efficient?_ 
 
 There are two main concepts at play: Request/Response Multiplexing and Server Push.
 
