@@ -6,7 +6,7 @@ with SQL support. This may seem unnatural since there is no native concept of
 "foreign keys" or "joins" like you may be used to. Instead, Ponzu wires up your
 data using references, which are simply URL paths, like `/api/content?type=Post&id=1`
 
-A foreign key as a URL path string?! Am I crazy? No! For the purpose Ponzu serves, 
+A foreign key as a URL path?! Am I crazy? No! For the purpose Ponzu serves, 
 this structure works quite well, especially given its creation was specifically 
 tuned for HTTP/2 features such as "Request/Response Multiplexing" and "Server Push." 
 

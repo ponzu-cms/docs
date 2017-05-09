@@ -875,7 +875,7 @@ Ponzu uses an embedded database, rather than a more traditional relational datab
 with SQL support. This may seem unnatural since there is no native concept of
 "foreign keys" or "joins" like you may be used to. Instead, Ponzu wires up your
 data using references, which are simply URL paths, like <code>/api/content?type=Post&amp;id=1</code></p>
-<p>A foreign key as a URL path string?! Am I crazy? No! For the purpose Ponzu serves, 
+<p>A foreign key as a URL path?! Am I crazy? No! For the purpose Ponzu serves, 
 this structure works quite well, especially given its creation was specifically 
 tuned for HTTP/2 features such as "Request/Response Multiplexing" and "Server Push." </p>
 <p>There is a deeper dive into the HTTP/2 concepts <a href="../../References/Overview/#designed-for-http2">below</a>, but first we'll walk through
