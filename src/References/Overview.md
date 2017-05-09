@@ -10,7 +10,7 @@ A foreign key as a URL path string?! Am I crazy? No! For the purpose Ponzu serve
 this structure works quite well, especially given its creation was specifically 
 tuned for HTTP/2 features such as "Request/Response Multiplexing" and "Server Push." 
 
-There is a deeper dive into the HTTP/2 concepts [below](/Overview/#designed-for-http2), but first we'll walk through
+There is a deeper dive into the HTTP/2 concepts [below](/References/Overview/#designed-for-http2), but first we'll walk through
 a quick tutorial on Ponzu's references. 
 
 To generate references from the CLI, please [read through the documentation](/CLI/Generating-References). 
