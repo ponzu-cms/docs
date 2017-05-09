@@ -35,4 +35,4 @@ Want to jump in right away? Try the [Quickstart](/Quickstart/Overview)
 - File an [issue](https://github.com/ponzu-cms/ponzu/issues)
 
 ---
-current version: `v0.9.1` @ ponzu:master
+current version: `v0.9.2` @ ponzu:master
