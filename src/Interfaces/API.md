@@ -20,6 +20,11 @@ Externalable enables 3rd-party clients (outside the CMS) to send content via a
 will be saved from the request in a "Pending" section which will is visible only 
 within the CMS.
 
+To work with "Pending" data, implement the [`edtior.Mergeable`](/Interfaces/Editor#editormergeable)
+interface, which will add "Approve" and "Reject" buttons to your Content types'
+editor -- or implement [`api.Trustable`](#apitrustable) to bypass 
+the "Pending" section altogether and become "Public" immediately. 
+
 ##### Method Set
 
 ```go 

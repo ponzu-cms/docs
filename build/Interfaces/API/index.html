@@ -1005,6 +1005,10 @@ life-cycle.</p>
 <code>/api/content/create?type=&lt;Type&gt;</code>. When <code>api.Createable</code> is implemented, content 
 will be saved from the request in a "Pending" section which will is visible only 
 within the CMS.</p>
+<p>To work with "Pending" data, implement the <a href="../../Interfaces/Editor#editormergeable"><code>edtior.Mergeable</code></a>
+interface, which will add "Approve" and "Reject" buttons to your Content types'
+editor -- or implement <a href="#apitrustable"><code>api.Trustable</code></a> to bypass 
+the "Pending" section altogether and become "Public" immediately. </p>
 <h5 id="method-set">Method Set<a class="headerlink" href="#method-set" title="Permanent link">&para;</a></h5>
 <div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">Createable</span> <span class="kd">interface</span> <span class="p">{</span>
     <span class="nx">Create</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="kt">error</span>
