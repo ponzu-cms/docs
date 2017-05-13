@@ -25,7 +25,7 @@ Want to jump in right away? Try the [Quickstart](/Quickstart/Overview)
 11. [Creating Ponzu Addons](/Ponzu-Addons/Creating-Addons)
 12. [Using Ponzu Addons](/Ponzu-Addons/Using-Addons)
 13. [Quickstart](/Quickstart/Overview)
-14. [Backups](/Running-Backups)
+14. [Backups](/Running-Backups/Backups)
 15. [System Configuration](/System-Configuration/Settings)
 
 
