@@ -3,6 +3,9 @@
 ![Ponzu](/images/ponzu-banner.png)
 
 ## What is Ponzu?
+
+> Watch the [video introduction](https://www.youtube.com/watch?v=T_1ncPoLgrg)
+
 Ponzu is a powerful and efficient open-source HTTP server framework and CMS. It 
 provides automatic, free, and secure HTTP/2 over TLS (certificates obtained via 
 [Let's Encrypt](https://letsencrypt.org)), a useful CMS and scaffolding to generate 
