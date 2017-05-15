@@ -12,7 +12,7 @@ the Admin interface.
 
 CSVFormattable controls if an "Export" button is added to the contents view for 
 a Content type in the CMS to export the data to CSV. If it is implemented, a
-button will be present on beneath the "New" button per Content type. 
+button will be present beneath the "New" button per Content type. 
 
 ##### Method Set
 
@@ -41,7 +41,7 @@ func (p *Post) FormatCSV() []string {
 ```
 
 !!! note "FormatCSV() []string"
-    Just like other Ponzu content extension interfaces, like Push(), you will 
+    Just like other Ponzu content extension interfaces, like `Push()`, you will 
     return the JSON struct tags for the fields you want exported to the CSV file. 
     These will also be the "header" row in the CSV file to give titles to the file
     columns. Keep in mind that all of item.Item's fields are available here as well.

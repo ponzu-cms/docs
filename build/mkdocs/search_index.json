@@ -642,7 +642,7 @@
         }, 
         {
             "location": "/Interfaces/Format/", 
-            "text": "Ponzu provides a set of interfaces from the \nmanagement/format\n package which \ndetermine how content data should be converted and formatted for exporting via\nthe Admin interface.\n\n\n\n\nInterfaces\n\n\nformat.CSVFormattable\n\n\nCSVFormattable controls if an \"Export\" button is added to the contents view for \na Content type in the CMS to export the data to CSV. If it is implemented, a\nbutton will be present on beneath the \"New\" button per Content type. \n\n\nMethod Set\n\n\ntype\n \nCSVFormattable\n \ninterface\n \n{\n\n    \nFormatCSV\n()\n \n[]\nstring\n\n\n}\n\n\n\n\n\n\nImplementation\n\n\nfunc\n \n(\np\n \n*\nPost\n)\n \nFormatCSV\n()\n \n[]\nstring\n \n{\n\n    \n// []string contains the JSON struct tags generated for your Content type \n\n    \n// implementing the interface\n\n    \nreturn\n \n[]\nstring\n{\n\n        \nid\n,\n\n        \ntimestamp\n,\n\n        \nslug\n,\n\n        \ntitle\n,\n\n        \nphotos\n,\n\n        \nbody\n,\n\n        \nwritten_by\n,\n\n    \n}\n\n\n}\n\n\n\n\n\n\n\n\nFormatCSV() []string\n\n\nJust like other Ponzu content extension interfaces, like Push(), you will \nreturn the JSON struct tags for the fields you want exported to the CSV file. \nThese will also be the \"header\" row in the CSV file to give titles to the file\ncolumns. Keep in mind that all of item.Item's fields are available here as well.", 
+            "text": "Ponzu provides a set of interfaces from the \nmanagement/format\n package which \ndetermine how content data should be converted and formatted for exporting via\nthe Admin interface.\n\n\n\n\nInterfaces\n\n\nformat.CSVFormattable\n\n\nCSVFormattable controls if an \"Export\" button is added to the contents view for \na Content type in the CMS to export the data to CSV. If it is implemented, a\nbutton will be present beneath the \"New\" button per Content type. \n\n\nMethod Set\n\n\ntype\n \nCSVFormattable\n \ninterface\n \n{\n\n    \nFormatCSV\n()\n \n[]\nstring\n\n\n}\n\n\n\n\n\n\nImplementation\n\n\nfunc\n \n(\np\n \n*\nPost\n)\n \nFormatCSV\n()\n \n[]\nstring\n \n{\n\n    \n// []string contains the JSON struct tags generated for your Content type \n\n    \n// implementing the interface\n\n    \nreturn\n \n[]\nstring\n{\n\n        \nid\n,\n\n        \ntimestamp\n,\n\n        \nslug\n,\n\n        \ntitle\n,\n\n        \nphotos\n,\n\n        \nbody\n,\n\n        \nwritten_by\n,\n\n    \n}\n\n\n}\n\n\n\n\n\n\n\n\nFormatCSV() []string\n\n\nJust like other Ponzu content extension interfaces, like \nPush()\n, you will \nreturn the JSON struct tags for the fields you want exported to the CSV file. \nThese will also be the \"header\" row in the CSV file to give titles to the file\ncolumns. Keep in mind that all of item.Item's fields are available here as well.", 
             "title": "Format"
         }, 
         {
@@ -652,7 +652,7 @@
         }, 
         {
             "location": "/Interfaces/Format/#formatcsvformattable", 
-            "text": "CSVFormattable controls if an \"Export\" button is added to the contents view for \na Content type in the CMS to export the data to CSV. If it is implemented, a\nbutton will be present on beneath the \"New\" button per Content type.", 
+            "text": "CSVFormattable controls if an \"Export\" button is added to the contents view for \na Content type in the CMS to export the data to CSV. If it is implemented, a\nbutton will be present beneath the \"New\" button per Content type.", 
             "title": "format.CSVFormattable"
         }, 
         {
@@ -662,7 +662,7 @@
         }, 
         {
             "location": "/Interfaces/Format/#implementation", 
-            "text": "func   ( p   * Post )   FormatCSV ()   [] string   { \n     // []string contains the JSON struct tags generated for your Content type  \n     // implementing the interface \n     return   [] string { \n         id , \n         timestamp , \n         slug , \n         title , \n         photos , \n         body , \n         written_by , \n     }  }    FormatCSV() []string  Just like other Ponzu content extension interfaces, like Push(), you will \nreturn the JSON struct tags for the fields you want exported to the CSV file. \nThese will also be the \"header\" row in the CSV file to give titles to the file\ncolumns. Keep in mind that all of item.Item's fields are available here as well.", 
+            "text": "func   ( p   * Post )   FormatCSV ()   [] string   { \n     // []string contains the JSON struct tags generated for your Content type  \n     // implementing the interface \n     return   [] string { \n         id , \n         timestamp , \n         slug , \n         title , \n         photos , \n         body , \n         written_by , \n     }  }    FormatCSV() []string  Just like other Ponzu content extension interfaces, like  Push() , you will \nreturn the JSON struct tags for the fields you want exported to the CSV file. \nThese will also be the \"header\" row in the CSV file to give titles to the file\ncolumns. Keep in mind that all of item.Item's fields are available here as well.", 
             "title": "Implementation"
         }, 
         {

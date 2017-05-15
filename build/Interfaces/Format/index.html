@@ -862,7 +862,7 @@ the Admin interface.</p>
 <h3 id="formatcsvformattable"><a href="https://godoc.org/github.com/ponzu-cms/ponzu/management/format#CSVFormattable">format.CSVFormattable</a><a class="headerlink" href="#formatcsvformattable" title="Permanent link">&para;</a></h3>
 <p>CSVFormattable controls if an "Export" button is added to the contents view for 
 a Content type in the CMS to export the data to CSV. If it is implemented, a
-button will be present on beneath the "New" button per Content type. </p>
+button will be present beneath the "New" button per Content type. </p>
 <h5 id="method-set">Method Set<a class="headerlink" href="#method-set" title="Permanent link">&para;</a></h5>
 <div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">CSVFormattable</span> <span class="kd">interface</span> <span class="p">{</span>
     <span class="nx">FormatCSV</span><span class="p">()</span> <span class="p">[]</span><span class="kt">string</span>
@@ -889,7 +889,7 @@ button will be present on beneath the "New" button per Content type. </p>
 
 <div class="admonition note">
 <p class="admonition-title">FormatCSV() []string</p>
-<p>Just like other Ponzu content extension interfaces, like Push(), you will 
+<p>Just like other Ponzu content extension interfaces, like <code>Push()</code>, you will 
 return the JSON struct tags for the fields you want exported to the CSV file. 
 These will also be the "header" row in the CSV file to give titles to the file
 columns. Keep in mind that all of item.Item's fields are available here as well.</p>
