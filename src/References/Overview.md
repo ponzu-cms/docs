@@ -112,7 +112,7 @@ $author = GET $book.author # where author = /api/content?type=Author&id=1
 ```
 
 Until recently, this would be considered bad practice and would be costly to do
-over HTTP. However, with the wide availabilty of HTTP/2 clients, including all
+over HTTP. However, with the wide availability of HTTP/2 clients, including all
 modern web browsers, mobile devices, and HTTP/2 libraries in practically every 
 programming language, this pattern is fast and scalable. 
 

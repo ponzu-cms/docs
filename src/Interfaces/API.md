@@ -5,7 +5,7 @@ richer interaction with your system from external clients. If you need to allow
 3rd-party apps to manage content, use the following interfaces.
 
 The API interfaces adhere to a common function signature, expecting an 
-`http.ResponseWriter` and `*http.Request` as arugments and returning an `error`.
+`http.ResponseWriter` and `*http.Request` as arguments and returning an `error`.
 This provides Ponzu developers with full control over the request/response 
 life-cycle.
 
@@ -20,7 +20,7 @@ Externalable enables 3rd-party clients (outside the CMS) to send content via a
 will be saved from the request in a "Pending" section which will is visible only 
 within the CMS.
 
-To work with "Pending" data, implement the [`edtior.Mergeable`](/Interfaces/Editor#editormergeable)
+To work with "Pending" data, implement the [`editor.Mergeable`](/Interfaces/Editor#editormergeable)
 interface, which will add "Approve" and "Reject" buttons to your Content types'
 editor -- or implement [`api.Trustable`](#apitrustable) to bypass 
 the "Pending" section altogether and become "Public" immediately. 

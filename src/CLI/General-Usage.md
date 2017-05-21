@@ -63,7 +63,7 @@ the type of HTML view an editor field is presented within. If no third parameter
 is added, a plain text HTML input will be generated. In the example above, the 
 argument shown as `body:string:richtext` would show the Richtext input instead
 of a plain text HTML input (as shown in the screenshot). The following input
-view specifiers are implmeneted:
+view specifiers are implemented:
 
 | CLI parameter | Generates |
 |---------------|-----------| 
@@ -167,7 +167,7 @@ $ ponzu upgrade
 
 ### add, a
 
-Downloads an addon to GOPATH/src and copys it to the current Ponzu project's 
+Downloads an addon to GOPATH/src and copies it to the current Ponzu project's
 `/addons` directory.
 
 Example:

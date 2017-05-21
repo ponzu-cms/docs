@@ -21,7 +21,7 @@ which handles the indexing and querying.
 
 - Search is currently limited to single `<Type>` per request
 
-- `<Query String>` doucmentation here: [Bleve Docs - Query String](http://www.blevesearch.com/docs/Query-String-Query/)
+- `<Query String>` documentation here: [Bleve Docs - Query String](http://www.blevesearch.com/docs/Query-String-Query/)
 
 - Search results are formatted exactly the same as standard Content API calls, so you don't need to change your client data model  
 
