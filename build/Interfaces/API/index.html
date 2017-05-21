@@ -1006,7 +1006,7 @@
 richer interaction with your system from external clients. If you need to allow 
 3rd-party apps to manage content, use the following interfaces.</p>
 <p>The API interfaces adhere to a common function signature, expecting an 
-<code>http.ResponseWriter</code> and <code>*http.Request</code> as arugments and returning an <code>error</code>.
+<code>http.ResponseWriter</code> and <code>*http.Request</code> as arguments and returning an <code>error</code>.
 This provides Ponzu developers with full control over the request/response 
 life-cycle.</p>
 <hr />
@@ -1017,7 +1017,7 @@ life-cycle.</p>
 <code>/api/content/create?type=&lt;Type&gt;</code>. When <code>api.Createable</code> is implemented, content 
 will be saved from the request in a "Pending" section which will is visible only 
 within the CMS.</p>
-<p>To work with "Pending" data, implement the <a href="../../Interfaces/Editor#editormergeable"><code>edtior.Mergeable</code></a>
+<p>To work with "Pending" data, implement the <a href="../../Interfaces/Editor#editormergeable"><code>editor.Mergeable</code></a>
 interface, which will add "Approve" and "Reject" buttons to your Content types'
 editor -- or implement <a href="#apitrustable"><code>api.Trustable</code></a> to bypass 
 the "Pending" section altogether and become "Public" immediately. </p>

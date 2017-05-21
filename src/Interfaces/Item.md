@@ -106,7 +106,7 @@ func (p *Post) Omit() []string {
 ---
 
 ### [item.Hookable](https://godoc.org/github.com/ponzu-cms/ponzu/system/item#Hookable)
-Hookable rovides lifecycle hooks into the http handlers which manage Save, Delete, 
+Hookable provides lifecycle hooks into the http handlers which manage Save, Delete,
 Approve, and Reject routines. All methods in its set take an 
 `http.ResponseWriter, *http.Request` and return an `error`.
 

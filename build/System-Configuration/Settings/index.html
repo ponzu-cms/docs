@@ -954,7 +954,7 @@ requires you to add the qualified domain name you are using. In development, use
 <p>Once you have deployed your Ponzu server to a remote host and pointed a public 
 domain at it, you need to change the Domain Name setting to match. This is 
 especially important when fetching TLS (SSL) certificates from <a href="https://letsencrypt.org">Let's Encrypt</a>
-- since the process requires an active, verifyable domain. To set up your server
+- since the process requires an active, verifiable domain. To set up your server
 with TLS over HTTPS connections, follow these steps:</p>
 <ol>
 <li>Set your Domain Name in the system configuration</li>
@@ -1012,7 +1012,7 @@ website could fetch data. </p>
 transmission size and response times. The GZIP setting on Ponzu has a minor 
 side-effect of using more CPU, so you can disable it if you notice your system 
 is CPU-constrained. However, traffic levels would need to be extremely demanding
-for this to be noticable. </p>
+for this to be noticeable.</p>
 <hr />
 <h4 id="http-cache">HTTP Cache<a class="headerlink" href="#http-cache" title="Permanent link">&para;</a></h4>
 <p>The HTTP Cache configuration allows a system to disable the default HTTP cache,
@@ -1020,7 +1020,7 @@ which saves the server from repeating API queries and sending responses -- it's
 generally advised to keep this enabled unless you have <em>frequently</em> changing data.</p>
 <p>The <code>Max-Age</code> value setting overrides the default 2592000-second (30 day) cache
 <code>max-age</code> duration set in API response headers. The <code>0</code> value is an alias to 
-<code>2592000</code>, so check the the <code>Disable HTTP Cache</code> box if you don't want any caching.</p>
+<code>2592000</code>, so check the <code>Disable HTTP Cache</code> box if you don't want any caching.</p>
 <hr />
 <h4 id="invalidate-cache">Invalidate Cache<a class="headerlink" href="#invalidate-cache" title="Permanent link">&para;</a></h4>
 <p>If this box is checked and then the configuration is saved, the server will 

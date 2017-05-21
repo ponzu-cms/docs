@@ -869,7 +869,7 @@
 </pre></div>
 
 
-<p>By default, Ponzu sets up the <a href="http://blevesearch.com">Bleve's</a> "default mapping", which is typically what you want for most content-based systems. This can be overridden by implmenting your own <code>SearchMapping() (*mapping.IndexMappingImpl, error)</code> method on your Content type. </p>
+<p>By default, Ponzu sets up the <a href="http://blevesearch.com">Bleve's</a> "default mapping", which is typically what you want for most content-based systems. This can be overridden by implementing your own <code>SearchMapping() (*mapping.IndexMappingImpl, error)</code> method on your Content type. </p>
 <p>This way, all you need to do to get full-text search is to add the <code>IndexContent() bool</code> method to each Content type you want search enabled. Return <code>true</code> from this method to enable search. </p>
 <h5 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h5>
 <div class="codehilite"><pre><span></span><span class="c1">// ...</span>

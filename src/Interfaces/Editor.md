@@ -53,7 +53,7 @@ func (p *Post) MarshalEditor() ([]byte, error) {
 
 ### [editor.Mergeable](https://godoc.org/github.com/ponzu-cms/ponzu/management/editor#Mergeable)
 
-Mergable enables a CMS end-user to merge the "Pending" content from an outside source into the "Public" section, and thus making it visible via the public content API. It also allows the end-user to reject content. "Approve" and "Reject" buttons will be visible on a the edit page for content submitted.
+Mergable enables a CMS end-user to merge the "Pending" content from an outside source into the "Public" section, and thus making it visible via the public content API. It also allows the end-user to reject content. "Approve" and "Reject" buttons will be visible on the edit page for content submitted.
 
 ##### Method Set
 ```go

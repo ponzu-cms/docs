@@ -19,7 +19,7 @@ type Searchable interface {
 }
 ```
 
-By default, Ponzu sets up the [Bleve's](http://blevesearch.com) "default mapping", which is typically what you want for most content-based systems. This can be overridden by implmenting your own `SearchMapping() (*mapping.IndexMappingImpl, error)` method on your Content type. 
+By default, Ponzu sets up the [Bleve's](http://blevesearch.com) "default mapping", which is typically what you want for most content-based systems. This can be overridden by implementing your own `SearchMapping() (*mapping.IndexMappingImpl, error)` method on your Content type. 
 
 This way, all you need to do to get full-text search is to add the `IndexContent() bool` method to each Content type you want search enabled. Return `true` from this method to enable search. 
 
