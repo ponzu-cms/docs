@@ -19,7 +19,7 @@ requires you to add the qualified domain name you are using. In development, use
 Once you have deployed your Ponzu server to a remote host and pointed a public 
 domain at it, you need to change the Domain Name setting to match. This is 
 especially important when fetching TLS (SSL) certificates from [Let's Encrypt](https://letsencrypt.org)
-- since the process requires an active, verifyable domain. To set up your server
+- since the process requires an active, verifiable domain. To set up your server
 with TLS over HTTPS connections, follow these steps:
 
 1. Set your Domain Name in the system configuration
@@ -87,7 +87,7 @@ GZIP is a popular codec which when applied to most HTTP responses, decreases dat
 transmission size and response times. The GZIP setting on Ponzu has a minor 
 side-effect of using more CPU, so you can disable it if you notice your system 
 is CPU-constrained. However, traffic levels would need to be extremely demanding
-for this to be noticable. 
+for this to be noticeable.
 
 ---
 
@@ -98,7 +98,7 @@ generally advised to keep this enabled unless you have _frequently_ changing dat
 
 The `Max-Age` value setting overrides the default 2592000-second (30 day) cache
 `max-age` duration set in API response headers. The `0` value is an alias to 
-`2592000`, so check the the `Disable HTTP Cache` box if you don't want any caching.
+`2592000`, so check the `Disable HTTP Cache` box if you don't want any caching.
 
 
 ---

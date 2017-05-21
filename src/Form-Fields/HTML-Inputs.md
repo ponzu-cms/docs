@@ -74,7 +74,7 @@ editor.Field{
 
 ### `editor.InputRepeater`
 The `editor.InputRepeater` function applies a controller UI to the `editor.Input` 
-view so any arbitratry number of inputs can be added for your field.
+view so any arbitrary number of inputs can be added for your field.
 
 !!! warning "Using Repeaters"
     When using the `editor.InputRepeater` make sure it's corresponding field is a **slice `[]T`**
@@ -223,7 +223,7 @@ editor.Field{
 
 ### `editor.FileRepeater`
 The `editor.FileRepeater` function applies a controller UI to the `editor.File` 
-view so any arbitratry number of uploads can be added for your field.
+view so any arbitrary number of uploads can be added for your field.
 
 !!! warning "Using Repeaters"
     When using the `editor.FileRepeater` make sure it's corresponding field is a **slice `[]string`**
@@ -253,7 +253,7 @@ editor.Field{
 
 ### `editor.Select`
 The `editor.Select` function returns a single HTML select input with options
-as defined in the `options map[string]string` paramater of the function call.
+as defined in the `options map[string]string` parameter of the function call.
 
 ##### Screenshot
 ![HTML Select Input](/images/editor-select.png)
@@ -284,7 +284,7 @@ editor.Field{
 
 ### `editor.SelectRepeater`
 The `editor.SelectRepeater` function applies a controller UI to the `editor.Select` 
-view so any arbitratry number of dropdowns can be added for your field.
+view so any arbitrary number of dropdowns can be added for your field.
 
 ##### Screenshot
 ![HTML Select Input](/images/editor-select-repeater.png)

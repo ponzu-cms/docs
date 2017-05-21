@@ -2,7 +2,7 @@ title: Content Overview
 
 Nearly everything you work on in Ponzu is inside content files on the content types you create. These types must all reside in the `content` package and are the fundamental core of your CMS. In order for Content types to be rendered and managed by the CMS, they must implement the `editor.Editable` interface, and add their own `interface{}` container to the global `item.Types` map. 
 
-Sound like alot? Don't worry, all of this can be done for you by using the code-generating command line tools that come with Ponzu.
+Sound like a lot? Don't worry, all of this can be done for you by using the code-generating command line tools that come with Ponzu.
 
 It is rare to hand-write a new Content type, and should be generated instead!
 
