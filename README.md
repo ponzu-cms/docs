@@ -21,12 +21,6 @@ $ git clone https://github.com/ponzu-cms/docs.git
 ```bash
 $ docker run --rm -it -p 8000:8000 -v `pwd`:/docs squidfunk/mkdocs-material
 ``` 
-
-3. Build the docs (end result will be in `build` directory):
-```bash
-docker run --rm -it -p 8000:8000 -v `pwd`:/docs squidfunk/mkdocs-material build
-```
-
-4. Submit a PR with your changes, including the `build` directory
+3. Submit a PR with your changes. If you run the build step, please do not add it to the PR.
 
 **Thank you!**
