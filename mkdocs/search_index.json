@@ -927,13 +927,23 @@
         }, 
         {
             "location": "/Ponzu-Addons/Creating-Addons/", 
-            "text": "", 
+            "text": "Coming soon\n\n\nFor a reference to creating your own addons, see:\n\nhttps://github.com/bosssauce/fbscheduler", 
             "title": "Creating Addons"
         }, 
         {
+            "location": "/Ponzu-Addons/Creating-Addons/#coming-soon", 
+            "text": "For a reference to creating your own addons, see: https://github.com/bosssauce/fbscheduler", 
+            "title": "Coming soon"
+        }, 
+        {
             "location": "/Ponzu-Addons/Using-Addons/", 
-            "text": "", 
+            "text": "Coming soon\n\n\nFor a reference to creating your own addons, see:\n\nhttps://github.com/bosssauce/fbscheduler", 
             "title": "Using Addons"
+        }, 
+        {
+            "location": "/Ponzu-Addons/Using-Addons/#coming-soon", 
+            "text": "For a reference to creating your own addons, see: https://github.com/bosssauce/fbscheduler", 
+            "title": "Coming soon"
         }, 
         {
             "location": "/Quickstart/Overview/", 
