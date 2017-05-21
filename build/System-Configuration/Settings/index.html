@@ -11,7 +11,7 @@
       
         <link rel="shortcut icon" href="../../assets/images/favicon.png">
       
-      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.6.1">
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.6.3">
     
     
       
@@ -22,7 +22,7 @@
       <script src="../../assets/javascripts/modernizr-56ade86843.js"></script>
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application-4d0d3f2fbf.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application-e2807e330f.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/application-f78e5cb881.palette.css">
       
@@ -954,7 +954,7 @@ requires you to add the qualified domain name you are using. In development, use
 <p>Once you have deployed your Ponzu server to a remote host and pointed a public 
 domain at it, you need to change the Domain Name setting to match. This is 
 especially important when fetching TLS (SSL) certificates from <a href="https://letsencrypt.org">Let's Encrypt</a>
-- since the process requires an active, verifyable domain. To set up your server
+- since the process requires an active, verifiable domain. To set up your server
 with TLS over HTTPS connections, follow these steps:</p>
 <ol>
 <li>Set your Domain Name in the system configuration</li>
@@ -1012,7 +1012,7 @@ website could fetch data. </p>
 transmission size and response times. The GZIP setting on Ponzu has a minor 
 side-effect of using more CPU, so you can disable it if you notice your system 
 is CPU-constrained. However, traffic levels would need to be extremely demanding
-for this to be noticable. </p>
+for this to be noticeable.</p>
 <hr />
 <h4 id="http-cache">HTTP Cache<a class="headerlink" href="#http-cache" title="Permanent link">&para;</a></h4>
 <p>The HTTP Cache configuration allows a system to disable the default HTTP cache,
@@ -1020,7 +1020,7 @@ which saves the server from repeating API queries and sending responses -- it's
 generally advised to keep this enabled unless you have <em>frequently</em> changing data.</p>
 <p>The <code>Max-Age</code> value setting overrides the default 2592000-second (30 day) cache
 <code>max-age</code> duration set in API response headers. The <code>0</code> value is an alias to 
-<code>2592000</code>, so check the the <code>Disable HTTP Cache</code> box if you don't want any caching.</p>
+<code>2592000</code>, so check the <code>Disable HTTP Cache</code> box if you don't want any caching.</p>
 <hr />
 <h4 id="invalidate-cache">Invalidate Cache<a class="headerlink" href="#invalidate-cache" title="Permanent link">&para;</a></h4>
 <p>If this box is checked and then the configuration is saved, the server will 
@@ -1118,7 +1118,7 @@ it allows full database downloads and archives of your system's uploads.</p>
       
     </div>
     
-      <script src="../../assets/javascripts/application-6b599127bc.js"></script>
+      <script src="../../assets/javascripts/application-6b4ff16fa7.js"></script>
       <script>app.initialize({url:{base:"../.."}})</script>
       
     

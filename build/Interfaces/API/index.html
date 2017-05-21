@@ -11,7 +11,7 @@
       
         <link rel="shortcut icon" href="../../assets/images/favicon.png">
       
-      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.6.1">
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.6.3">
     
     
       
@@ -22,7 +22,7 @@
       <script src="../../assets/javascripts/modernizr-56ade86843.js"></script>
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application-4d0d3f2fbf.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application-e2807e330f.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/application-f78e5cb881.palette.css">
       
@@ -1006,7 +1006,7 @@
 richer interaction with your system from external clients. If you need to allow 
 3rd-party apps to manage content, use the following interfaces.</p>
 <p>The API interfaces adhere to a common function signature, expecting an 
-<code>http.ResponseWriter</code> and <code>*http.Request</code> as arugments and returning an <code>error</code>.
+<code>http.ResponseWriter</code> and <code>*http.Request</code> as arguments and returning an <code>error</code>.
 This provides Ponzu developers with full control over the request/response 
 life-cycle.</p>
 <hr />
@@ -1017,7 +1017,7 @@ life-cycle.</p>
 <code>/api/content/create?type=&lt;Type&gt;</code>. When <code>api.Createable</code> is implemented, content 
 will be saved from the request in a "Pending" section which will is visible only 
 within the CMS.</p>
-<p>To work with "Pending" data, implement the <a href="../../Interfaces/Editor#editormergeable"><code>edtior.Mergeable</code></a>
+<p>To work with "Pending" data, implement the <a href="../../Interfaces/Editor#editormergeable"><code>editor.Mergeable</code></a>
 interface, which will add "Approve" and "Reject" buttons to your Content types'
 editor -- or implement <a href="#apitrustable"><code>api.Trustable</code></a> to bypass 
 the "Pending" section altogether and become "Public" immediately. </p>
@@ -1173,7 +1173,7 @@ altogether.</p>
       
     </div>
     
-      <script src="../../assets/javascripts/application-6b599127bc.js"></script>
+      <script src="../../assets/javascripts/application-6b4ff16fa7.js"></script>
       <script>app.initialize({url:{base:"../.."}})</script>
       
     
