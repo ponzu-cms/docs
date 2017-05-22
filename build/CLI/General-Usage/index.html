@@ -918,15 +918,14 @@
 
 <h2 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h2>
 <h3 id="new">new<a class="headerlink" href="#new" title="Permanent link">&para;</a></h3>
-<p>Creates a 'ponzu' directory, or one by the name supplied as a parameter 
-immediately following the 'new' option in the $GOPATH/src directory. Note: 
-'new' depends on the program 'git' and possibly a network connection. If 
-there is no local repository to clone from at the local machine's $GOPATH, 
-'new' will attempt to clone the 'github.com/ponzu-cms/ponzu' package from 
-over the network.</p>
+<p>Creates a project directory of the name supplied as a parameter immediately
+following the 'new' option in the $GOPATH/src directory. Note: 'new' depends on 
+the program 'git' and possibly a network connection. If there is no local 
+repository to clone from at the local machine's $GOPATH, 'new' will attempt to 
+clone the 'github.com/ponzu-cms/ponzu' package from over the network.</p>
 <p>Example:</p>
-<div class="codehilite"><pre><span></span>$ ponzu new myProject
-New ponzu project created at <span class="nv">$GOPATH</span>/src/myProject
+<div class="codehilite"><pre><span></span>$ ponzu new github.com/nilslice/proj
+&gt; New ponzu project created at <span class="nv">$GOPATH</span>/src/github.com/nilslice/proj
 </pre></div>
 
 
@@ -1031,14 +1030,12 @@ as the view for the <code>author</code> field.</p>
 <p>From within your Ponzu project directory, running build will copy and move 
 the necessary files from your workspace into the vendored directory, and 
 will build/compile the project to then be run. </p>
-<p>Optional flags:</p>
-<ul>
-<li><code>-gocmd</code> sets the binary used when executing <code>go build</code> within <code>ponzu</code> build step</li>
-</ul>
+<p>Optional flags:
+- <code>--gocmd</code> sets the binary used when executing <code>go build</code> within <code>ponzu</code> build step</p>
 <p>Example:</p>
 <div class="codehilite"><pre><span></span>$ ponzu build
 <span class="o">(</span>or<span class="o">)</span>
-$ ponzu -gocmd<span class="o">=</span>go1.8rc1 build <span class="c1"># useful for testing</span>
+$ ponzu build --gocmd<span class="o">=</span>go1.8rc1 <span class="c1"># useful for testing</span>
 </pre></div>
 
 
@@ -1049,28 +1046,26 @@ $ ponzu -gocmd<span class="o">=</span>go1.8rc1 build <span class="c1"># useful f
 The segments, separated by a comma, describe which services to start, either 
 'admin' (Admin System / CMS backend) or 'api' (JSON API), and, optionally, 
 if the server should utilize TLS encryption - served over HTTPS, which is
-automatically managed using <a href="https://letsencrypt.org">Let's Encrypt</a> </p>
-<p>Optional flags:</p>
-<ul>
-<li><code>-port</code> sets the port on which the server listens for HTTP requests [defaults to 8080]</li>
-<li><code>-httpsport</code> sets the port on which the server listens for HTTPS requests [defaults to 443]</li>
-<li><code>--https</code> enables auto HTTPS management via Let's Encrypt (port is always 443)</li>
-<li><code>--devhttps</code> generates self-signed SSL certificates for development-only (port is 10443)</li>
-</ul>
+automatically managed using Let's Encrypt (https://letsencrypt.org) </p>
+<p>Optional flags:
+- <code>--port</code> sets the port on which the server listens for HTTP requests [defaults to 8080]
+- <code>--https-port</code> sets the port on which the server listens for HTTPS requests [defaults to 443]
+- <code>--https</code> enables auto HTTPS management via Let's Encrypt (port is always 443)
+- <code>--dev-https</code> generates self-signed SSL certificates for development-only (port is 10443)</p>
 <p>Example: </p>
 <div class="codehilite"><pre><span></span>$ ponzu run
-<span class="c1"># (or)</span>
-$ ponzu -port<span class="o">=</span><span class="m">8080</span> --https run admin,api
-<span class="c1"># (or) </span>
+<span class="o">(</span>or<span class="o">)</span>
+$ ponzu run --port<span class="o">=</span><span class="m">8080</span> --https admin,api
+<span class="o">(</span>or<span class="o">)</span> 
 $ ponzu run admin
-<span class="c1"># (or)</span>
-$ ponzu -port<span class="o">=</span><span class="m">8888</span> run api
-<span class="c1"># (or)</span>
-$ ponzu --devhttps run
+<span class="o">(</span>or<span class="o">)</span>
+$ ponzu run --port<span class="o">=</span><span class="m">8888</span> api
+<span class="o">(</span>or<span class="o">)</span>
+$ ponzu --dev-https run
 </pre></div>
 
 
-<p>Defaults to <code>$ ponzu -port=8080 run admin,api</code> (running Admin &amp; API on port 8080, without TLS)</p>
+<p>Defaults to <code>$ ponzu run --port=8080 admin,api</code> (running Admin &amp; API on port 8080, without TLS)</p>
 <p><em>Note:</em> 
 Admin and API cannot run on separate processes unless you use a copy of the
 database, since the first process to open it receives a lock. If you intend
@@ -1104,10 +1099,10 @@ Ponzu project directory. By passing the <code>--cli</code> flag, the <code>versi
 print the version of the Ponzu CLI you have installed.</p>
 <p>Example:</p>
 <div class="codehilite"><pre><span></span>$ ponzu version
-Ponzu v0.7.1
+Ponzu v0.8.2
 <span class="c1"># (or)</span>
-$ ponzu --cli version
-Ponzu v0.8.0
+$ ponzu version --cli
+Ponzu v0.9.2
 </pre></div>
 
 
@@ -1120,7 +1115,7 @@ Ponzu v0.8.0
 <li>make a commit to ponzu-dev</li>
 <li>to manually test, you will need to use a new copy (ponzu new path/to/code), 
 but pass the <code>--dev</code> flag so that ponzu generates a new copy from the <code>ponzu-dev</code> 
-branch, not master by default (i.e. <code>$ponzu --dev new /path/to/code</code>)</li>
+branch, not master by default (i.e. <code>$ponzu new --dev /path/to/code</code>)</li>
 <li>build and run with <code>$ ponzu build</code> and <code>$ ponzu run</code></li>
 </ul>
 </li>
@@ -1160,12 +1155,12 @@ $ git push origin ponzu-dev
 
 
 <p><strong>Note:</strong> if you intend to work on your own fork and contribute from it, you will
-need to also pass <code>-fork=path/to/your/fork</code> (using OS-standard filepath structure),
+need to also pass <code>--fork=path/to/your/fork</code> (using OS-standard filepath structure),
 where <code>path/to/your/fork</code> <em>must</em> be within <code>$GOPATH/src</code>, and you are working from a branch
 called <code>ponzu-dev</code>. </p>
 <p>For example: </p>
 <div class="codehilite"><pre><span></span><span class="c1"># ($GOPATH/src is implied in the fork path, do not add it yourself)</span>
-$ ponzu --dev -fork<span class="o">=</span>github.com/nilslice/ponzu new /path/to/new/project
+$ ponzu new --dev --fork<span class="o">=</span>github.com/nilslice/ponzu /path/to/new/project
 </pre></div>
                 
                   

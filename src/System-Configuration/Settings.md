@@ -25,7 +25,7 @@ with TLS over HTTPS connections, follow these steps:
 1. Set your Domain Name in the system configuration
 2. Set the Administrator Email to register with Let's Encrypt
 2. Stop your Ponzu server
-3. Run your Ponzu server with the `--https` flag e.g. `$ ponzu --https run`
+3. Run your Ponzu server with the `--https` flag e.g. `$ ponzu run --https`
 4. Visit your CMS admin with `https://` prepended to your URL
 
 !!! success "Verifying HTTPS / TLS Connections"

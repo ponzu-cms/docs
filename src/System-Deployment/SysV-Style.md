@@ -16,7 +16,7 @@ define the `PROJECT_DIR` & `RUNAS` variables by replacing `<PROJECT DIRECTORY>`
 ### END INIT INFO
 
 PROJECT_DIR=<PROJECT DIRECTORY>
-SCRIPT='cd $PROJECT_DIR && ponzu --port=80 run'
+SCRIPT='cd $PROJECT_DIR && ponzu run --port=80 --https'
 RUNAS=<USER>
 
 PIDFILE=/var/run/ponzu-server.pid
