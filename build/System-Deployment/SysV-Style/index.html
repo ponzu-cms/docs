@@ -763,7 +763,7 @@ define the <code>PROJECT_DIR</code> &amp; <code>RUNAS</code> variables by replac
 <span class="c1">### END INIT INFO</span>
 
 <span class="nv">PROJECT_DIR</span><span class="o">=</span>&lt;PROJECT DIRECTORY&gt;
-<span class="nv">SCRIPT</span><span class="o">=</span><span class="s1">&#39;cd $PROJECT_DIR &amp;&amp; ponzu run --port=80 --https&#39;</span>
+<span class="nv">SCRIPT</span><span class="o">=</span><span class="s1">&#39;cd $PROJECT_DIR &amp;&amp; ponzu run --port=80&#39;</span> <span class="c1"># add --https here to get TLS/HTTPS</span>
 <span class="nv">RUNAS</span><span class="o">=</span>&lt;USER&gt;
 
 <span class="nv">PIDFILE</span><span class="o">=</span>/var/run/ponzu-server.pid
