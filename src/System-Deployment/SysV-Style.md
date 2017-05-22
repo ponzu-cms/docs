@@ -16,7 +16,7 @@ define the `PROJECT_DIR` & `RUNAS` variables by replacing `<PROJECT DIRECTORY>`
 ### END INIT INFO
 
 PROJECT_DIR=<PROJECT DIRECTORY>
-SCRIPT='cd $PROJECT_DIR && ponzu run --port=80 --https'
+SCRIPT='cd $PROJECT_DIR && ponzu run --port=80' # add --https here to get TLS/HTTPS
 RUNAS=<USER>
 
 PIDFILE=/var/run/ponzu-server.pid
