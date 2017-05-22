@@ -15,7 +15,7 @@ Want to jump in right away? Try the [Quickstart](/Quickstart/Overview)
 
 ### Table of Contents
 
-1. [CLI](/CLI)
+1. [CLI](/CLI/General-Usage/)
 2. [Content](/Content/An-Overview)
 3. [Form Fields](/Form-Fields/HTML-Inputs)
 4. [HTTP API - Content](/HTTP-APIs/Content)
